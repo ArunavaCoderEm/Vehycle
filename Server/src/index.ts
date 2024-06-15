@@ -6,7 +6,7 @@ dotenv.config();
 
 const app = new Hono()
 
-const port : number | undefined = (process.env.PRODUCTION === 'production') ? Number(process.env.PRODSERVE) : Number (process.env.PORT)
+const port : number | undefined =  Number(process.env.PORT);
 
 console.log(`Server is running on port ${port}`)
 
