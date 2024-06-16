@@ -8,7 +8,8 @@ export interface modelSchema {
     hourlyrate ? : number,
     desc ? : string,
     nearby : string,
-    available ? : boolean
+    available ? : boolean,
+    rating ? : number[]
 }
 
 const Userdet = new Schema <modelSchema> ({
@@ -45,6 +46,10 @@ const Userdet = new Schema <modelSchema> ({
     available : {
         type : Boolean,
         default : true
+    },
+    rating : {
+        type: [Number],
+        default : [0]
     }
 })
 
