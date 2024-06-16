@@ -3,11 +3,17 @@ import { Hono } from 'hono'
 import dotenv from 'dotenv';
 import server from './Routes/Routemon';
 import connectDB from './Mongo';
-import { cors } from 'hono/cors'
+import { cors } from 'hono/cors';
+import { poweredBy } from 'hono/powered-by';
+import { logger } from 'hono/logger';
 
 dotenv.config();  
 
 const app = new Hono() 
+
+app.use(logger())
+
+app.use(poweredBy())
 
 const frontendurl : string = (String(process.env.PRODUCTION) === 'production') ? "https://example.vercel.app" : 'http://locahost:5173'
 
@@ -34,6 +40,10 @@ app.get('/', (c) => {
 connectDB(); 
 
 app.route("/users/",server);
+
+app.onError((err : any, c : any) => {
+    return c.text(`App error happened ${err}`);
+})
 
 serve({
   fetch: app.fetch,

@@ -2,12 +2,24 @@ import { Hono } from "hono";
 
 const server = new Hono();
 
-server.get("/add", async (c) => {
-    return c.text("useradd hono")
+server.get("/getdata", async (c) => {
+    const res = 
 })
 
-server.get("/delete", async (c) => {
-    return c.text("userdelete hono")
+server.get("/getpart/:query", async (c) => {
+    
+})
+
+server.post("/create", async (c) => {
+    
+})
+
+server.delete("/delete/:id", async (c) => {
+    
+})
+
+server.put("/put/:id", async (c) => {
+    
 })
 
 export default server;
