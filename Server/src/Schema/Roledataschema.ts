@@ -1,6 +1,12 @@
 import { Schema, model } from "mongoose";
 
-export interface modelSchema {
+export interface bookpr {
+    place : string,
+    date : Date,
+    clientname : string
+}
+
+export interface modelSchemaprov {
     fbid : string,
     role : string,
     contact : number,
@@ -9,10 +15,11 @@ export interface modelSchema {
     desc ? : string,
     nearby : string,
     available ? : boolean,
-    rating ? : number[]
+    rating ? : number[],
+    bookings : bookpr[]
 }
 
-const Userdet = new Schema <modelSchema> ({
+const Userdetprov = new Schema <modelSchemaprov> ({
     fbid : {
         type : String,
         required : true
@@ -53,6 +60,6 @@ const Userdet = new Schema <modelSchema> ({
     }
 })
 
-const modelSchemaexp = model('VehycleUser', Userdet)
+const modelSchemaexpprov = model('Vehycleprov', Userdetprov)
 
-export default modelSchemaexp;
+export default modelSchemaexpprov;
