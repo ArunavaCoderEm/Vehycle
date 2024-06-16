@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const mongoURI: string = process.env.MONGO_CONN_STRING || '';
+const mongoURI: string | undefined = process.env.MONGO_CONN_STRING || '';
 
 if (! mongoURI) {
     console.error("MONGO_CONN_STRING not found in .env");
