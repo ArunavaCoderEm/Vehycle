@@ -7,7 +7,9 @@
     "@hono/node-server": "^1.11.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "hono": "^4.4.6"
+    "hono": "^4.4.6",
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
