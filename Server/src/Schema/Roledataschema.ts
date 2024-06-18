@@ -55,8 +55,11 @@ const Userdetprov = new Schema <modelSchemaprov> ({
         default : true
     },
     rating : {
-        type: [Number],
+        type: [],
         default : [0]
+    },
+    bookings : {
+        type : []
     }
 })
 

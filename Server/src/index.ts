@@ -1,7 +1,8 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import dotenv from 'dotenv';
-import server from './Routes/Routemon';
+import serverpr from './Routes/Routemonpr';
+import servercl from './Routes/Routemoncl';
 import connectDB from './Mongo';
 import { cors } from 'hono/cors';
 import { poweredBy } from 'hono/powered-by';
@@ -39,7 +40,9 @@ app.get('/', (c) => {
 
 connectDB(); 
 
-app.route("/users/",server);
+app.route("/userpr/",serverpr);
+
+app.route("/usercl/",servercl);
 
 app.onError((err : any, c : any) => {
     return c.text(`App error happened ${err}`);

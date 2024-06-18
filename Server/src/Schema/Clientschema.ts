@@ -31,6 +31,9 @@ const Userdetclient = new Schema <modelSchemauser> ({
     nearby : {
         type : String,
         required : true
+    },
+    bookingscl : {
+        type : []
     }
 })
 
