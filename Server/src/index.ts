@@ -30,7 +30,7 @@ app.use(
   })
 )
 
-const port : number | undefined =  Number(process.env.PORT);
+const port = (process.env.PRODUCTION === 'production') ? undefined : Number(process.env.PORT);
 
 console.log(`Server is running on port ${port}`)
 
