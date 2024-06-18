@@ -35,7 +35,7 @@ const port : number | undefined =  Number(process.env.PORT);
 console.log(`Server is running on port ${port}`)
 
 app.get('/', (c) => {
-  return c.text(`Hono Server Started at localhost:${port}`)
+  return c.text(`Hono Server Started at localhost or production`)
 })
 
 connectDB(); 
