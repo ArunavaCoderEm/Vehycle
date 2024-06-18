@@ -16,7 +16,7 @@ app.use(logger())
 
 app.use(poweredBy())
 
-const frontendurl : string = (String(process.env.PRODUCTION) === 'production') ? "https://example.vercel.app" : 'http://locahost:5173'
+const frontendurl : string = (String(process.env.PRODUCTION) === 'production') ? "https://example.vercel.app" : 'http://localhost:5173'
 
 app.use(
   '/*',
