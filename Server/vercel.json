@@ -1,24 +1,22 @@
 {
     "version": 2,
     "builds": [
-      {
-        "src": "./src/index.ts",
+        {
+        "src": "src/index.ts",
         "use": "@vercel/node"
-      }
+        }
     ],
     "routes": [
-      {
+        {
         "src": "/(.*)",
-        "dest": "/",
-        "methods": ["GET","HEAD","PUT","PATCH","POST","OPTIONS","DELETE"]
-      }
+        "dest": "/src/index.ts",
+        "methods": ["GET", "HEAD", "PUT", "PATCH", "POST", "OPTIONS", "DELETE"]
+        }
     ],
-
     "git": {
-      "deploymentEnabled": {
+        "deploymentEnabled": {
         "main": true
-      }
+        }
     }
-    
-  }
+}
   
