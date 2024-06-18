@@ -16,7 +16,7 @@ export interface modelSchemaprov {
     nearby : string,
     available ? : boolean,
     rating ? : number[],
-    bookings : bookpr[]
+    bookings : bookpr[] | null
 }
 
 const Userdetprov = new Schema <modelSchemaprov> ({

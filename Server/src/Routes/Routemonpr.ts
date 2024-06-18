@@ -1,82 +1,118 @@
 import { Hono } from "hono";
 import modelSchemaexpprov from "../Schema/Roledataschema";
-import { isValidObjectId } from "mongoose";
 
 const serverpr = new Hono();
 
 serverpr.get("/getdata", async (c) => {
-    const res = await modelSchemaexpprov.find()
-    if(!res){
-        console.log(`Document doesn't exist`);
+    try{
+        const res = await modelSchemaexpprov.find()
+        if(!res){
+            console.log(`Document doesn't exist`);
+            return c.json(
+                `Document doesn't exist`,404
+            );  
+        }
         return c.json(
-            `Document doesn't exist`,404
-        );  
+            res.map((r) => r.toObject()), 201
+        )
     }
-    return c.json(
-        res.map((r) => r.toObject()), 201
-    )
+    catch (error) {
+        return c.json(
+            { message: `Internal server error` },
+            500
+        ); 
+    }
 })
 
 serverpr.get("/getpart/:query", async (c) => {
-    const par = c.req.param('query')
-    if(!isValidObjectId(par)){
-        console.log(`${par} doesn't exist`);
+    try {
+        const par = c.req.param('query')
+        const res = await modelSchemaexpprov.find({ fbid : par })
+        if(!res.length){
+            console.log(`Document doesn't exist`);
+            return c.json(
+                `Document doesn't exist`,404
+            );  
+        }
         return c.json(
-            `${par} doesn't exist`,400
-        );
+            res, 201
+        )
     }
-    const res = await modelSchemaexpprov.findById(par)
-    if(!res){
-        console.log(`Document doesn't exist`);
+    catch (error) {
         return c.json(
-            `Document doesn't exist`,404
-        );  
+            { message: `Internal server error` },
+            500
+        ); 
     }
-    return c.json(
-        res.toObject(), 201
-    )
 })
 
 serverpr.post("/create", async (c) => {
-    const res = await c.req.json();
-    const docs = new modelSchemaexpprov(res)
-    const docres = docs.save()
-    return c.json((await docres).toObject(), 201)
+    try {
+        const res = await c.req.json();
+        const par = await res.fbid;
+        const exi = await modelSchemaexpprov.findOne({ fbid : par });
+        if(exi){
+            return c.json(
+                `${par} already exists`, 500
+            )
+        }
+        const docs = new modelSchemaexpprov(res)
+        const docres = docs.save()
+        return c.json((await docres).toObject(), 201)
+    }
+    catch (error) {
+        return c.json(
+            { message: `Internal server error` },
+            500
+        ); 
+    }
 })
 
 serverpr.delete("/delete/:id", async (c) => {
-    const par = c.req.param('id')
-    if(!isValidObjectId(par)){
-        console.log(`${par} doesn't exist`);
+    try {
+        const par = c.req.param('id'); 
+        const res = await modelSchemaexpprov.findOneAndDelete({ fbid: par }); 
+        if (!res) {
+            console.log(`Document with fbid ${par} doesn't exist`);
+            return c.json(
+                { message: `Document with fbid ${par} doesn't exist` },
+                404
+            );  
+        }
         return c.json(
-            `${par} doesn't exist`,400
-        );
-    }
-    const res = await modelSchemaexpprov.findByIdAndDelete(par)
-    if(!res){
-        console.log(`Document doesn't exist`);
+            { message: `Document with fbid ${par} deleted successfully` },
+            200
+        ); 
+    } catch (error) {
         return c.json(
-            `Document doesn't exist`, 404
-        );  
+            { message: `Internal server error` },
+            500
+        ); 
     }
-    return c.json(
-        `${par} id deleted`, 201
-    )
-})
+});
 
-serverpr.put("/put/:id", async (c) => {
-    const par = c.req.param('id')
-    if(!isValidObjectId(par)){
-        console.log(`${par} doesn't exist`);
+serverpr.put("/update/:id", async (c) => {
+    try {
+        const par = c.req.param('id'); 
+        const resdocs = await c.req.json();
+        const res = await modelSchemaexpprov.findOneAndUpdate({ fbid: par }, resdocs, { new : true }); 
+        if (!res) {
+            console.log(`Document with fbid ${par} doesn't exist`);
+            return c.json(
+                { message: `Document with fbid ${par} doesn't exist` },
+                404
+            );  
+        }
         return c.json(
-            `${par} doesn't exist`, 404
-        );
+            { message: `Document with fbid ${par} updated successfully`, resdocs },
+            200
+        ); 
+    } catch (error) {
+        return c.json(
+            { message: `Internal server error` },
+            500
+        ); 
     }
-    const docs = c.req.json()
-    const updocs = await modelSchemaexpprov.findByIdAndUpdate(par, docs, { new : true })
-    return c.json(
-        updocs?.toObject(), 200
-    )
-})
+});
 
 export default serverpr;
