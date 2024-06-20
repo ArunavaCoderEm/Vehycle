@@ -1,9 +1,9 @@
 import { Hono } from "hono";
 import modelSchemaexpuser from '../Schema/Clientschema'
 
-const serverpr = new Hono();
+const servercl = new Hono();
 
-serverpr.get("/getdata", async (c) => {
+servercl.get("/getdata", async (c) => {
     try{
         const res = await modelSchemaexpuser.find()
         if(!res){
@@ -24,7 +24,7 @@ serverpr.get("/getdata", async (c) => {
     }
 })
 
-serverpr.get("/getpart/:query", async (c) => {
+servercl.get("/getpart/:query", async (c) => {
     try {
         const par = c.req.param('query')
         const res = await modelSchemaexpuser.find({ fbid : par })
@@ -46,7 +46,7 @@ serverpr.get("/getpart/:query", async (c) => {
     }
 })
 
-serverpr.post("/create", async (c) => {
+servercl.post("/create", async (c) => {
     try {
         const res = await c.req.json();
         const par = await res.fbid;
@@ -68,7 +68,7 @@ serverpr.post("/create", async (c) => {
     }
 })
 
-serverpr.delete("/delete/:id", async (c) => {
+servercl.delete("/delete/:id", async (c) => {
     try {
         const par = c.req.param('id'); 
         const res = await modelSchemaexpuser.findOneAndDelete({ fbid: par }); 
@@ -91,7 +91,7 @@ serverpr.delete("/delete/:id", async (c) => {
     }
 });
 
-serverpr.put("/update/:id", async (c) => {
+servercl.put("/update/:id", async (c) => {
     try {
         const par = c.req.param('id'); 
         const resdocs = await c.req.json();
@@ -115,4 +115,4 @@ serverpr.put("/update/:id", async (c) => {
     }
 });
 
-export default serverpr;
+export default servercl;
