@@ -2,7 +2,7 @@
   "name": "server",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsx",
+    "build": "tsc",
     "start": "tsx src/index.ts"
   },
   "dependencies": {
