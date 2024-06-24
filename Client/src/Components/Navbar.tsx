@@ -148,6 +148,7 @@ export default function Navbar():React.ReactNode {
           className="md:hidden flex items-center"
           onClick={toggleMenu}
         >
+          <img src={avat} alt="avat" className='w-9 mx-2 rounded-full' />
             {icon 
             ?
             <CrossIcon onClick={togicon} className="h-6 w-6" />
@@ -185,6 +186,30 @@ export default function Navbar():React.ReactNode {
               </Link>
             </li>
 
+            {user 
+            
+            ? 
+
+            <div className='flex flex-col items-center gap-y-2 w-full rounded-lg backdrop-blur-sm bg-white/30'>
+            <div className='pt-2'>
+              <div className='pb-2'>
+                <div
+                  className="sha inline-flex h-9 items-center justify-center rounded-md border border-gray-900 bg-white px-4 py-2 text-sm font-semibold shadow-sm transition-all duration-200 hover:bg-gray-300"
+                  >
+                  {name}
+                </div>
+              </div>
+            </div>
+              <button
+                onClick={handlelogout}
+                className="sha inline-flex bg-gray-900 h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium hover:text-black hover:bg-slate-300 text-white shadow transition-all duration-300 hover:bg-primary/90 mb-2 mx-auto"
+                >
+                Log Out
+              </button>
+            </div>
+
+              :
+
             <div className='flex flex-col items-center gap-y-2 w-full rounded-lg backdrop-blur-sm bg-white/30'>
             <div className='pt-2'>
               <Link
@@ -203,6 +228,9 @@ export default function Navbar():React.ReactNode {
               </Link>
             </div>
             </div>
+
+            }
+
           </ul>
         </nav>
       )}
