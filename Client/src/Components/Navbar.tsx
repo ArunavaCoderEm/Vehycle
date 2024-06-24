@@ -73,7 +73,7 @@ export default function Navbar():React.ReactNode {
     <header className="z-10 lg:bg-transparent sm:backdrop-blur-sm bg-white/80 bg-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         <div className="flex items-center bg-gray-900 p-2 rounded-lg">
-          <Link to="/" onClick={() => setact("home")} className="flex items-center text-white">
+          <Link to="/" onClick={() => setact("home")} className="flex hover:text-pink-400 transition-all duration-300 items-center text-white">
             <img src="./logoveh.jpg" alt="logo" className='w-8 rounded-full mr-2' />
             <span className="text-lg text-white font-bold">V</span>ehycle
           </Link>
