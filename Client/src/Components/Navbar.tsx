@@ -41,7 +41,7 @@ export default function Navbar():React.ReactNode {
     });
   
     return () => unsubscribe();
-  }, []);
+  }, [user]);
 
   const handlelogout = ():void => {
     auth.signOut()
