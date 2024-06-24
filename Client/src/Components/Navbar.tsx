@@ -42,7 +42,18 @@ export default function Navbar():React.ReactNode {
   
     return () => unsubscribe();
   }, []);
-  
+
+  const handlelogout = ():void => {
+    auth.signOut()
+    .then(() => {
+      setUser(null);
+      setavat("")
+      nav('/signin');
+    })
+    .catch((error) => {
+      console.error('Error while logging out:', error);
+    });
+  }
 
   useEffect(() => {
     if (user) {
@@ -96,6 +107,27 @@ export default function Navbar():React.ReactNode {
             </li>
           </ul>
         </nav>
+        {user 
+
+        ?
+
+        <div className="hidden md:flex items-center gap-2">
+          <img src={avat} alt="avat" className='w-9 rounded-full mx-2' />
+          <div
+            className="inline-flex border cursor-text bg-gray-900 border-gray-300 h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow transition-all duration-200"
+          >
+            {name}
+          </div>
+          <button
+            onClick={handlelogout}
+            className="inline-flex h-9 items-center justify-center rounded-md border border-gray-900 bg-white px-4 py-2 text-sm font-medium shadow-sm transition-all hover:scale-105 duration-200"
+          >
+            Log Out
+          </button>
+        </div>
+
+        :
+
         <div className="hidden md:flex items-center gap-2">
           <Link
             to="/signin"  onClick={() => setact("#")}
@@ -110,6 +142,8 @@ export default function Navbar():React.ReactNode {
             Sign Up
           </Link>
         </div>
+
+        }
         <button
           className="md:hidden flex items-center"
           onClick={toggleMenu}
