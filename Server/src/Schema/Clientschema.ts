@@ -32,9 +32,11 @@ const Userdetclient = new Schema <modelSchemauser> ({
         type : String,
         required : true
     },
-    bookingscl : {
-        type : []
-    }
+    bookingscl: [{
+        place: String,
+        date: Date,
+        provname: String,
+    },],
 })
 
 const modelSchemaexpuser = model('VehycleUser', Userdetclient)
