@@ -45,3 +45,5 @@ const addBookingToProvider = async (providerFbid: string, bookingDetails: any) =
       return c.json({ error: 'An error occurred while adding the booking.' }, 500);
     }
   });
+
+  export default serverpr;

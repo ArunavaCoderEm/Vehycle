@@ -44,3 +44,5 @@ const addBookingToProvider = async (clfbid: string, bookingDetails: any) => {
       return c.json({ error: 'An error occurred while adding the booking.' }, 500);
     }
   });
+
+  export default servercl;

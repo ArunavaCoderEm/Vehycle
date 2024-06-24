@@ -3,6 +3,8 @@ import { Hono } from 'hono'
 import dotenv from 'dotenv';
 import serverpr from './Routes/Routemonpr';
 import servercl from './Routes/Routemoncl';
+import bookcl from './Bookings/Bookingcl'
+import bookpr from './Bookings/Bookingpr'
 import connectDB from './Mongo';
 import { cors } from 'hono/cors';
 import { poweredBy } from 'hono/powered-by';
@@ -43,6 +45,10 @@ connectDB();
 app.route("/userpr/",serverpr);
 
 app.route("/usercl/",servercl);
+
+app.route("/book/",bookcl);
+
+app.route("/book/",bookpr);
 
 app.onError((err : any, c : any) => {
     return c.text(`App error happened ${err}`);
