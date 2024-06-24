@@ -24,7 +24,7 @@ const addBookingToProvider = async (providerFbid: string, bookingDetails: any) =
     }
   };
   
-  serverpr.put('/booking/:id', async (c) => {
+  serverpr.put('/bookingpr/:id', async (c) => {
     const providerFbid = c.req.param('id');
     const { bookingDetails } = await c.req.json();
   
