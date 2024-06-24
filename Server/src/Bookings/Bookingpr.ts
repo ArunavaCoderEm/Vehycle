@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import modelSchemaexpuser from '../Schema/Clientschema'
+import modelSchemaexpprov from "../Schema/Roledataschema";
 
 const serverpr = new Hono();
 
@@ -9,12 +9,12 @@ const addBookingToProvider = async (providerFbid: string, bookingDetails: any) =
       const booking = {
         place: bookingDetails.place,
         date: bookingDetails.date,
-        provname: bookingDetails.provname,
+        clientname: bookingDetails.provname,
       };
   
-      await modelSchemaexpuser.updateOne(
+      await modelSchemaexpprov.updateOne(
         { fbid: providerFbid },
-        { $push: { bookingscl: booking } }
+        { $push: { bookings: booking } }
       );
   
       console.log('Booking added to provider successfully');
@@ -33,7 +33,7 @@ const addBookingToProvider = async (providerFbid: string, bookingDetails: any) =
     }
   
     try {
-      const provider = await modelSchemaexpuser.findOne({ fbid: providerFbid });
+      const provider = await modelSchemaexpprov.findOne({ fbid: providerFbid });
   
       if (!provider) {
         return c.json({ error: 'Provider not found.' }, 404);
