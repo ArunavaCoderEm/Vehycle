@@ -1,11 +1,54 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth, db } from '../Context/Firebase';
 
 export default function Navbar():React.ReactNode {
 
+  const nav = useNavigate()
+
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [icon, seticon] = useState<boolean>(false);
-  const[act, setact] = useState<string>("home")
+  const[act, setact] = useState<string>("home");
+  const [avat, setavat] = useState<string>("")
+  const [name, setname] = useState<string>("")
+  const [user, setUser] = useState<any>(null); 
+
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+        const userRef = db.collection('users').doc(currentUser.uid);
+  
+        try {
+          const userDoc = await userRef.get();
+          const userData:any = userDoc.data();
+
+          setavat(userData.avatar)
+          
+          if (!currentUser.displayName) {
+            setname(userData.username);
+          } else {
+            setname(currentUser.displayName);
+          }
+
+        } catch (error) {
+          console.error('Error fetching user document: ', error);
+        }
+      } else {
+        setUser(null);
+      }
+    });
+  
+    return () => unsubscribe();
+  }, []);
+  
+
+  useEffect(() => {
+    if (user) {
+      nav('/'); 
+    }
+  }, [user]);
 
   const toggleMenu = ():void => {
     setIsMenuOpen(!isMenuOpen);
