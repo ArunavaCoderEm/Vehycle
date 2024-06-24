@@ -1,7 +1,5 @@
 import { Hono } from "hono";
 import modelSchemaexpuser from '../Schema/Clientschema'
-import modelSchemaexpprov from "../Schema/Roledataschema";
-import mongoose from 'mongoose';
 
 const serverpr = new Hono();
 
