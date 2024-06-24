@@ -148,7 +148,9 @@ export default function Navbar():React.ReactNode {
           className="md:hidden flex items-center"
           onClick={toggleMenu}
         >
-          <img src={avat} alt="avat" className='w-9 mx-2 rounded-full' />
+          {user &&
+            <img src={avat} alt="avat" className='w-9 mx-2 rounded-full' />
+          }
             {icon 
             ?
             <CrossIcon onClick={togicon} className="h-6 w-6" />
