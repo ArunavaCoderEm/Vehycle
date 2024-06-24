@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar():React.ReactNode {
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [icon, seticon] = useState(false);
-  const[act, setact] = useState("home")
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [icon, seticon] = useState<boolean>(false);
+  const[act, setact] = useState<string>("home")
 
-  const toggleMenu = () => {
+  const toggleMenu = ():void => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const togicon = () => {
+  const togicon = ():void => {
     seticon(!icon);
   };
 
@@ -133,7 +133,7 @@ export default function Navbar():React.ReactNode {
   );
 }
 
-function MenuIcon(props: any) {
+function MenuIcon(props: any):React.ReactNode {
   return (
     <svg
       {...props}
@@ -154,7 +154,7 @@ function MenuIcon(props: any) {
   );
 }
 
-function CrossIcon(props: any) {
+function CrossIcon(props: any):React.ReactNode {
     return (
       <svg
         {...props}
