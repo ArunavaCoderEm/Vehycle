@@ -85,6 +85,9 @@ const Rolechdt: React.FC = () => {
       }
       const response = await axios.post("http://localhost:8173/usercl/create",data);
       console.log(response)
+      setTimeout(() => {
+        nav("/")
+      }, 1300);
     }
     if(role === 'supplier'){
       const data = {
@@ -101,6 +104,9 @@ const Rolechdt: React.FC = () => {
       }
       const response = await axios.post("http://localhost:8173/userpr/create",data);
       console.log(response)
+      setTimeout(() => {
+        nav("/")
+      }, 1300);
     }
   }
 
