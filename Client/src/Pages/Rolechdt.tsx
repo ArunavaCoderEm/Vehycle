@@ -1,8 +1,11 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { auth } from '../Context/Firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Rolechdt: React.FC = () => {
+
+  const nav = useNavigate()
 
   const[role, setrole] = useState<string>("consumer")
   const[add, setadd] = useState<string>("")
@@ -37,6 +40,9 @@ const Rolechdt: React.FC = () => {
       }
       const response = await axios.post("http://localhost:8173/usercl/create",data);
       console.log(response)
+      setTimeout(() => {
+        nav("/")
+      }, 1300);
     }
     if(role === 'supplier'){
       const data = {
@@ -53,6 +59,9 @@ const Rolechdt: React.FC = () => {
       }
       const response = await axios.post("http://localhost:8173/userpr/create",data);
       console.log(response)
+      setTimeout(() => {
+        nav("/")
+      }, 1300);
     }
   }
 
