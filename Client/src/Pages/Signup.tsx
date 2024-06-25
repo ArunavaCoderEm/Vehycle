@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, store, db } from '../Context/Firebase';
 import firebase from 'firebase/compat/app';
+import axios from 'axios';
 
 export default function Signup():React.ReactNode {
 
   const [pass, setPass] = useState<boolean>(false);
-  const [user, setUser] = useState<boolean | null>(null);
+  const [user, setUser] = useState<boolean | any>(null);
   const [email, setEmail] = useState<string>("");
   const [passw, setPassw] = useState<string>("");
   const [name, setName] = useState<string>("");
@@ -28,10 +29,23 @@ export default function Signup():React.ReactNode {
     });
     return () => unsubscribe();
   }, []);
-  
+
+  const getmbuser = async () => {
+    const mbuser = await axios.get(`http://localhost:8173/usercl/getpart/${user.uid}`);
+    if(mbuser){
+      setUserMDB(true)
+    }
+    else {
+      setUserMDB(false)
+    }
+  }
+
   useEffect(() => {
-    if (user) {
-      nav('/');
+    if(userMDB){
+      nav("/")
+    }
+    else {
+      nav('/rolechdt')
     }
   }, [user, nav]);
 
@@ -68,10 +82,7 @@ export default function Signup():React.ReactNode {
 
       console.log('User signed up:', user);
       console.log()
-
-      setTimeout(() => {
-        nav("/");
-      }, 1300);
+      getmbuser()
     } catch (error) {
       setAlert(true);
       setTimeout(() => {
@@ -98,6 +109,7 @@ export default function Signup():React.ReactNode {
           avatar: user.photoURL
         });
       }
+      getmbuser()
 
     } catch (error) {
       setAlert(true);
