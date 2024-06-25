@@ -6,6 +6,8 @@ import axios from 'axios';
 
 export default function Signup():React.ReactNode {
 
+  const nav = useNavigate();
+
   const [pass, setPass] = useState<boolean>(false);
   const [user, setUser] = useState<boolean | any>(null);
   const [email, setEmail] = useState<string>("");
@@ -14,46 +16,65 @@ export default function Signup():React.ReactNode {
   const [avatar, setAvatar] = useState<any | null>(null);
   const [alert, setAlert] = useState<boolean>(false);
   const [avattext, setavattext] = useState<string>("Upload Avatar");
-  const [mdbu, setmdbu] = useState<boolean>(false)
+  const [mdbu, setMdbu] = useState<boolean>(false)
+  const [mdbp, setMdbp] = useState<boolean>(false)
 
-  const getmbuser = async (uid:string) => {
+  const getMbUserCl = async (uid: string) => {
     try {
-      const mbuser = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
-      if(mbuser) {
-        console.log("USER FOUND")
-        setmdbu(true)
+      const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
+      if (response) {
+        console.log("USER FOUND in usercl");
+        setMdbu(true);
+      } else {
+        console.log("USER NOT FOUND in usercl");
+        setMdbu(false);
       }
+    } catch (error) {
+      console.error("Error fetching usercl data:", error);
+      setMdbu(false);
     }
-    catch {
-      setmdbu(false)
-      console.log("USER NOT")
+  };
+
+  const getMbUserPr = async (uid: string) => {
+    try {
+      const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
+      if (response) {
+        console.log("USER FOUND in userpr");
+        setMdbp(true);
+      } else {
+        console.log("USER NOT FOUND in userpr");
+        setMdbp(false);
+      }
+    } catch (error) {
+      console.error("Error fetching userpr data:", error);
+      setMdbp(false);
     }
-  }
-  
-  const nav = useNavigate();
+  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser:any) => {
       if (currentUser) {
         setUser(currentUser);
-        getmbuser(currentUser.uid)
       } else {
         setUser(null);
+        setMdbu(false); 
+        setMdbp(false); 
       }
+      getMbUserCl(currentUser.uid);
+      getMbUserPr(currentUser.uid);
     });
     return () => unsubscribe();
-  }, []);
+  }, []); 
 
   useEffect(() => {
-    if (user) {
-      if (mdbu){
-        nav("/")
-      }
-      else {
-        nav("/rolechdt")
-      }
+    console.log(mdbp, mdbu)
+    if (user && (mdbu || mdbp)) {
+      nav("/");
+    } 
+    else if (user &&  !mdbu && !mdbp) {
+      nav("/rolechdt");
     }
-  }, [user, nav]);
+  }, [user, mdbu, mdbp, nav]);
 
   const togPass = () => {
     setPass(!pass);

@@ -68,7 +68,7 @@ export default function Signin():React.ReactNode {
     if (user && (mdbu || mdbp)) {
       nav("/");
     } 
-    else if (user && ! (mdbu || mdbp)) {
+    else if (user &&  !mdbu && !mdbp) {
       nav("/rolechdt");
     }
   }, [user, mdbu, mdbp, nav]);
