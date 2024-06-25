@@ -58,8 +58,13 @@ const Userdetprov = new Schema <modelSchemaprov> ({
         type: [],
         default : [0]
     },
-    bookings : {
-        type : []
+    bookings: {
+        type: [{
+            place: String,
+            date: Date,
+            provname: String,
+        },],
+        default: []
     }
 })
 

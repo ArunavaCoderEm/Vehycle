@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Rolechdt: React.FC = () => {
+
+  const[role, setrole] = useState<string>("consumer")
+
   return (
     <div className="min-h-screen p-6 bg-transparent flex items-center justify-center">
       <div className="container max-w-screen-lg mx-auto">
@@ -52,119 +55,75 @@ const Rolechdt: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="md:col-span-2">
-                    <label htmlFor="state">State / province</label>
+                  <div className="md:col-span-2 font-semibold">
+                    <label htmlFor="state">Contact</label>
                     <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
                       <input
-                        name="state"
-                        id="state"
-                        placeholder="State"
+                        type='number'
+                        placeholder="9883623445 ..."
                         className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
                         defaultValue=""
                       />
-                      <button
-                        tabIndex={-1}
-                        className="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600"
-                      >
-                        <svg
-                          className="w-4 h-4 mx-2 fill-current"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                      </button>
-                      <button
-                        tabIndex={-1}
-                        className="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600"
-                      >
-                        <svg
-                          className="w-4 h-4 mx-2 fill-current"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <polyline points="18 15 12 9 6 15"></polyline>
-                        </svg>
-                      </button>
+                      
                     </div>
                   </div>
 
-                  <div className="md:col-span-1">
-                    <label htmlFor="zipcode">Zipcode</label>
-                    <input
-                      type="text"
-                      name="zipcode"
-                      id="zipcode"
-                      className="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                      placeholder=""
-                      defaultValue=""
-                    />
-                  </div>
-
-                  <div className="md:col-span-5">
-                    <div className="inline-flex items-center">
-                      <input type="checkbox" name="billing_same" id="billing_same" className="form-checkbox" />
-                      <label htmlFor="billing_same" className="ml-2">
-                        My billing address is different than above.
-                      </label>
+                  <div className="md:col-span-2 font-semibold">
+                    <label htmlFor="state">Role</label>
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                     
+                     <select 
+                     value={role}
+                     onChange={(e:any) => setrole(e.target.value)}
+                     className='w-full h-full bg-white p-2'>
+                      <option value="" disabled>Select Below</option>
+                      <option value="consumer">Consumer</option>
+                      <option value="supplier">Supplier</option>
+                     </select>
+                      
                     </div>
                   </div>
 
-                  <div className="md:col-span-2">
-                    <label htmlFor="soda">How many soda pops?</label>
-                    <div className="h-10 w-28 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                      <button
-                        tabIndex={-1}
-                        className="cursor-pointer outline-none focus:outline-none border-r border-gray-200 transition-all text-gray-500 hover:text-blue-600"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4 mx-2"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </button>
+                {role === "supplier" &&
+                <>
+                    <div className="md:col-span-2 font-semibold">
+                    <label htmlFor="state">Specialist</label>
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
                       <input
-                        name="soda"
-                        id="soda"
-                        placeholder="0"
-                        className="px-2 text-center appearance-none outline-none text-gray-800 w-full bg-transparent"
-                        defaultValue="0"
+                        type='name'
+                        placeholder="Cleaner ..."
+                        className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
+                        defaultValue=""
                       />
-                      <button
-                        tabIndex={-1}
-                        className="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-500 hover:text-blue-600"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4 mx-2 fill-current"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </button>
+                      
                     </div>
                   </div>
+                    <div className="md:col-span-2 font-semibold">
+                    <label htmlFor="state">Hourly Rate Rs.</label>
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                      <input
+                        type='name'
+                        placeholder="351 ..."
+                        className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
+                        defaultValue=""
+                      />
+                      
+                    </div>
+                  </div>
+                    <div className="md:col-span-2 font-semibold">
+                    <label htmlFor="state">Description</label>
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                      <input
+                        type='name'
+                        placeholder="I am a pretty good worker ..."
+                        className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
+                        defaultValue=""
+                      />
+                      
+                    </div>
+                  </div>
+                  </>
+                }
 
                   <div className="md:col-span-5 text-right">
                     <div className="inline-flex items-end">
