@@ -14,7 +14,21 @@ export default function Signup():React.ReactNode {
   const [avatar, setAvatar] = useState<any | null>(null);
   const [alert, setAlert] = useState<boolean>(false);
   const [avattext, setavattext] = useState<string>("Upload Avatar");
-  const [userMDB, setUserMDB] = useState<boolean>(false);
+  const [mdbu, setmdbu] = useState<boolean>(false)
+
+  const getmbuser = async (uid:string) => {
+    try {
+      const mbuser = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
+      if(mbuser) {
+        console.log("USER FOUND")
+        setmdbu(true)
+      }
+    }
+    catch {
+      setmdbu(false)
+      console.log("USER NOT")
+    }
+  }
   
   const nav = useNavigate();
 
@@ -22,7 +36,7 @@ export default function Signup():React.ReactNode {
     const unsubscribe = auth.onAuthStateChanged((currentUser:any) => {
       if (currentUser) {
         setUser(currentUser);
-        console.log(currentUser.uid)
+        getmbuser(currentUser.uid)
       } else {
         setUser(null);
       }
@@ -30,22 +44,14 @@ export default function Signup():React.ReactNode {
     return () => unsubscribe();
   }, []);
 
-  const getmbuser = async () => {
-    const mbuser = await axios.get(`http://localhost:8173/usercl/getpart/${user.uid}`);
-    if(mbuser){
-      setUserMDB(true)
-    }
-    else {
-      setUserMDB(false)
-    }
-  }
-
   useEffect(() => {
-    if(userMDB){
-      nav("/")
-    }
-    else {
-      nav('/rolechdt')
+    if (user) {
+      if (mdbu){
+        nav("/")
+      }
+      else {
+        nav("/rolechdt")
+      }
     }
   }, [user, nav]);
 
@@ -82,7 +88,6 @@ export default function Signup():React.ReactNode {
 
       console.log('User signed up:', user);
       console.log()
-      getmbuser()
     } catch (error) {
       setAlert(true);
       setTimeout(() => {
@@ -109,7 +114,6 @@ export default function Signup():React.ReactNode {
           avatar: user.photoURL
         });
       }
-      getmbuser()
 
     } catch (error) {
       setAlert(true);

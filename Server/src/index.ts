@@ -18,19 +18,9 @@ app.use(logger())
 
 app.use(poweredBy())
 
-const frontendurl : string = (String(process.env.PRODUCTION) === 'production') ? "https://vehycle.vercel.app" : 'http://localhost:5173'
+const frontendurl = (String(process.env.PRODUCTION) === 'production') ? "https://vehycle.vercel.app" : 'http://localhost:5173';
 
-app.use(
-  '/*',
-  cors({
-    origin: frontendurl,
-    allowHeaders: ['X-Custom-Header', 'Upgrade-Insecure-Requests'],
-    allowMethods: ['POST', 'GET', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
-    exposeHeaders: ['Content-Length', 'X-Kuma-Revision'],
-    maxAge: 600,
-    credentials: true,
-  })
-)
+app.use('/*', cors())
 
 const port = (process.env.PRODUCTION === 'production') ? undefined : Number(process.env.PORT);
 

@@ -63,7 +63,7 @@ const Userdetprov = new Schema <modelSchemaprov> ({
             place: String,
             date: Date,
             provname: String,
-        },],
+        },],    
         default: []
     }
 })

@@ -2,21 +2,42 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from "../Context/Firebase";
 import firebase from 'firebase/compat/app';
+import axios from 'axios';
 
 export default function Signin():React.ReactNode {
 
   const nav = useNavigate();
   
-  const [pass,setpass] = useState(false);
-  const [user, setUser] = useState(null); 
-  const [email,setemail] = useState("");
-  const [passw,setpassw] = useState("");
-  const [error,seterror] = useState(false);
+  const [pass,setpass] = useState<boolean>(false);
+  const [user, setUser] = useState<string | null>(null); 
+  const [email,setemail] = useState<string>("");
+  const [passw,setpassw] = useState<string>("");
+  const [error,seterror] = useState<boolean>(false);
+  const [mdbu, setmdbu] = useState<boolean>(false)
+
+  const getmbuser = async (uid:string) => {
+    try {
+      const mbusercl = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
+      const mbuserpr = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
+
+      if(mbusercl || mbuserpr) {
+        console.log("USER FOUND")
+        setmdbu(true)
+      }
+      else{
+        setmdbu(false)
+      }
+    }
+    catch {
+      console.log("USER NOT")
+    }
+  }
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser:any) => {
       if (currentUser) {
         setUser(currentUser);
+        getmbuser(currentUser.uid)
       } else {
         setUser(null);
       }
@@ -26,7 +47,12 @@ export default function Signin():React.ReactNode {
 
   useEffect(() => {
     if (user) {
-      nav("/")
+      if (mdbu){
+        nav("/")
+      }
+      else {
+        nav("/rolechdt")
+      }
     }
   }, [user, nav]);
 

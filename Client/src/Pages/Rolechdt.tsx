@@ -1,8 +1,60 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { auth } from '../Context/Firebase';
 
 const Rolechdt: React.FC = () => {
 
   const[role, setrole] = useState<string>("consumer")
+  const[add, setadd] = useState<string>("")
+  const[city, setcity] = useState<string>("")
+  const[land, setland] = useState<string>("")
+  const[con, setcon] = useState<number>(0)
+  const[spe, setspe] = useState<string>("")
+  const[hr, sethr] = useState<number>(0)
+  const[des, setdes] = useState<string>("")
+  const [fbid, setfbid] = useState<string | null>(null)
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser:any) => {
+      if (currentUser) {
+        setfbid(currentUser.uid);
+      } else {
+        setfbid(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+
+  const handleMDBup = async () => {
+    if(role === "consumer"){
+      const data = {
+        fbid : fbid,
+        role : role,
+        contact : con,
+        nearby : city,
+        bookingscl : []
+      }
+      const response = await axios.post("http://localhost:8173/usercl/create",data);
+      console.log(response)
+    }
+    if(role === 'supplier'){
+      const data = {
+        fbid : fbid,
+        role : role,
+        contact : con,
+        nearby : city,
+        available : true,
+        specialist : spe,
+        hourlyrate : hr,
+        desc : des,
+        rating : [],
+        bookings : []
+      }
+      const response = await axios.post("http://localhost:8173/userpr/create",data);
+      console.log(response)
+    }
+  }
 
   return (
     <div className="min-h-screen p-6 bg-transparent flex items-center justify-center">
@@ -20,6 +72,8 @@ const Rolechdt: React.FC = () => {
                   <div className="md:col-span-3 font-semibold">
                     <label htmlFor="address">Address / Street</label>
                     <input
+                      value={add}
+                      onChange={(e:any) => setadd(e.target.value)}
                       type="text"
                       name="address"
                       id="address"
@@ -32,6 +86,8 @@ const Rolechdt: React.FC = () => {
                   <div className="md:col-span-2 font-semibold">
                     <label htmlFor="city">City</label>
                     <input
+                      value={city}
+                      onChange={(e:any) => setcity(e.target.value)}
                       type="text"
                       name="city"
                       id="city"
@@ -45,6 +101,8 @@ const Rolechdt: React.FC = () => {
                     <label htmlFor="country">Landmark</label>
                     <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
                       <input
+                      value={land}
+                      onChange={(e:any) => setland(e.target.value)}
                         name="country"
                         id="country"
                         placeholder="Near the statue ..."
@@ -59,6 +117,8 @@ const Rolechdt: React.FC = () => {
                     <label htmlFor="state">Contact</label>
                     <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
                       <input
+                      value={con}
+                      onChange={(e:any) => setcon(e.target.value)}
                         type='number'
                         placeholder="9883623445 ..."
                         className="px-4 appearance-none outline-none font-thin text-gray-800 w-full bg-transparent"
@@ -89,6 +149,8 @@ const Rolechdt: React.FC = () => {
                     <label htmlFor="state">Specialist</label>
                     <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
                       <input
+                      value={spe}
+                      onChange={(e:any) => setspe(e.target.value)}
                         type='name'
                         placeholder="Cleaner ..."
                         className="px-4 appearance-none outline-none font-thin text-gray-800 w-full bg-transparent"
@@ -101,6 +163,8 @@ const Rolechdt: React.FC = () => {
                     <label htmlFor="state">Hourly Rate Rs.</label>
                     <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
                       <input
+                      value={hr}
+                      onChange={(e:any) => sethr(e.target.value)}
                         type='number'
                         placeholder="351 ..."
                         className="px-4 appearance-none outline-none font-thin text-gray-800 w-full bg-transparent"
@@ -113,6 +177,8 @@ const Rolechdt: React.FC = () => {
                     <label htmlFor="state">Description</label>
                     <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
                       <input
+                      value={des}
+                      onChange={(e:any) => setdes(e.target.value)}
                         type='name'
                         placeholder="I am a pretty good worker ..."
                         className="px-4 appearance-none outline-none font-thin text-gray-800 w-full bg-transparent"
@@ -126,7 +192,9 @@ const Rolechdt: React.FC = () => {
 
                   <div className="md:col-span-5 my-2 text-right">
                     <div className="flex items-center">
-                      <button className="bg-gray-500 hover:bg-gray-700 transition-all duration-200 text-white font-bold py-2 px-4 rounded flex relative hover:fill-white">
+                      <button 
+                      onClick={handleMDBup}
+                      className="bg-gray-500 hover:bg-gray-700 transition-all duration-200 text-white font-bold py-2 px-4 rounded flex relative hover:fill-white">
                         Next
                       <svg xmlns="http://www.w3.org/2000/svg" className='w-3 mx-2' viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                       </button>
