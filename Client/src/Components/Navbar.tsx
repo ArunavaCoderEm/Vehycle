@@ -86,7 +86,7 @@ export default function Navbar():React.ReactNode {
               </Link>
             </li>
             <li>
-              <Link to="/about" onClick={() => setact("about")} className={`text-sm font-semibold  hover:text-white p-2 rounded-lg transition-all duration-200 ${act === 'about' ? "bg-gray-900 text-white" : "text-black hov hover:text-white"}`}>
+              <Link to="/rolechdt" onClick={() => setact("about")} className={`text-sm font-semibold  hover:text-white p-2 rounded-lg transition-all duration-200 ${act === 'about' ? "bg-gray-900 text-white" : "text-black hov hover:text-white"}`}>
                 About
               </Link>
             </li>
@@ -144,6 +144,7 @@ export default function Navbar():React.ReactNode {
         </div>
 
         }
+        
         <button
           className="md:hidden flex items-center"
           onClick={toggleMenu}
