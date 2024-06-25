@@ -13,48 +13,65 @@ export default function Signin():React.ReactNode {
   const [email,setemail] = useState<string>("");
   const [passw,setpassw] = useState<string>("");
   const [error,seterror] = useState<boolean>(false);
-  const [mdbu, setmdbu] = useState<boolean>(false)
+  const [mdbu, setMdbu] = useState<boolean>(false)
+  const [mdbp, setMdbp] = useState<boolean>(false)
 
-  const getmbuser = async (uid:string) => {
+  const getMbUserCl = async (uid: string) => {
     try {
-      const mbusercl = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
-      const mbuserpr = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
+      const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
+      if (response) {
+        console.log("USER FOUND in usercl");
+        setMdbu(true);
+      } else {
+        console.log("USER NOT FOUND in usercl");
+        setMdbu(false);
+      }
+    } catch (error) {
+      console.error("Error fetching usercl data:", error);
+      setMdbu(false);
+    }
+  };
 
-      if(mbusercl || mbuserpr) {
-        console.log("USER FOUND")
-        setmdbu(true)
+  const getMbUserPr = async (uid: string) => {
+    try {
+      const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
+      if (response) {
+        console.log("USER FOUND in userpr");
+        setMdbp(true);
+      } else {
+        console.log("USER NOT FOUND in userpr");
+        setMdbp(false);
       }
-      else{
-        setmdbu(false)
-      }
+    } catch (error) {
+      console.error("Error fetching userpr data:", error);
+      setMdbp(false);
     }
-    catch {
-      console.log("USER NOT")
-    }
-  }
+  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser:any) => {
       if (currentUser) {
         setUser(currentUser);
-        getmbuser(currentUser.uid)
       } else {
         setUser(null);
+        setMdbu(false); 
+        setMdbp(false); 
       }
+      getMbUserCl(currentUser.uid);
+      getMbUserPr(currentUser.uid);
     });
     return () => unsubscribe();
-  }, []);
+  }, []); 
 
   useEffect(() => {
-    if (user) {
-      if (mdbu){
-        nav("/")
-      }
-      else {
-        nav("/rolechdt")
-      }
+    console.log(mdbp, mdbu)
+    if (user && (mdbu || mdbp)) {
+      nav("/");
+    } 
+    else if (user && ! (mdbu || mdbp)) {
+      nav("/rolechdt");
     }
-  }, [user, nav]);
+  }, [user, mdbu, mdbp, nav]);
 
   const handleGoogleLogIn = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
