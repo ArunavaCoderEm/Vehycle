@@ -13,6 +13,7 @@ export default function Signup():React.ReactNode {
   const [avatar, setAvatar] = useState<any | null>(null);
   const [alert, setAlert] = useState<boolean>(false);
   const [avattext, setavattext] = useState<string>("Upload Avatar");
+  const [userMDB, setUserMDB] = useState<boolean>(false);
   
   const nav = useNavigate();
 
@@ -20,6 +21,7 @@ export default function Signup():React.ReactNode {
     const unsubscribe = auth.onAuthStateChanged((currentUser:any) => {
       if (currentUser) {
         setUser(currentUser);
+        console.log(currentUser.uid)
       } else {
         setUser(null);
       }
@@ -65,6 +67,8 @@ export default function Signup():React.ReactNode {
       });
 
       console.log('User signed up:', user);
+      console.log()
+
       setTimeout(() => {
         nav("/");
       }, 1300);

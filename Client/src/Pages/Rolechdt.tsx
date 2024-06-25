@@ -11,8 +11,8 @@ const Rolechdt: React.FC = () => {
           <div className="bg-gradient-to-b from-gray-200 to-gray-300 sha rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
               <div className="text-gray-600">
-                <p className="font-medium text-lg ">Personal Details</p>
-                <p>Please fill out all the fields.</p>
+                <p className="text-xl font-extrabold">Your Details</p>
+                <p>Please fill out all the required fields.</p>
               </div>
 
               <div className="lg:col-span-2">
@@ -23,7 +23,7 @@ const Rolechdt: React.FC = () => {
                       type="text"
                       name="address"
                       id="address"
-                      className="h-10 border mt-1 rounded px-4 focus:outline-none w-full bg-gray-50"
+                      className="h-10 font-thin border mt-1 rounded px-4 focus:outline-none sha w-full bg-gray-50"
                       defaultValue=""
                       placeholder="4th cross of MG road ..."
                     />
@@ -35,7 +35,7 @@ const Rolechdt: React.FC = () => {
                       type="text"
                       name="city"
                       id="city"
-                      className="h-10 border mt-1 focus:outline-none rounded px-4 w-full bg-gray-50"
+                      className="h-10 font-thin border mt-1 focus:outline-none sha rounded px-4 w-full bg-gray-50"
                       defaultValue=""
                       placeholder="Kolkata ..."
                     />
@@ -43,12 +43,12 @@ const Rolechdt: React.FC = () => {
 
                   <div className="md:col-span-2 font-semibold">
                     <label htmlFor="country">Landmark</label>
-                    <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
                       <input
                         name="country"
                         id="country"
                         placeholder="Near the statue ..."
-                        className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
+                        className="px-4 appearance-none outline-none font-thin text-gray-800 w-full bg-transparent"
                         defaultValue=""
                       />
 
@@ -57,11 +57,11 @@ const Rolechdt: React.FC = () => {
 
                   <div className="md:col-span-2 font-semibold">
                     <label htmlFor="state">Contact</label>
-                    <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
                       <input
                         type='number'
                         placeholder="9883623445 ..."
-                        className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
+                        className="px-4 appearance-none outline-none font-thin text-gray-800 w-full bg-transparent"
                         defaultValue=""
                       />
                       
@@ -70,7 +70,7 @@ const Rolechdt: React.FC = () => {
 
                   <div className="md:col-span-2 font-semibold">
                     <label htmlFor="state">Role</label>
-                    <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
                      
                      <select 
                      value={role}
@@ -83,16 +83,15 @@ const Rolechdt: React.FC = () => {
                       
                     </div>
                   </div>
-
                 {role === "supplier" &&
                 <>
                     <div className="md:col-span-2 font-semibold">
                     <label htmlFor="state">Specialist</label>
-                    <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
                       <input
                         type='name'
                         placeholder="Cleaner ..."
-                        className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
+                        className="px-4 appearance-none outline-none font-thin text-gray-800 w-full bg-transparent"
                         defaultValue=""
                       />
                       
@@ -100,11 +99,11 @@ const Rolechdt: React.FC = () => {
                   </div>
                     <div className="md:col-span-2 font-semibold">
                     <label htmlFor="state">Hourly Rate Rs.</label>
-                    <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
                       <input
-                        type='name'
+                        type='number'
                         placeholder="351 ..."
-                        className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
+                        className="px-4 appearance-none outline-none font-thin text-gray-800 w-full bg-transparent"
                         defaultValue=""
                       />
                       
@@ -112,11 +111,11 @@ const Rolechdt: React.FC = () => {
                   </div>
                     <div className="md:col-span-2 font-semibold">
                     <label htmlFor="state">Description</label>
-                    <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
                       <input
                         type='name'
                         placeholder="I am a pretty good worker ..."
-                        className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
+                        className="px-4 appearance-none outline-none font-thin text-gray-800 w-full bg-transparent"
                         defaultValue=""
                       />
                       
@@ -125,10 +124,11 @@ const Rolechdt: React.FC = () => {
                   </>
                 }
 
-                  <div className="md:col-span-5 text-right">
-                    <div className="inline-flex items-end">
-                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Submit
+                  <div className="md:col-span-5 my-2 text-right">
+                    <div className="flex items-center">
+                      <button className="bg-gray-500 hover:bg-gray-700 transition-all duration-200 text-white font-bold py-2 px-4 rounded flex relative hover:fill-white">
+                        Next
+                      <svg xmlns="http://www.w3.org/2000/svg" className='w-3 mx-2' viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                       </button>
                     </div>
                   </div>
@@ -137,19 +137,6 @@ const Rolechdt: React.FC = () => {
             </div>
           </div>
         </div>
-
-        <a
-          href="https://www.buymeacoffee.com/dgauderman"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="md:absolute bottom-0 right-0 p-4 float-right"
-        >
-          <img
-            src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-3.svg"
-            alt="Buy Me A Coffee"
-            className="transition-all rounded-full w-14 -rotate-45 hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"
-          />
-        </a>
       </div>
     </div>
   );
