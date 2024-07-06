@@ -37,8 +37,8 @@ const Rolechdt: React.FC = () => {
   }, [fbid, clfind, user]);
 
   const getMbUserCl = async (uid: string) => {
+    const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
     try {
-      const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
       if (response) {
         console.log("USER FOUND in usercl");
         setclfind(true)
@@ -48,13 +48,14 @@ const Rolechdt: React.FC = () => {
       }
       console.log(clfind)
     } catch (error) {
-      setclfind(false);
+      setclfind(response.data.message)
+      console.log(response)
     }
   };
 
   const getMbUserPr = async (uid: string) => {
+    const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
     try {
-      const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
       if (response) {
         console.log("USER FOUND in userpr");
         setprfind(true);
@@ -62,18 +63,21 @@ const Rolechdt: React.FC = () => {
         console.log("USER NOT FOUND in userpr");
         setprfind(false);
       }
+      console.log(response)
     } catch (error) {
-      setprfind(false);
+      setprfind(response.data.message);
+      console.log(response)
     }
   };
 
   useEffect(() => {
+    console.log(clfind, prfind)
     if(clfind){
       setTimeout(() => {
         nav("/")
       }, 500);
     }
-    if(prfind){
+    else if(prfind){
       setTimeout(() => {
         nav("/")
       }, 500);

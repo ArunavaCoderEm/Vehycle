@@ -31,7 +31,7 @@ servercl.get("/getpart/:query", async (c) => {
         if(!res.length){
             console.log(`Document doesn't exist`);
             return c.json(
-                `Document doesn't exist`,404
+                false
             );  
         }
         return c.json(

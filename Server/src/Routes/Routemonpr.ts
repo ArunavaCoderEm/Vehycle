@@ -9,7 +9,7 @@ serverpr.get("/getdata", async (c) => {
         if(!res){
             console.log(`Document doesn't exist`);
             return c.json(
-                `Document doesn't exist`,404
+                { message: false }, 404
             );  
         }
         return c.json(
@@ -31,7 +31,7 @@ serverpr.get("/getpart/:query", async (c) => {
         if(!res.length){
             console.log(`Document doesn't exist`);
             return c.json(
-                `Document doesn't exist`,404
+                { message: false }, 404
             );  
         }
         return c.json(
