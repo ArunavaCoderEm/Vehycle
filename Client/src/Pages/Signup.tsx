@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, store, db } from '../Context/Firebase';
 import firebase from 'firebase/compat/app';
-import axios from 'axios';
 
 export default function Signup():React.ReactNode {
 
@@ -16,40 +15,6 @@ export default function Signup():React.ReactNode {
   const [avatar, setAvatar] = useState<any | null>(null);
   const [alert, setAlert] = useState<boolean>(false);
   const [avattext, setavattext] = useState<string>("Upload Avatar");
-  const [mdbu, setMdbu] = useState<boolean>(false)
-  const [mdbp, setMdbp] = useState<boolean>(false)
-
-  const getMbUserCl = async (uid: string) => {
-    try {
-      const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
-      if (response) {
-        console.log("USER FOUND in usercl");
-        setMdbu(true);
-      } else {
-        console.log("USER NOT FOUND in usercl");
-        setMdbu(false);
-      }
-    } catch (error) {
-      console.error("Error fetching usercl data:", error);
-      setMdbu(false);
-    }
-  };
-
-  const getMbUserPr = async (uid: string) => {
-    try {
-      const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
-      if (response) {
-        console.log("USER FOUND in userpr");
-        setMdbp(true);
-      } else {
-        console.log("USER NOT FOUND in userpr");
-        setMdbp(false);
-      }
-    } catch (error) {
-      console.error("Error fetching userpr data:", error);
-      setMdbp(false);
-    }
-  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser:any) => {
@@ -57,24 +22,11 @@ export default function Signup():React.ReactNode {
         setUser(currentUser);
       } else {
         setUser(null);
-        setMdbu(false); 
-        setMdbp(false); 
       }
-      getMbUserCl(currentUser.uid);
-      getMbUserPr(currentUser.uid);
     });
     return () => unsubscribe();
   }, []); 
 
-  useEffect(() => {
-    console.log(mdbp, mdbu)
-    if (user && (mdbu || mdbp)) {
-      nav("/");
-    } 
-    else if (user &&  !mdbu && !mdbp) {
-      nav("/rolechdt");
-    }
-  }, [user, mdbu, mdbp, nav]);
 
   const togPass = () => {
     setPass(!pass);
@@ -108,7 +60,10 @@ export default function Signup():React.ReactNode {
       });
 
       console.log('User signed up:', user);
-      console.log()
+      
+      setTimeout(() => {
+        nav("/rolechdt")
+      }, 1200);
     } catch (error) {
       setAlert(true);
       setTimeout(() => {
@@ -135,9 +90,13 @@ export default function Signup():React.ReactNode {
           avatar: user.photoURL
         });
       }
+      setTimeout(() => {
+        nav("/rolechdt")
+      }, 1200);
 
     } catch (error) {
       setAlert(true);
+      console.log(user)
       setTimeout(() => {
         setAlert(false);
       }, 1500);

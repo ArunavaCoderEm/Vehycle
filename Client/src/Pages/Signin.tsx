@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from "../Context/Firebase";
 import firebase from 'firebase/compat/app';
-import axios from 'axios';
 
 export default function Signin():React.ReactNode {
 
@@ -13,40 +12,7 @@ export default function Signin():React.ReactNode {
   const [email,setemail] = useState<string>("");
   const [passw,setpassw] = useState<string>("");
   const [error,seterror] = useState<boolean>(false);
-  const [mdbu, setMdbu] = useState<boolean>(false)
-  const [mdbp, setMdbp] = useState<boolean>(false)
 
-  const getMbUserCl = async (uid: string) => {
-    try {
-      const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
-      if (response) {
-        console.log("USER FOUND in usercl");
-        setMdbu(true);
-      } else {
-        console.log("USER NOT FOUND in usercl");
-        setMdbu(false);
-      }
-    } catch (error) {
-      console.error("Error fetching usercl data:", error);
-      setMdbu(false);
-    }
-  };
-
-  const getMbUserPr = async (uid: string) => {
-    try {
-      const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
-      if (response) {
-        console.log("USER FOUND in userpr");
-        setMdbp(true);
-      } else {
-        console.log("USER NOT FOUND in userpr");
-        setMdbp(false);
-      }
-    } catch (error) {
-      console.error("Error fetching userpr data:", error);
-      setMdbp(false);
-    }
-  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser:any) => {
@@ -54,24 +20,11 @@ export default function Signin():React.ReactNode {
         setUser(currentUser);
       } else {
         setUser(null);
-        setMdbu(false); 
-        setMdbp(false); 
       }
-      getMbUserCl(currentUser.uid);
-      getMbUserPr(currentUser.uid);
     });
     return () => unsubscribe();
   }, []); 
 
-  useEffect(() => {
-    console.log(mdbp, mdbu)
-    if (user && (mdbu || mdbp)) {
-      nav("/");
-    } 
-    else if (user &&  !mdbu && !mdbp) {
-      nav("/rolechdt");
-    }
-  }, [user, mdbu, mdbp, nav]);
 
   const handleGoogleLogIn = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -79,6 +32,9 @@ export default function Signin():React.ReactNode {
       const result = await auth.signInWithPopup(provider);
       const user:any = result.user;
       setUser(user)
+      setTimeout(() => {
+        nav("/rolechdt")
+      }, 1200);
     }
     catch(error) {
         seterror(true);
@@ -107,13 +63,14 @@ export default function Signin():React.ReactNode {
             setpassw("")
             setemail("")
             setTimeout(() => {
-              nav("/")
+              nav("/rolechdt")
             }, 1500);
           } else {
             console.log('No such user document!');
           }
         } catch (e) {
           seterror(true);
+          console.log(user)
           setTimeout(() => {
               seterror(false)
           }, 2500);
