@@ -10,6 +10,7 @@ export interface modelSchemauser {
     fbid : string,
     role : string,
     contact : number,
+    pin : number,
     nearby : string,
     bookingscl : book[]
 }
@@ -30,6 +31,10 @@ const Userdetclient = new Schema <modelSchemauser> ({
     },
     nearby : {
         type : String,
+        required : true
+    },
+    pin : {
+        type : Number,
         required : true
     },
     bookingscl: {

@@ -14,6 +14,7 @@ export interface modelSchemaprov {
     hourlyrate ? : number,
     desc ? : string,
     nearby : string,
+    pin : number,
     available ? : boolean,
     rating ? : number[],
     bookings : bookpr[] | null
@@ -48,6 +49,10 @@ const Userdetprov = new Schema <modelSchemaprov> ({
     },
     nearby : {
         type : String,
+        required : true
+    },
+    pin : {
+        type : Number,
         required : true
     },
     available : {
