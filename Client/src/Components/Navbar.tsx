@@ -23,8 +23,11 @@ export default function Navbar():React.ReactNode {
         try {
           const userDoc = await userRef.get();
           const userData:any = userDoc.data();
-
-          setavat(userData.avatar)
+          if(userData){
+            setavat(userData.avatar)
+          } else {
+            setavat(user.avatar)
+          }
           
           if (!currentUser.displayName) {
             setname(userData.username);
@@ -41,7 +44,7 @@ export default function Navbar():React.ReactNode {
     });
   
     return () => unsubscribe();
-  }, [user]);
+  }, [user, avat]);
 
   const handlelogout = ():void => {
     auth.signOut()
