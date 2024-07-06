@@ -3,7 +3,8 @@ import { Schema, model } from "mongoose";
 export interface book {
     place : string,
     date : Date,
-    provname : string
+    provname : string,
+    provFbid : string
 }
 
 export interface modelSchemauser {
