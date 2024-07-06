@@ -15,39 +15,38 @@ const Rolechdt: React.FC = () => {
   const[spe, setspe] = useState<string>("")
   const[hr, sethr] = useState<number>(0)
   const[des, setdes] = useState<string>("")
+  const[pin, setpin] = useState<number>(0)
   const [fbid, setfbid] = useState<string | null>(null)
+
+  const[clfind, setclfind] = useState<boolean>(false)
+  const[prfind, setprfind] = useState<boolean>(false)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser:any) => {
       if (currentUser) {
         setfbid(currentUser.uid);
+        getMbUserCl(currentUser.uid);
+        getMbUserPr(currentUser.uid);
       } else {
         setfbid(null);
-        setMdbu(false); 
-        setMdbp(false); 
       }
-      getMbUserCl(currentUser.uid);
-      getMbUserPr(currentUser.uid)
     });
     return () => unsubscribe();
-  }, []);
-
-  const [mdbu, setMdbu] = useState<boolean>(false)
-  const [mdbp, setMdbp] = useState<boolean>(false)
+  }, [fbid, clfind]);
 
   const getMbUserCl = async (uid: string) => {
     try {
       const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
       if (response) {
         console.log("USER FOUND in usercl");
-        setMdbu(true);
+        setclfind(true)
       } else {
         console.log("USER NOT FOUND in usercl");
-        setMdbu(false);
+        setclfind(false);
       }
+      console.log(clfind)
     } catch (error) {
       console.error("Error fetching usercl data:", error);
-      setMdbu(false);
     }
   };
 
@@ -56,22 +55,31 @@ const Rolechdt: React.FC = () => {
       const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
       if (response) {
         console.log("USER FOUND in userpr");
-        setMdbp(true);
+        setprfind(true);
       } else {
         console.log("USER NOT FOUND in userpr");
-        setMdbp(false);
+        setprfind(false);
       }
     } catch (error) {
       console.error("Error fetching userpr data:", error);
-      setMdbp(false);
     }
   };
 
   useEffect(() => {
-    if (fbid && (mdbu || mdbp)) {
-      nav("/");
-    } 
-  }, [fbid, mdbu, mdbp, nav]);
+    if(clfind){
+      setTimeout(() => {
+        nav("/")
+      }, 500);
+    }
+    if(prfind){
+      setTimeout(() => {
+        nav("/")
+      }, 500);
+    }
+    else {
+      nav("/rolechdt")
+    }
+  }, [clfind, prfind])
 
 
   const handleMDBup = async () => {
@@ -81,6 +89,7 @@ const Rolechdt: React.FC = () => {
         role : role,
         contact : con,
         nearby : city,
+        pin : pin,
         bookingscl : []
       }
       const response = await axios.post("http://localhost:8173/usercl/create",data);
@@ -99,6 +108,7 @@ const Rolechdt: React.FC = () => {
         specialist : spe,
         hourlyrate : hr,
         desc : des,
+        pin : pin,
         rating : [],
         bookings : []
       }
@@ -164,6 +174,21 @@ const Rolechdt: React.FC = () => {
                         defaultValue=""
                       />
 
+                    </div>
+                  <div className="md:col-span-2 mt-2 font-semibold">
+                    <label htmlFor="country">Pin</label>
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
+                      <input
+                      value={pin}
+                      onChange={(e:any) => setpin(e.target.value)}
+                        name="country"
+                        id="country"
+                        placeholder="7773319 ..."
+                        className="px-4 appearance-none outline-none font-thin text-gray-800 w-full bg-transparent"
+                        defaultValue=""
+                      />
+
+                    </div>
                     </div>
                   </div>
 
