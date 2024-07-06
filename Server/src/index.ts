@@ -13,14 +13,14 @@ import { logger } from 'hono/logger';
 dotenv.config();  
 
 const app = new Hono() 
-  
+   
 app.use(logger())
 
 app.use(poweredBy())
 
 const frontendurl = (String(process.env.PRODUCTION) === 'production') ? "https://vehycle.vercel.app" : 'http://localhost:5173';
 
-app.use('/*', cors())
+app.use('/*', cors()) 
 
 const port = (process.env.PRODUCTION === 'production') ? undefined : Number(process.env.PORT);
 

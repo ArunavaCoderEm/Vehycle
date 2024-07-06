@@ -8,6 +8,7 @@ const Rolechdt: React.FC = () => {
   const nav = useNavigate()
 
   const[role, setrole] = useState<string>("consumer")
+  const [user, setUser] = useState<any>(null)
   const[add, setadd] = useState<string>("")
   const[city, setcity] = useState<string>("")
   const[land, setland] = useState<string>("")
@@ -24,6 +25,7 @@ const Rolechdt: React.FC = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser:any) => {
       if (currentUser) {
+        setUser(currentUser)
         setfbid(currentUser.uid);
         getMbUserCl(currentUser.uid);
         getMbUserPr(currentUser.uid);
@@ -32,7 +34,7 @@ const Rolechdt: React.FC = () => {
       }
     });
     return () => unsubscribe();
-  }, [fbid, clfind]);
+  }, [fbid, clfind, user]);
 
   const getMbUserCl = async (uid: string) => {
     try {
@@ -46,7 +48,7 @@ const Rolechdt: React.FC = () => {
       }
       console.log(clfind)
     } catch (error) {
-      console.error("Error fetching usercl data:", error);
+      setclfind(false);
     }
   };
 
@@ -61,7 +63,7 @@ const Rolechdt: React.FC = () => {
         setprfind(false);
       }
     } catch (error) {
-      console.error("Error fetching userpr data:", error);
+      setprfind(false);
     }
   };
 
@@ -81,7 +83,7 @@ const Rolechdt: React.FC = () => {
         nav("/rolechdt")
       }, 500);
     }
-  }, [clfind, prfind])
+  }, [clfind, prfind, user])
 
 
   const handleMDBup = async () => {
