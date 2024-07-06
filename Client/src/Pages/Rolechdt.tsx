@@ -77,7 +77,9 @@ const Rolechdt: React.FC = () => {
       }, 500);
     }
     else {
-      nav("/rolechdt")
+      setTimeout(() => {
+        nav("/rolechdt")
+      }, 500);
     }
   }, [clfind, prfind])
 
