@@ -17,6 +17,8 @@ export default function Navbar():React.ReactNode {
   const[clfind, setclfind] = useState<boolean>(false)
   const[prfind, setprfind] = useState<boolean>(false)
 
+  const[show, setShow] = useState<boolean>(false)
+
   const[role, setRole] = useState<string>("")
 
   const getMbUserCl = async (uid: string) => {
@@ -136,7 +138,6 @@ export default function Navbar():React.ReactNode {
   return (
     <header className="z-10 lg:bg-transparent sm:backdrop-blur-sm bg-white/80 bg-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        {role}
         <div className="flex items-center bg-gray-900 p-2 rounded-lg">
           <Link to="/" onClick={() => setact("home")} className="flex hover:text-pink-400 transition-all duration-300 items-center text-white">
             <img src="./logoveh.jpg" alt="logo" className='w-8 rounded-full mr-2' />
@@ -151,7 +152,7 @@ export default function Navbar():React.ReactNode {
               </Link>
             </li>
             <li>
-              <Link to="/rolechdt" onClick={() => setact("about")} className={`text-sm font-semibold  hover:text-white p-2 rounded-lg transition-all duration-200 ${act === 'about' ? "bg-gray-900 text-white" : "text-black hov hover:text-white"}`}>
+              <Link to="/about" onClick={() => setact("about")} className={`text-sm font-semibold  hover:text-white p-2 rounded-lg transition-all duration-200 ${act === 'about' ? "bg-gray-900 text-white" : "text-black hov hover:text-white"}`}>
                 About
               </Link>
             </li>
@@ -177,12 +178,19 @@ export default function Navbar():React.ReactNode {
         ?
 
         <div className="hidden md:flex items-center gap-2">
-          <img src={avat} alt="avat" className='w-9 rounded-full mx-2' />
+          <img 
+          onClick={() => setShow(!show)}
+          src={avat} alt="avat" className='w-9 border-2 border-black p-1 transition-all duration-200 hover:scale-105 rounded-full mx-2 cursor-pointer' />
           <div
             className="inline-flex border cursor-text bg-gray-900 border-gray-300 h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow transition-all duration-200"
           >
             {name}
           </div>
+          { show &&
+            <div className='backdrop-blur-sm border-2 border-black bg-gray-200/60 sha font-semibold absolute mt-24 rounded-lg ml-[-20px] mx-auto w-24 text-center p-2'>
+            {role}
+          </div>
+          }
           <button
             onClick={handlelogout}
             className="inline-flex h-9 items-center justify-center rounded-md border border-gray-900 bg-white px-4 py-2 text-sm font-medium shadow-sm transition-all hover:scale-105 duration-200"
@@ -209,22 +217,22 @@ export default function Navbar():React.ReactNode {
         </div>
 
         }
-        
         <button
-          className="md:hidden flex items-center"
+          className="md:hidden flex items-center gap-5"
           onClick={toggleMenu}
-        >
+          >
+  
           {user &&
-            <img src={avat} alt="avat" className='w-9 mx-2 rounded-full' />
+            <img src={avat} alt="avat" className='w-9 border-2 border-black p-1 transition-all duration-200 hover:scale-105 rounded-full mx-2 cursor-pointer lg:hidden' />
           }
             {icon 
             ?
             <CrossIcon onClick={togicon} className="h-6 w-6" />
-             :
+            :
             <MenuIcon onClick={togicon} className="h-6 w-6" />
-            }
+          }
         </button>
-      </div>
+        </div>
       {isMenuOpen && ( 
         <nav className="md:hidden">
           <ul className="flex sha flex-col w-full items-center gap-4 p-4 backdrop-blur-sm bg-slate-400/60">
@@ -239,17 +247,17 @@ export default function Navbar():React.ReactNode {
               </Link>
             </li>
             <li>
-              <Link to="/services" onClick={() => setact("features")} className={`text-sm hover:text-white font-semibold hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'features' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
+              <Link to="/features" onClick={() => setact("features")} className={`text-sm hover:text-white font-semibold hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'features' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
                 Features
               </Link>
             </li>
             <li>
-              <Link to="/contact" onClick={() => setact("team")} className={`text-sm hover:text-white font-semibold hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'team' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
-                Team
+              <Link to="/explore" onClick={() => setact("explore")} className={`text-sm hover:text-white font-semibold hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'explore' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
+                Explore
               </Link>
             </li>
             <li>
-              <Link to="/contact" onClick={() => setact("pricing")} className={`text-sm font-semibold hover:text-white hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'pricing' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
+              <Link to="/pricing" onClick={() => setact("pricing")} className={`text-sm font-semibold hover:text-white hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'pricing' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
                 Pricing
               </Link>
             </li>
@@ -258,13 +266,20 @@ export default function Navbar():React.ReactNode {
             
             ? 
 
-            <div className='flex flex-col items-center gap-y-2 w-full rounded-lg backdrop-blur-sm bg-white/30'>
+            <div className='flex flex-col justify-center items-center gap-y-2 w-full rounded-lg backdrop-blur-sm bg-white/30'>
             <div className='pt-2'>
               <div className='pb-2'>
                 <div
                   className="sha inline-flex h-9 items-center justify-center rounded-md border border-gray-900 bg-white px-4 py-2 text-sm font-semibold shadow-sm transition-all duration-200 hover:bg-gray-300"
                   >
                   {name}
+                </div>
+              </div>
+              <div className='pb-2'>
+                <div
+                  className="sha inline-flex h-9 items-center mx-auto justify-center rounded-md border border-gray-900 bg-transparent px-4 py-2 text-sm font-semibold shadow-sm transition-all duration-200 hover:bg-gray-300"
+                  >
+                  {role}
                 </div>
               </div>
             </div>
