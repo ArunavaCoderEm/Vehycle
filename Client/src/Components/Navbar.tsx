@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../Context/Firebase';
+import axios from 'axios';
 
 export default function Navbar():React.ReactNode {
 
@@ -12,9 +13,49 @@ export default function Navbar():React.ReactNode {
   const [avat, setavat] = useState<string>("")
   const [name, setname] = useState<string>("")
   const [user, setUser] = useState<any>(null); 
+  
+  const[clfind, setclfind] = useState<boolean>(false)
+  const[prfind, setprfind] = useState<boolean>(false)
+
+  const[role, setRole] = useState<string>("")
+
+  const getMbUserCl = async (uid: string) => {
+    const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
+    try {
+      if (response) {
+        console.log("USER FOUND in usercl");
+        setclfind(true)
+      } else {
+        console.log("USER NOT FOUND in usercl");
+        setclfind(false);
+      }
+      console.log(clfind)
+    } catch (error) {
+      setclfind(response.data.message)
+      console.log(response)
+    }
+  };
+
+  const getMbUserPr = async (uid: string) => {
+    const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
+    try {
+      if (response) {
+        console.log("USER FOUND in userpr");
+        setprfind(true);
+      } else {
+        console.log("USER NOT FOUND in userpr");
+        setprfind(false);
+      }
+      console.log(response)
+    } catch (error) {
+      setprfind(response.data.message);
+      console.log(response)
+    }
+  };
 
 
   useEffect(() => {
+    setRole("")
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
@@ -35,16 +76,23 @@ export default function Navbar():React.ReactNode {
             setname(currentUser.displayName);
           }
 
+          getMbUserCl(currentUser.uid)
+          getMbUserPr(currentUser.uid)
+
         } catch (error) {
           console.error('Error fetching user document: ', error);
+          setRole("")
         }
       } else {
         setUser(null);
+        setRole("")
+        setclfind(false)
+        setprfind(false)
       }
     });
   
     return () => unsubscribe();
-  }, [user, avat]);
+  }, [user, avat, clfind, prfind, role]);
 
   const handlelogout = ():void => {
     auth.signOut()
@@ -64,6 +112,19 @@ export default function Navbar():React.ReactNode {
     }
   }, [user]);
 
+
+  useEffect(() => {
+    if(clfind){
+      setRole("Consumer")
+    }
+    else if(prfind){
+      setRole("Supplier")
+    }
+    else {
+      setRole("")
+    }
+  },[clfind, prfind, user, role])
+
   const toggleMenu = ():void => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -75,6 +136,7 @@ export default function Navbar():React.ReactNode {
   return (
     <header className="z-10 lg:bg-transparent sm:backdrop-blur-sm bg-white/80 bg-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+        {role}
         <div className="flex items-center bg-gray-900 p-2 rounded-lg">
           <Link to="/" onClick={() => setact("home")} className="flex hover:text-pink-400 transition-all duration-300 items-center text-white">
             <img src="./logoveh.jpg" alt="logo" className='w-8 rounded-full mr-2' />
