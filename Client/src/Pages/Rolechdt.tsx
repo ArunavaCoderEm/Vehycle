@@ -34,7 +34,7 @@ const Rolechdt: React.FC = () => {
       }
     });
     return () => unsubscribe();
-  }, [fbid, clfind, user]);
+  }, [fbid, clfind, prfind, user]);
 
   const getMbUserCl = async (uid: string) => {
     const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
@@ -87,7 +87,7 @@ const Rolechdt: React.FC = () => {
         nav("/rolechdt")
       }, 500);
     }
-  }, [clfind, prfind, user])
+  }, [user, clfind, prfind])
 
 
   const handleMDBup = async () => {
