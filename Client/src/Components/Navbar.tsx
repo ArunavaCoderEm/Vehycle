@@ -275,6 +275,7 @@ export default function Navbar():React.ReactNode {
                   {name}
                 </div>
               </div>
+            </div>
               <div className='pb-2'>
                 <div
                   className="sha inline-flex h-9 items-center mx-auto justify-center rounded-md border border-gray-900 bg-transparent px-4 py-2 text-sm font-semibold shadow-sm transition-all duration-200 hover:bg-gray-300"
@@ -282,7 +283,6 @@ export default function Navbar():React.ReactNode {
                   {role}
                 </div>
               </div>
-            </div>
               <button
                 onClick={handlelogout}
                 className="sha inline-flex bg-gray-900 h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium hover:text-black hover:bg-slate-300 text-white shadow transition-all duration-300 hover:bg-primary/90 mb-2 mx-auto"
