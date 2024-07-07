@@ -187,8 +187,13 @@ export default function Navbar():React.ReactNode {
             {name}
           </div>
           { show &&
-            <div className='backdrop-blur-sm border-2 border-black bg-gray-200/60 sha font-semibold absolute mt-24 rounded-lg ml-[-20px] mx-auto w-24 text-center p-2'>
+          <div className='absolute mt-40 bg-gray-300 flex flex-col p-2 rounded-lg ml-[-25px] mx-auto'>
+            <div className='backdrop-blur-sm mt-1 mb-1 rounded-lg flex border-2 border-black bg-gray-200/60 sha font-semibold  mx-auto w-24 text-center p-2'>
             {role}
+            </div>
+            <Link to="/dashboard" className='backdrop-blur-sm transition-all flex duration-300 hover:bg-gray-100 border-2 border-black rounded-lg bg-gray-200/60 sha font-semibold  mx-auto w-24 text-center p-2'>
+              Dashboard
+            </Link>
           </div>
           }
           <button
