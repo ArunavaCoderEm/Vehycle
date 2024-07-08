@@ -136,7 +136,7 @@ export default function Navbar():React.ReactNode {
   };
 
   return (
-    <header className="z-10 lg:bg-transparent sm:backdrop-blur-sm bg-white/80 bg-white">
+    <header className="z-10 lg:bg-transparent sm:backdrop-blur-sm fixed w-full top-0 bg-white/80">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         <div className="flex items-center bg-gray-900 p-2 rounded-lg">
           <Link to="/" onClick={() => setact("home")} className="flex hover:text-pink-400 transition-all duration-300 items-center text-white">
