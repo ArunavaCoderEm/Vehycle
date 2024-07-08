@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Dashboard():React.ReactNode {
   return (
-    <div>Dashboard</div>
+    <div className='mt-24'>Dashboard</div>
   )
 }

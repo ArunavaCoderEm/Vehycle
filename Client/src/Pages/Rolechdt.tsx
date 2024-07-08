@@ -75,17 +75,17 @@ const Rolechdt: React.FC = () => {
     if(clfind){
       setTimeout(() => {
         nav("/")
-      }, 500);
+      }, 100);
     }
     else if(prfind){
       setTimeout(() => {
         nav("/")
-      }, 500);
+      }, 100);
     }
     else {
       setTimeout(() => {
         nav("/rolechdt")
-      }, 500);
+      }, 100);
     }
   }, [user, clfind, prfind])
 
@@ -137,6 +137,9 @@ const Rolechdt: React.FC = () => {
               <div className="text-gray-600">
                 <p className="text-xl font-extrabold">Your Details</p>
                 <p>Please fill out all the required fields.</p>
+                <div className='pr-5'>
+                <p className='font-bold mt-10'><span className='text-pink-600'>Every filed</span> is a <span className='text-pink-600'>required</span> field so you must fill out everything according to the <span className='text-pink-600'>role</span> that you choose.</p>
+                </div>
               </div>
 
               <div className="lg:col-span-2">

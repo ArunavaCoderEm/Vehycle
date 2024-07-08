@@ -152,16 +152,6 @@ export default function Navbar():React.ReactNode {
               </Link>
             </li>
             <li>
-              <Link to="/about" onClick={() => setact("about")} className={`text-sm font-semibold  hover:text-white p-2 rounded-lg transition-all duration-200 ${act === 'about' ? "bg-gray-900 text-white" : "text-black hov hover:text-white"}`}>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/features" onClick={() => setact("features")} className={`text-sm font-semibold  hover:text-white p-2 rounded-lg transition-all duration-200 ${act === 'features' ? "bg-gray-900 text-white" : "text-black hov hover:text-white"}`}>
-                Features
-              </Link>
-            </li>
-            <li>
               <Link to="/explore" onClick={() => setact("explore")} className={`text-sm font-semibold  hover:text-white p-2 rounded-lg transition-all duration-200 ${act === 'explore' ? "bg-gray-900 text-white" : "text-black hov hover:text-white"}`}>
                 Explore
               </Link>
@@ -181,24 +171,25 @@ export default function Navbar():React.ReactNode {
           <img 
           onClick={() => setShow(!show)}
           src={avat} alt="avat" className='w-9 border-2 border-black p-1 transition-all duration-200 hover:scale-105 rounded-full mx-2 cursor-pointer' />
-          <div
-            className="inline-flex border cursor-text bg-gray-900 border-gray-300 h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow transition-all duration-200"
-          >
-            {name}
-          </div>
+
           { show &&
           <div className='absolute mt-40 bg-gray-300 flex flex-col p-2 rounded-lg ml-[-25px] mx-auto'>
             <div className='backdrop-blur-sm mt-1 mb-1 rounded-lg flex border-2 border-black bg-gray-200/60 sha font-semibold  mx-auto w-24 text-center p-2'>
             {role}
             </div>
-            <Link to="/dashboard" className='backdrop-blur-sm transition-all flex duration-300 hover:bg-gray-100 border-2 border-black rounded-lg bg-gray-200/60 sha font-semibold  mx-auto w-24 text-center p-2'>
-              Dashboard
-            </Link>
+            <div
+            className="inline-flex border cursor-text bg-gray-900 border-gray-300 h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow transition-all duration-200"
+          >
+            {name}
+          </div>
           </div>
           }
+           <Link to="/dashboard" onClick={() => setact("")} className='inline-flex border cursor-pointer bg-gray-900 border-gray-300 h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow transition-all duration-200 hover:bg-black/80'>
+              Dashboard
+            </Link>
           <button
             onClick={handlelogout}
-            className="inline-flex h-9 items-center justify-center rounded-md border border-gray-900 bg-white px-4 py-2 text-sm font-medium shadow-sm transition-all hover:scale-105 duration-200"
+            className="inline-flex h-9 items-center justify-center rounded-md border border-gray-900 bg-white px-4 py-2 text-sm font-medium shadow-sm transition-all hover:bg-black hover:text-white hover:border-pink-600 duration-200"
           >
             Log Out
           </button>
@@ -240,20 +231,10 @@ export default function Navbar():React.ReactNode {
         </div>
       {isMenuOpen && ( 
         <nav className="md:hidden">
-          <ul className="flex sha flex-col w-full items-center gap-4 p-4 backdrop-blur-sm bg-slate-400/60">
+          <ul className="flex flex-col w-full items-center gap-4 p-4 backdrop-blur-sm bg-white/60">
             <li>
               <Link to="/" onClick={() => setact("home")} className={`text-sm font-semibold hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'home' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
                 Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" onClick={() => setact("about")} className={`text-sm hover:text-white font-semibold hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'about' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/features" onClick={() => setact("features")} className={`text-sm hover:text-white font-semibold hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'features' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
-                Features
               </Link>
             </li>
             <li>
@@ -270,6 +251,13 @@ export default function Navbar():React.ReactNode {
             {user 
             
             ? 
+            
+            <>
+            <li>
+            <Link to="/dashboard" onClick={() => setact("dashboard")} className={`text-sm font-semibold hover:text-white hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'dashboard' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
+              Dashboard
+            </Link>
+          </li>
 
             <div className='flex flex-col justify-center items-center gap-y-2 w-full rounded-lg backdrop-blur-sm bg-white/30'>
             <div className='pt-2'>
@@ -295,6 +283,8 @@ export default function Navbar():React.ReactNode {
                 Log Out
               </button>
             </div>
+            
+            </>
 
               :
 
