@@ -11,7 +11,7 @@ export default function Hero():React.ReactNode {
         </div>
         <div className='p-2 flex flex-col justify-center items-center'>
           <h2 className='text-black text-3xl font-extrabold'><span className='text-pink-600'>Vehycle</span> = <span className='text-pink-600'>Veh</span>icle + Rec<span className='text-pink-600'>ycle</span></h2>
-          <h3 className='mt-4 bg-gradient-to-b from-black/30 font-semibold sha py-2 px-3 rounded-full'>💁🏻‍♂️ Helper at you door 💁🏻‍♂️</h3>
+          <h3 className='mt-4 bg-gradient-to-b from-black/30 font-semibold shap py-2 px-3 rounded-full'>💁🏻‍♂️ Helper at you door 💁🏻‍♂️</h3>
           <ul className='w-3/4 my-2 p-3 rounded-lg'>
             <li className='list-disc my-1 text-[18px]'>
               <span className='font-bold text-pink-600 mr-2'>Convenient Sign-Up :</span>
@@ -26,7 +26,7 @@ export default function Hero():React.ReactNode {
               Enable clear and direct communication between consumers and providers to discuss service details efficiently
             </li>
             <li className='list-disc my-1 text-[18px]'>
-              <span className='font-bold text-pink-600 mr-2'>Transparent Communication :</span>
+              <span className='font-bold text-pink-600 mr-2'>Transparent Relation :</span>
               Quickly sign up as a consumer or provider for car repair services with a streamlined registration process.
             </li>
           </ul>

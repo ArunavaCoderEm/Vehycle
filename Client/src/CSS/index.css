@@ -6,6 +6,10 @@
     box-shadow: 0 0 25px rgb(32, 32, 32);
 }
 
+.shap {
+    box-shadow: 0 0 25px rgb(222, 7, 176);
+}
+
 .hov:hover {
     box-shadow: inset 100px 0 0 0 black;
     color: white;
