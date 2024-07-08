@@ -60,10 +60,7 @@ export default function Signup():React.ReactNode {
       });
 
       console.log('User signed up:', user);
-      
-      setTimeout(() => {
-        nav("/rolechdt")
-      }, 1200);
+      nav("/rolechdt")
     } catch (error) {
       setAlert(true);
       setTimeout(() => {

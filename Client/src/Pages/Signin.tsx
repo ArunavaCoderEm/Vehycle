@@ -62,9 +62,7 @@ export default function Signin():React.ReactNode {
             console.log('Username:', userData.username);
             setpassw("")
             setemail("")
-            setTimeout(() => {
-              nav("/rolechdt")
-            }, 1500);
+            nav("/rolechdt")
           } else {
             console.log('No such user document!');
           }

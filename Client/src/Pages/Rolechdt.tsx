@@ -73,19 +73,13 @@ const Rolechdt: React.FC = () => {
   useEffect(() => {
     console.log(clfind, prfind)
     if(clfind){
-      setTimeout(() => {
         nav("/")
-      }, 100);
     }
     else if(prfind){
-      setTimeout(() => {
         nav("/")
-      }, 100);
     }
     else {
-      setTimeout(() => {
         nav("/rolechdt")
-      }, 100);
     }
   }, [user, clfind, prfind])
 

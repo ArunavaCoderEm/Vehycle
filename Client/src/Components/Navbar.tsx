@@ -174,7 +174,7 @@ export default function Navbar():React.ReactNode {
 
           { show &&
           <div className='absolute mt-40 bg-gray-300 flex flex-col p-2 rounded-lg ml-[-25px] mx-auto'>
-            <div className='backdrop-blur-sm mt-1 mb-1 rounded-lg flex border-2 border-black bg-gray-200/60 sha font-semibold  mx-auto w-24 text-center p-2'>
+            <div className='backdrop-blur-sm mt-1 mb-1 rounded-lg flex border-2 border-black bg-gray-200/60 sha font-semibold mx-auto w-24 text-center p-2'>
             {role}
             </div>
             <div
