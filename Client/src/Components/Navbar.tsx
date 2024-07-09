@@ -157,8 +157,8 @@ export default function Navbar():React.ReactNode {
               </Link>
             </li>
             <li>
-              <Link to="/contact" onClick={() => setact("pricing")} className={`text-sm font-semibold hover:text-white p-2 rounded-lg transition-all duration-200 ${act === 'pricing' ? "bg-gray-900 text-white" : "text-black hov hover:text-white"}`}>
-                Pricing
+              <Link to="/premium" onClick={() => setact("premium")} className={`text-sm font-semibold hover:text-white p-2 rounded-lg transition-all duration-200 ${act === 'premium' ? "bg-gray-900 text-white" : "text-black hov hover:text-white"}`}>
+                Premium
               </Link>
             </li>
           </ul>
@@ -243,8 +243,8 @@ export default function Navbar():React.ReactNode {
               </Link>
             </li>
             <li>
-              <Link to="/pricing" onClick={() => setact("pricing")} className={`text-sm font-semibold hover:text-white hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'pricing' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
-                Pricing
+              <Link to="/premium" onClick={() => setact("premium")} className={`text-sm font-semibold hover:text-white hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'premium' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
+                Premium
               </Link>
             </li>
 
