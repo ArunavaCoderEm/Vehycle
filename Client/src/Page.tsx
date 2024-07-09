@@ -7,12 +7,14 @@ import Signin from './Pages/Signin';
 import BackgroundBricks from './Components/BGtexture'
 import Rolechdt from './Pages/Rolechdt';
 import Dashboard from './Pages/Dashboard';
+import Footer from './Components/Footer';
 
 export default function Page(): React.ReactNode {
   return (
     <>
         <Navbar />
         <BackgroundBricks />
+        <div className='min-h-[70vh]'>
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
@@ -20,6 +22,8 @@ export default function Page(): React.ReactNode {
             <Route path="/rolechdt" element={<Rolechdt />} />
             <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
+        </div>
+        <Footer />
     </>
   )
 }
