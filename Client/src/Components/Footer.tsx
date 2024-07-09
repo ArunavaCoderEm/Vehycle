@@ -7,7 +7,7 @@ export default function Footer():React.ReactNode {
     const [user, setUser] = useState<any | null>(null)
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
+        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
             if (currentUser) {
                 setUser(currentUser);
             } else {
