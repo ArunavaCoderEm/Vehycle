@@ -9,25 +9,25 @@ export default function About():React.ReactNode {
             <div className='bg-gradient-to-b from-black/70 sha rounded-lg p-2 to-black/80'>
                 <h1 className='text-white text-2xl font-bold text-center'>Using as a consumer ?</h1>
                 <ul className='py-2 px-4 text-white font-bold flex flex-col gap-y-5'>
-                    <li className='list-disc bg-pink-600 p-2 rounded-lg mt-5'>Once you signup you will land to a page to fill your details as an customer.</li>
-                    <li className='list-disc bg-pink-600 p-2 rounded-lg'>After you fill the form with required details you'll land in home page from there you can find the providers as per your need.</li>
-                    <li className='list-disc bg-pink-600 p-2 rounded-lg mb-5'>Once you signup you will land to a page to fill your details as an customer.</li>
+                    <li className='list-disc bg-pink-600 p-2 rounded-lg mt-5'>Once you sign up, you'll be directed to a page to fill in your customer details.</li>
+                    <li className='list-disc bg-pink-600 p-2 rounded-lg'>After completing the form, you'll be taken to the homepage where you can find providers to meet your needs.</li>
+                    <li className='list-disc bg-pink-600 p-2 rounded-lg mb-5'>Each provider will have a "Book Now" option based on their availability and proximity. You can book them by paying 50% of their fee in advance.</li>
                 </ul>
             </div>
-            <div className='bg-gradient-to-b from-black/70 rounded-lg to-black/80 p-2'>
+            <div className='bg-gradient-to-b sha from-black/70 rounded-lg to-black/80 p-2'>
                 <h1 className='text-white text-2xl font-bold text-center'>Using as a provider ?</h1>
                 <ul className='py-2 px-4 text-white font-bold flex flex-col gap-y-5'>
-                    <li className='list-disc bg-pink-600 p-2 rounded-lg mt-5'>Once you signup you will land to a page to fill your details as an customer.</li>
-                    <li className='list-disc bg-pink-600 p-2 rounded-lg'>After you fill the form with required details you'll land in home page from there you can find the providers as per your need.</li>
-                    <li className='list-disc bg-pink-600 p-2 rounded-lg mb-5'>Once you signup you will land to a page to fill your details as an customer.</li>
+                    <li className='list-disc bg-pink-600 p-2 rounded-lg mt-5'>Once you sign up, you'll be directed to a page to fill in your provider details.</li>
+                    <li className='list-disc bg-pink-600 p-2 rounded-lg'>After completing the form, you'll be taken to the homepage where you can find customers who might need you.</li>
+                    <li className='list-disc bg-pink-600 p-2 rounded-lg mb-5'>Each customer will have an "Apply Now" option based on their requirements. You can apply to address their issues, and if they are interested, they will pay you 50% of your fee in advance.</li>
                 </ul>
             </div>
-            <div className='bg-gradient-to-b from-black/70 rounded-lg to-black/80 p-2'>
+            <div className='bg-gradient-to-b sha from-black/70 rounded-lg to-black/80 p-2'>
                 <h1 className='text-white text-2xl font-bold text-center'>About Vehycle !</h1>
                 <ul className='py-2 px-4 text-white font-bold flex flex-col gap-y-5'>
-                    <li className='list-disc bg-pink-600 p-2 rounded-lg mt-5'>Once you signup you will land to a page to fill your details as an customer.</li>
-                    <li className='list-disc bg-pink-600 p-2 rounded-lg'>After you fill the form with required details you'll land in home page from there you can find the providers as per your need.</li>
-                    <li className='list-disc bg-pink-600 p-2 rounded-lg mb-5'>Once you signup you will land to a page to fill your details as an customer.</li>
+                    <li className='list-disc bg-pink-600 p-2 rounded-lg mt-5'>Vehycle helps the customers find the mechanic providedrs near them to help them out and providers find the needy customers near them and earn money through that.</li>
+                    <li className='list-disc bg-pink-600 p-2 rounded-lg'>Vehycle keeps 15% of the earnings of the providers of each service they provide.</li>
+                    <li className='list-disc bg-pink-600 p-2 rounded-lg mb-5'>Buying a subscription from the "Premium" section gives both customers and providers priority in finding matches.</li>
                 </ul>
             </div>
         </div>
