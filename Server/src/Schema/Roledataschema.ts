@@ -10,6 +10,8 @@ export interface bookpr {
 export interface modelSchemaprov {
     fbid : string,
     role : string,
+    name : string,
+    img : string,
     contact : number,
     specialist ? : string,
     hourlyrate ? : number,
@@ -30,6 +32,14 @@ const Userdetprov = new Schema <modelSchemaprov> ({
         type : String,
         required : true,
         default : 'customer'
+    },
+    name : {
+        type : String,
+        required : true,
+    },
+    img : {
+        type : String,
+        required : true,
     },
     contact : {
         type : Number,

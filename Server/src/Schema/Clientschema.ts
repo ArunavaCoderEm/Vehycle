@@ -12,6 +12,8 @@ export interface modelSchemauser {
     role : string,
     contact : number,
     pin : number,
+    name : string,
+    img : string,
     nearby : string,
     bookingscl : book[]
 }
@@ -29,6 +31,14 @@ const Userdetclient = new Schema <modelSchemauser> ({
     contact : {
         type : Number,
         required : true
+    },
+    name : {
+        type : String,
+        required : true,
+    },
+    img : {
+        type : String,
+        required : true,
     },
     nearby : {
         type : String,

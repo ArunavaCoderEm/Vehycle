@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { auth } from '../Context/Firebase';
+import { auth, db } from '../Context/Firebase';
 import { useNavigate } from 'react-router-dom';
 
 const Rolechdt: React.FC = () => {
@@ -19,22 +19,48 @@ const Rolechdt: React.FC = () => {
   const[pin, setpin] = useState<number>(0)
   const [fbid, setfbid] = useState<string | null>(null)
 
+  const [avat, setavat] = useState<string>("")
+  const [name, setname] = useState<string>("")
+
   const[clfind, setclfind] = useState<boolean>(false)
   const[prfind, setprfind] = useState<boolean>(false)
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((currentUser:any) => {
+    const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
       if (currentUser) {
-        setUser(currentUser)
-        setfbid(currentUser.uid);
-        getMbUserCl(currentUser.uid);
-        getMbUserPr(currentUser.uid);
+        setUser(currentUser);
+        setfbid(currentUser.uid)
+        const userRef = db.collection('users').doc(currentUser.uid);
+  
+        try {
+          const userDoc = await userRef.get();
+          const userData:any = userDoc.data();
+          if(userData){
+            setavat(userData.avatar)
+          } else {
+            setavat(user.avatar)
+          }
+          
+          if (!currentUser.displayName) {
+            setname(userData.username);
+          } else {
+            setname(currentUser.displayName);
+          }
+          getMbUserCl(currentUser.uid)
+          getMbUserPr(currentUser.uid)
+        } catch (error) {
+          console.error('Error fetching user document: ', error);
+        }
       } else {
+        setUser(null);
+        setclfind(false)
         setfbid(null);
+        setprfind(false)
       }
     });
+  
     return () => unsubscribe();
-  }, [fbid, clfind, prfind, user]);
+  }, [user, avat, clfind, prfind, role, fbid]);
 
   const getMbUserCl = async (uid: string) => {
     const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
@@ -89,6 +115,8 @@ const Rolechdt: React.FC = () => {
       const data = {
         fbid : fbid,
         role : role,
+        name : name,
+        img : avat,
         contact : con,
         nearby : city,
         pin : pin,
@@ -105,6 +133,8 @@ const Rolechdt: React.FC = () => {
         fbid : fbid,
         role : role,
         contact : con,
+        name : name,
+        img : avat,
         nearby : city,
         available : true,
         specialist : spe,
@@ -232,15 +262,17 @@ const Rolechdt: React.FC = () => {
                     <div className="md:col-span-2 font-semibold">
                     <label htmlFor="state">Specialist</label>
                     <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
-                      <input
-                      value={spe}
-                      onChange={(e:any) => setspe(e.target.value)}
-                        type='name'
-                        placeholder="Cleaner ..."
-                        className="px-4 appearance-none outline-none font-thin text-gray-800 w-full bg-transparent"
-                        defaultValue=""
-                      />
-                      
+                    <select 
+                     value={spe}
+                     onChange={(e:any) => setspe(e.target.value)}
+                     className='w-full h-full bg-white p-2'>
+                      <option value="" disabled>Select Below</option>
+                      <option value="Engine Rebuilder">Engine Rebuilder</option>
+                      <option value="Diagnostic Specialist">Diagnostic Specialist</option>
+                      <option value="Performance Tuner">Performance Tuner</option>
+                      <option value="Bodywork and Paint Specialist">Body and Paint Specialist</option>
+                      <option value="Detailing Specialist">Detailing Specialist</option>
+                     </select>
                     </div>
                   </div>
                     <div className="md:col-span-2 font-semibold">
