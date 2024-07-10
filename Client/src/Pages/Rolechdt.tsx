@@ -270,7 +270,8 @@ const Rolechdt: React.FC = () => {
                       <option value="Engine Rebuilder">Engine Rebuilder</option>
                       <option value="Diagnostic Specialist">Diagnostic Specialist</option>
                       <option value="Performance Tuner">Performance Tuner</option>
-                      <option value="Bodywork and Paint Specialist">Body and Paint Specialist</option>
+                      <option value="Bodywork Specialist">Body Specialist</option>
+                      <option value="Paint Specialist">Paint Specialist</option>
                       <option value="Detailing Specialist">Detailing Specialist</option>
                      </select>
                     </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { auth } from '../Context/Firebase';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function Categories():React.ReactNode {
 
@@ -85,6 +86,33 @@ export default function Categories():React.ReactNode {
 
         <>
            <h1 className='text-4xl text-center underline underline-offset-4 my-5 font-extrabold'><span className='text-pink-600'>M</span>echanics <span className='text-pink-600'>Y</span>ou <span className='text-pink-600'>N</span>eed</h1>
+
+           <div className='grid lg:grid-cols-6 grid-cols-3 px-5 py-3 gap-4'>
+                <Link to="/" className='bg-gradient-to-b transition-all duration-300 sha hover:scale-95 p-2 from-black/50 to-black/80 rounded-lg'>
+                    <img className='w-full mx-auto border-2 border-pink-600 rounded-lg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG_fMx5jrJuLInUMwbNKwrYxFCJ2_x_2ynFw&s" alt="engine" />
+                    <h2 className='text-center my-2 font-bold text-white'>Engine related</h2>
+                </Link>
+                <Link to="/" className='bg-gradient-to-b transition-all duration-300 sha hover:scale-95 p-2 from-black/50 to-black/80 rounded-lg'>
+                     <img className='w-full mx-auto border-2 border-pink-600 rounded-lg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG_fMx5jrJuLInUMwbNKwrYxFCJ2_x_2ynFw&s" alt="engine" />
+                    <h2 className='text-center my-2 font-bold text-white'>Engine related</h2>
+                </Link>
+                <Link to="/" className='bg-gradient-to-b transition-all duration-300 sha hover:scale-95 p-2 from-black/50 to-black/80 rounded-lg'>
+                     <img className='w-full mx-auto border-2 border-pink-600 rounded-lg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG_fMx5jrJuLInUMwbNKwrYxFCJ2_x_2ynFw&s" alt="engine" />
+                    <h2 className='text-center my-2 font-bold text-white'>Engine related</h2>
+                </Link>
+                <Link to="/" className='bg-gradient-to-b transition-all duration-300 sha hover:scale-95 p-2 from-black/50 to-black/80 rounded-lg'>
+                     <img className='w-full mx-auto border-2 border-pink-600 rounded-lg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG_fMx5jrJuLInUMwbNKwrYxFCJ2_x_2ynFw&s" alt="engine" />
+                    <h2 className='text-center my-2 font-bold text-white'>Engine related</h2>
+                </Link>
+                <Link to="/" className='bg-gradient-to-b transition-all duration-300 sha hover:scale-95 p-2 from-black/50 to-black/80 rounded-lg'>
+                     <img className='w-full border-2 border-pink-600 mx-auto rounded-lg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG_fMx5jrJuLInUMwbNKwrYxFCJ2_x_2ynFw&s" alt="engine" />
+                    <h2 className='text-center my-2 font-bold text-white'>Engine related</h2>
+                </Link>
+                <Link to="/" className='bg-gradient-to-b transition-all duration-300 sha hover:scale-95 p-2 from-black/50 to-black/80 rounded-lg'>
+                     <img className='w-full mx-auto border-2 border-pink-600 rounded-lg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG_fMx5jrJuLInUMwbNKwrYxFCJ2_x_2ynFw&s" alt="engine" />
+                    <h2 className='text-center my-2 font-bold text-white'>Engine related</h2>
+                </Link>
+           </div>
         </>
 
         }
