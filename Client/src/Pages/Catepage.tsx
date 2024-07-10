@@ -93,16 +93,19 @@ export default function Catepage():React.ReactNode {
 
   return (
     <div className='mt-24'>
+
         {role === "Consumer" &&
             <>
                  <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>{par}</span> <span className='text-pink-600'>M</span>echanics</h1>
             </>
         }
+
         {role === "Supplier" &&
             <>
                  <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>{par}</span> <span className='text-pink-600'>C</span>ustomers</h1>
             </>
         }
+        
     </div>
   )
 }
