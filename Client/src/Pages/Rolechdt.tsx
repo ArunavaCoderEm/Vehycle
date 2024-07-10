@@ -153,7 +153,7 @@ const Rolechdt: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen p-6 bg-transparent flex items-center justify-center">
+    <div className="min-h-screen p-6 bg-transparent mt-10 flex items-center justify-center">
       <div className="container max-w-screen-lg mx-auto">
         <div>
           <div className="bg-gradient-to-b from-gray-200 to-gray-300 sha rounded shadow-lg p-4 px-4 md:p-8 mb-6">
