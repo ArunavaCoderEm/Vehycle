@@ -8,6 +8,7 @@ import BackgroundBricks from './Components/BGtexture'
 import Rolechdt from './Pages/Rolechdt';
 import Dashboard from './Pages/Dashboard';
 import Footer from './Components/Footer';
+import Catepage from './Pages/Catepage';
 
 export default function Page(): React.ReactNode {
   return (
@@ -21,6 +22,7 @@ export default function Page(): React.ReactNode {
             <Route path="/signin" element={<Signin />} />
             <Route path="/rolechdt" element={<Rolechdt />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/catepage/:id" element={<Catepage />} />
         </Routes>
         </div>
         <Footer />

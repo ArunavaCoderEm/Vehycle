@@ -88,27 +88,27 @@ export default function Categories():React.ReactNode {
 
             <h1 className='text-4xl text-center underline underline-offset-4 my-5 font-extrabold'><span className='text-pink-600'>M</span>echanics <span className='text-pink-600'>Y</span>ou <span className='text-pink-600'>N</span>eed</h1>
            <div className="grid grid-cols-2 md:grid-cols-3 p-3 lg:grid-cols-6 gap-4">
-                <Link to="/" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
+                <Link to="/catepage/engine" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
                     <img className='w-full h-40 object-cover mx-auto border-2 border-pink-600 rounded-lg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG_fMx5jrJuLInUMwbNKwrYxFCJ2_x_2ynFw&s" alt="engine" />
                     <h2 className='text-center my-2 font-bold text-white'>Engine related</h2>
                 </Link>
-                <Link to="/" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
+                <Link to="/catepage/diagonistic" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
                     <img className='w-full h-40 object-cover mx-auto border-2 border-pink-600 rounded-lg' src="https://cdn.jdpower.com/What_is_a_car_diagnostic_test_pexels-m%C3%ADdia-4116193.jpg" alt="diagnostics" />
                     <h2 className='text-center my-2 font-bold text-white'>Diagnostics related</h2>
                 </Link>
-                <Link to="/" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
+                <Link to="/catepage/performance" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
                     <img className='w-full h-40 object-cover mx-auto border-2 border-pink-600 rounded-lg' src="https://performance.bilstein.com/wp-content/uploads/2021/07/Einsatz-von-LED-Technik-beim-Tuning-der-Fahrzeugbeleuchtung-scaled.jpg" alt="performance" />
                     <h2 className='text-center my-2 font-bold text-white'>Performance related</h2>
                 </Link>
-                <Link to="/" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
+                <Link to="/catepage/body" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
                     <img className='w-full h-40 object-cover mx-auto border-2 border-pink-600 rounded-lg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfeeYD5GlKlrR3P7G3xFwysEXdgGdgPHZFqg&s" alt="body" />
                     <h2 className='text-center my-2 font-bold text-white'>Body related</h2>
                 </Link>
-                <Link to="/" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
+                <Link to="/catepage/paint" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
                     <img className='w-full h-40 object-cover mx-auto border-2 border-pink-600 rounded-lg' src="https://5.imimg.com/data5/SELLER/Default/2021/8/CE/UD/ZM/136079629/images1702-5c868263b302d-1024x788-jpg-500x500.jpg" alt="paint" />
                     <h2 className='text-center my-2 font-bold text-white'>Paint related</h2>
                 </Link>
-                <Link to="/" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
+                <Link to="/catepage/detailing" className='bg-gradient-to-b transition-all sha duration-300 shadow hover:scale-95 p-4 from-black/50 to-black/80 rounded-lg'>
                     <img className='w-full h-40 object-cover mx-auto border-2 border-pink-600 rounded-lg' src="https://www.5kcarcare.com/branch-assets/assets/img/blog/people-love-on-auto-detailing-service-01.jpg" alt="details" />
                     <h2 className='text-center my-2 font-bold text-white'>Details related</h2>
                 </Link>

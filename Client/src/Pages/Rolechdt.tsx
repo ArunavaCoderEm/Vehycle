@@ -267,12 +267,12 @@ const Rolechdt: React.FC = () => {
                      onChange={(e:any) => setspe(e.target.value)}
                      className='w-full h-full bg-white p-2'>
                       <option value="" disabled>Select Below</option>
-                      <option value="Engine Rebuilder">Engine Rebuilder</option>
-                      <option value="Diagnostic Specialist">Diagnostic Specialist</option>
-                      <option value="Performance Tuner">Performance Tuner</option>
-                      <option value="Bodywork Specialist">Body Specialist</option>
-                      <option value="Paint Specialist">Paint Specialist</option>
-                      <option value="Detailing Specialist">Detailing Specialist</option>
+                      <option value="engine">Engine Rebuilder</option>
+                      <option value="diagonistic">Diagnostic Specialist</option>
+                      <option value="performance">Performance Tuner</option>
+                      <option value="body">Body Specialist</option>
+                      <option value="paint">Paint Specialist</option>
+                      <option value="detailing">Detailing Specialist</option>
                      </select>
                     </div>
                   </div>
