@@ -9,17 +9,17 @@ export default function Navbar():React.ReactNode {
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [icon, seticon] = useState<boolean>(false);
-  const[act, setact] = useState<string>("home");
+  const [act, setact] = useState<string>("home");
   const [avat, setavat] = useState<string>("")
   const [name, setname] = useState<string>("")
   const [user, setUser] = useState<any>(null); 
   
-  const[clfind, setclfind] = useState<boolean>(false)
-  const[prfind, setprfind] = useState<boolean>(false)
+  const [clfind, setclfind] = useState<boolean>(false)
+  const [prfind, setprfind] = useState<boolean>(false)
 
-  const[show, setShow] = useState<boolean>(false)
+  const [show, setShow] = useState<boolean>(false)
 
-  const[role, setRole] = useState<string>("")
+  const [role, setRole] = useState<string>("")
 
   const getMbUserCl = async (uid: string) => {
     const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
@@ -125,7 +125,7 @@ export default function Navbar():React.ReactNode {
     else {
       setRole("")
     }
-  },[clfind, prfind, user, role])
+  },[clfind, prfind, user, role, name])
 
   const toggleMenu = ():void => {
     setIsMenuOpen(!isMenuOpen);

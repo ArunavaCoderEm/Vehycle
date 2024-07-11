@@ -9,6 +9,7 @@ import connectDB from './Mongo';
 import { cors } from 'hono/cors';
 import { poweredBy } from 'hono/powered-by';
 import { logger } from 'hono/logger';
+import serverseasor from './Routes/SearchSortCl';
 
 dotenv.config();  
 
@@ -39,6 +40,8 @@ app.route("/usercl/",servercl);
 app.route("/book/",bookcl);
 
 app.route("/book/",bookpr);
+
+app.route("/seasor/",serverseasor);
 
 app.onError((err : any, c : any) => {
     return c.text(`App error happened ${err}`);
