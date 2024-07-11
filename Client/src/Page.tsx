@@ -10,6 +10,7 @@ import Dashboard from './Pages/Dashboard';
 import Footer from './Components/Footer';
 import Catepage from './Pages/Catepage';
 import Premium from './Pages/Premium';
+import Explore from './Pages/Explore';
 
 
 export default function Page(): React.ReactNode {
@@ -26,6 +27,7 @@ export default function Page(): React.ReactNode {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/catepage/:id" element={<Catepage />} />
             <Route path="/premium" element={<Premium />} />
+            <Route path="/explore" element={<Explore />} />
         </Routes>
         </div>
         <Footer />
