@@ -97,7 +97,6 @@ export default function Catepage():React.ReactNode {
     const getmechs = async () => {
       try {
         const res = await axios.get(`http://localhost:8173/seasor/getmech/${sea}`)
-        console.log(res)
         setMaparr(res.data)
       } catch (e) {
         console.log("Error");
@@ -113,7 +112,7 @@ export default function Catepage():React.ReactNode {
   return (
     <div className='mt-24'>
 
-        {role === "Consumer" &&
+        {(role === "Consumer" && maparr.length) ?
             <>
                  <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>{par}</span> <span className='text-pink-600'>M</span>echanics</h1>
 
@@ -135,9 +134,15 @@ export default function Catepage():React.ReactNode {
                 ))}
 
            
-                </div>     
+                </div>   
 
-            </>
+               </>  
+
+                :
+
+                <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>N</span>o <span className='text-pink-600'>M</span>echanics <span className='text-pink-600'>Y</span>et </h1> 
+
+         
         }
 
         {role === "Supplier" &&
