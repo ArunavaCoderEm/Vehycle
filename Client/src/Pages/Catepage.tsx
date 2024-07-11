@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { auth } from '../Context/Firebase';
 import axios from 'axios';
+import Mechcard from '../Components/Mechcard';
 
 export default function Catepage():React.ReactNode {
 
@@ -116,11 +117,18 @@ export default function Catepage():React.ReactNode {
             <>
                  <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>{par}</span> <span className='text-pink-600'>M</span>echanics</h1>
 
+                 <div className='grid w-full sm:grid-cols-2 lg:grid-cols-4 bg-red-600'>
+
                  {(maparr).map((item, index) => (
-                    <div key={index}>
-                        {item.name}
-                    </div>
+                   <div className='bg-red-300 text-center w-full'>
+                    <Mechcard
+                      img = {item.name}
+                      alt = {item.name}
+                    />
+                   </div>
                 ))}
+
+                </div>
 
             </>
         }
