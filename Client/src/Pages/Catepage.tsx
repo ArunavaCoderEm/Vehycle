@@ -9,6 +9,9 @@ export default function Catepage():React.ReactNode {
     const [role, setRole] = useState<string>("")
     const[clfind, setclfind] = useState<boolean>(false)
     const[prfind, setprfind] = useState<boolean>(false)
+    const[sea, setsea] = useState<string>("")
+
+    const [maparr, setMaparr] = useState<any[]>([])
 
     useEffect(() => {
         setRole("")
@@ -84,12 +87,27 @@ export default function Catepage():React.ReactNode {
 
     useEffect(() => {
         const id = params.id;
+        setsea(id)
         const capid = id.charAt(0).toUpperCase() + id.slice(1);
         window.scrollTo(0,0)
         setPar(capid);
     },[par])
 
-    console.log(par)
+    const getmechs = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8173/seasor/getmech/${sea}`)
+        console.log(res)
+        setMaparr(res.data)
+      } catch (e) {
+        console.log("Error");
+      }
+    }
+
+    useEffect(() => {
+      getmechs();
+    }, [par])
+
+    console.log(maparr)
 
   return (
     <div className='mt-24'>
@@ -97,6 +115,13 @@ export default function Catepage():React.ReactNode {
         {role === "Consumer" &&
             <>
                  <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>{par}</span> <span className='text-pink-600'>M</span>echanics</h1>
+
+                 {(maparr).map((item, index) => (
+                    <div key={index}>
+                        {item.name}
+                    </div>
+                ))}
+
             </>
         }
 
