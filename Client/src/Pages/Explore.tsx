@@ -104,7 +104,7 @@ export default function Explore():React.ReactNode {
 
     }
     if (fil === "near") {
-
+        setPrarr([])
     }
   }, [role, fil, clmypin, prmypin]);
 
@@ -123,6 +123,7 @@ export default function Explore():React.ReactNode {
                 onChange={(e: any) => setfil(e.target.value)}
                 className='w-full h-full bg-white p-2'>
                 <option value="" disabled>Select Below</option>
+                <option value="none">None</option>
                 <option value="near">Near You</option>
               </select>
             </div>
