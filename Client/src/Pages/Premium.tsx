@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Premium():React.ReactNode {
   return (
@@ -45,7 +46,7 @@ export default function Premium():React.ReactNode {
                       <span>Exclusive discounts on services</span>
                   </li>
               </ul>
-              <a href="#" className="text-white bg-gradient-to-b from-pink-600 to-pink-800 p-2 rounded-lg font-semibold transition-all duration-300 hover:scale-95">Experience Better</a>
+              <Link to="/" className="text-white bg-gradient-to-b from-pink-600 to-pink-800 p-2 rounded-lg font-semibold transition-all duration-300 hover:scale-95">Experience Better</Link>
           </div>
       </div>
   </div>
