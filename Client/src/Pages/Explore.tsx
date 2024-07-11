@@ -10,7 +10,7 @@ export default function Explore():React.ReactNode {
   const [prfind, setprfind] = useState<boolean>(false);
   const [mypin, setmypin] = useState<number>(0);
   const [prarr, setPrarr] = useState<any[]>([]);
-  const [fil, setfil] = useState<string>("");
+  const [fil, setfil] = useState<string>("none");
   const [role, setRole] = useState<string>("");
 
 
@@ -98,9 +98,9 @@ export default function Explore():React.ReactNode {
   }, [clfind, prfind]);
 
   useEffect(() => {
-    if (role === "Consumer" && fil != 'near') {
+    if (role === "Consumer" && fil === 'none') {
       getMechall();
-    } else if (role === "Supplier" && fil != 'near') {
+    } else if (role === "Supplier" && fil === 'none') {
 
     }
 
