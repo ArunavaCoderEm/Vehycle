@@ -8,11 +8,11 @@ export default function Explore():React.ReactNode {
   const [user, setUser] = useState<any>(null);
   const [clfind, setclfind] = useState<boolean>(false);
   const [prfind, setprfind] = useState<boolean>(false);
-  const [prmypin, setprmypin] = useState<number>(0);
-  const [clmypin, setclmypin] = useState<number>(0);
+  const [mypin, setmypin] = useState<number>(0);
   const [prarr, setPrarr] = useState<any[]>([]);
   const [fil, setfil] = useState<string>("");
   const [role, setRole] = useState<string>("");
+
 
   const getMbUserCl = async (uid: string) => {
     try {
@@ -21,7 +21,7 @@ export default function Explore():React.ReactNode {
         console.log(response.data);
         console.log("USER FOUND in usercl");
         setclfind(true);
-        setclmypin(response.data.pin);
+        setmypin(response.data.pin)
       } else {
         console.log("USER NOT FOUND in usercl");
         setclfind(false);
@@ -29,7 +29,7 @@ export default function Explore():React.ReactNode {
     } catch (error) {
       console.error("Error fetching usercl data:", error);
       setclfind(false);
-      setclmypin(0);
+      setmypin(0)
       console.log(user);
     }
   };
@@ -40,7 +40,7 @@ export default function Explore():React.ReactNode {
       if (response.data) {
         console.log("USER FOUND in userpr");
         setprfind(true);
-        setprmypin(response.data.pin);
+        setmypin(response.data.pin)
       } else {
         console.log("USER NOT FOUND in userpr");
         setprfind(false);
@@ -48,7 +48,7 @@ export default function Explore():React.ReactNode {
     } catch (error) {
       console.error("Error fetching userpr data:", error);
       setprfind(false);
-      setprmypin(0);
+      setmypin(0)
     }
   };
 
@@ -85,7 +85,7 @@ export default function Explore():React.ReactNode {
     });
 
     return () => unsubscribe();
-  }, [user, fil, clmypin, prmypin, role, clfind, prfind]);
+  }, [user, fil, role, clfind, prfind]);
 
   useEffect(() => {
     if (clfind) {
@@ -103,10 +103,12 @@ export default function Explore():React.ReactNode {
     } else if (role === "Supplier" && fil != 'near') {
 
     }
+
     if (fil === "near") {
         setPrarr([])
     }
-  }, [role, fil, clmypin, prmypin]);
+  }, [role, fil, mypin]);
+
 
   return (
     <div className='mt-24'>
@@ -128,8 +130,6 @@ export default function Explore():React.ReactNode {
               </select>
             </div>
           </div>
-          {clmypin}
-          {prmypin}
           <div className='grid lg:grid-cols-3 gap-4 p-2'>
             {prarr.map((item, index) => (
               <div key={index}>
