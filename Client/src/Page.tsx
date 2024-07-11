@@ -9,6 +9,8 @@ import Rolechdt from './Pages/Rolechdt';
 import Dashboard from './Pages/Dashboard';
 import Footer from './Components/Footer';
 import Catepage from './Pages/Catepage';
+import Premium from './Pages/Premium';
+
 
 export default function Page(): React.ReactNode {
   return (
@@ -23,6 +25,7 @@ export default function Page(): React.ReactNode {
             <Route path="/rolechdt" element={<Rolechdt />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/catepage/:id" element={<Catepage />} />
+            <Route path="/premium" element={<Premium />} />
         </Routes>
         </div>
         <Footer />
