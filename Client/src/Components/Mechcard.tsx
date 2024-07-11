@@ -1,39 +1,38 @@
-import React from 'react'
+import React from 'react';
 
 interface MechcardProps {
-    img: string;
-    alt: string;
+  img: string;
+  alt: string;
+  name: string;
+  desc: string;
+  specialist: string;
+  contact: number;
+  hourlyrate: number;
+  rating: number[];
 }
 
-const Mechcard: React.FC<MechcardProps> = ({ img, alt }) => {
+const Mechcard: React.FC<MechcardProps> = (
+        { img, alt, name, desc, specialist, contact, hourlyrate, rating}
+    ) => {
 
   return (
     <>
-    <div className="w-full lg:flex">
-        <div className="h-auto w-full flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+    <div className="p-3 bg-white sha rounded-lg grid grid-cols-6 gap-4">
+        <div className='col-span-2 flex flex-col items-center'>
+            <img src={img} alt={alt} className="w-24 h-24 rounded-full border-2 border-pink-600" />
+            <button>Book Now</button>
         </div>
-        <div className="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-            <div className="mb-8">
-            <p className="text-sm text-grey-dark flex items-center">
-                <svg className="text-grey w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                </svg>
-                Members only
-            </p>
-            <div className="text-black font-bold text-xl mb-2">Can coffee make you a better developer?</div>
-            <p className="text-grey-darker text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
-            </div>
-            <div className="flex items-center">
-            <img className="w-10 h-10 rounded-full mr-4" src={img} alt={alt} />
-            <div className="text-sm">
-                <p className="text-black leading-none">Jonathan Reinink</p>
-                <p className="text-grey-dark">Aug 18</p>
-            </div>
-            </div>
-        </div>
+      <div className="col-span-4 rounded-lg p-2">
+        <h2 className="font-extrabold">{name}</h2>
+        <h3 className="font-thin text-sm">{desc}</h3>
+        <h3 className="font-bold text-sm">Specialist : {specialist}</h3>
+        <h3 className="font-bold text-sm">Contact : {contact}</h3>
+        <h3 className="font-bold text-sm">Contact : Rs.{hourlyrate}/-</h3>
+        <h3 className="font-bold text-sm">Rating : {rating}⭐</h3>
       </div>
+    </div>
     </>
-  )
-}
+  );
+};
 
 export default Mechcard;

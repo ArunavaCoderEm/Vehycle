@@ -117,18 +117,25 @@ export default function Catepage():React.ReactNode {
             <>
                  <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>{par}</span> <span className='text-pink-600'>M</span>echanics</h1>
 
-                 <div className='grid w-full sm:grid-cols-2 lg:grid-cols-4 bg-red-600'>
+                <div className='grid lg:grid-cols-3 gap-3 p-2'>
 
                  {(maparr).map((item, index) => (
-                   <div className='bg-red-300 text-center w-full'>
+                   <div className='' key={index}>
                     <Mechcard
-                      img = {item.name}
+                      img = {item.img}
                       alt = {item.name}
-                    />
+                      name= {item.name}
+                      desc = {item.desc}
+                      specialist = {item.specialist}
+                      hourlyrate = {item.hourlyrate}
+                      contact = {item.contact}
+                      rating = {item.rating}
+                      />
                    </div>
                 ))}
 
-                </div>
+           
+                </div>     
 
             </>
         }
