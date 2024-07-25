@@ -71,7 +71,7 @@ export default function Explore():React.ReactNode {
 
   const getfillCl = async (params: number) => {
     try {
-      const res = await axios.get(`http://localhost:8173/seasor/nearyousp/${params}`);
+      const res = await axios.get(`http://localhost:8173/seasor/nearyou/${params}`);
       if (res.data.message) setmsg(res.data.message);
       if (! msg) {
         setPrarr([])
