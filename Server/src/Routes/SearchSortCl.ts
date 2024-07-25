@@ -10,7 +10,7 @@ serverseasor.get("/getmech/:id", async (c) => {
         if(!res.length){
             console.log(`Document doesn't exist`);
             return c.json(
-                { message: false }, 404
+                { message: false }, 201
             );  
         }
         return c.json(
@@ -32,7 +32,7 @@ serverseasor.get("/nearyou/:id", async (c) => {
         if(!res.length){
             console.log(`Document doesn't exist`);
             return c.json(
-                { message: false }, 404
+                { message: false }, 201
             );  
         }
         return c.json(

@@ -10,7 +10,7 @@ serverseasorsp.get("/getclient/:id", async (c) => {
         if(!res.length){
             console.log(`Document doesn't exist`);
             return c.json(
-                { message: false }, 404
+                { message: false }, 201
             );  
         }
         return c.json(
@@ -32,7 +32,7 @@ serverseasorsp.get("/nearyousp/:id", async (c) => {
         if(!res.length){
             console.log(`Document doesn't exist`);
             return c.json(
-                { message: false }, 404
+                { message: false }, 201
             );  
         }
         return c.json(

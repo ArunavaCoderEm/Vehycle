@@ -13,6 +13,7 @@ export default function Explore():React.ReactNode {
   const [prarr, setPrarr] = useState<any[]>([]);
   const [fil, setfil] = useState<string>("none");
   const [role, setRole] = useState<string>("");
+  const [msg, setmsg] = useState<boolean>(true);
 
 
   const getMbUserCl = async (uid: string) => {
@@ -74,24 +75,30 @@ export default function Explore():React.ReactNode {
   const getfillCl = async (params: number) => {
     try {
       const res = await axios.get(`http://localhost:8173/seasor/nearyousp/${params}`);
-      setPrarr(res.data);
-      if (!res.data.length) {
+      if (res.data.message) setmsg(res.data.message);
+      if (! msg) {
+        setPrarr([])
+      }
+      else {
+        setPrarr(res.data);
       }
     } catch (e) {
       console.log("error ", e);
-      setPrarr([])
     }
   };
 
   const getfillSp = async (params: number) => {
     try {
       const res = await axios.get(`http://localhost:8173/seasor/nearyousp/${params}`);
-      setPrarr(res.data);
-      if (!res.data.length) {
+      if (res.data.message) setmsg(res.data.message);
+      if (! msg) {
+        setPrarr([])
+      }
+      else {
+        setPrarr(res.data);
       }
     } catch (e) {
       console.log("error ", e);
-      setPrarr([])
     }
   };
 
@@ -158,7 +165,7 @@ export default function Explore():React.ReactNode {
               </select>
             </div>
           </div>
-      
+          {prarr.length &&
           <div className='grid lg:grid-cols-3 gap-4 p-2'>
             {prarr.map((item, index) => (
               <div key={index}>
@@ -171,10 +178,11 @@ export default function Explore():React.ReactNode {
                   hourlyrate={item.hourlyrate}
                   contact={item.contact}
                   rating={item.rating}
-                />
+                  />
               </div>
             ))}
           </div>
+          }
 
         </>
       )}
@@ -199,6 +207,7 @@ export default function Explore():React.ReactNode {
             </div>
           </div>
          
+          {prarr.length &&
           <div className='grid lg:grid-cols-3 gap-4 p-2'>
             {prarr.map((item, index) => (
               <div key={index}>
@@ -211,6 +220,7 @@ export default function Explore():React.ReactNode {
               </div>
             ))}
           </div>
+          }
 
         </>
       )}
