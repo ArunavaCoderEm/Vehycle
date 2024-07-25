@@ -79,8 +79,6 @@ export default function Explore():React.ReactNode {
       const res = await axios.get(`http://localhost:8173/seasor/nearyousp/${params}`);
       setPrarr(res.data);
       if (!res.data.length) {
-        setPrarr([]);
-        setNFtext("Looks Like You Dont Have Anyone Near You")
       }
     } catch (e) {
       console.log("error ", e);
@@ -92,8 +90,6 @@ export default function Explore():React.ReactNode {
       const res = await axios.get(`http://localhost:8173/seasor/nearyousp/${params}`);
       setPrarr(res.data);
       if (!res.data.length) {
-        setPrarr([]);
-        setNFtext("Looks Like You Dont Have Anyone Near You")
       }
     } catch (e) {
       console.log("error ", e);
@@ -163,10 +159,7 @@ export default function Explore():React.ReactNode {
               </select>
             </div>
           </div>
-          {(prarr.length)
-          
-          ?
-
+      
           <div className='grid lg:grid-cols-3 gap-4 p-2'>
             {prarr.map((item, index) => (
               <div key={index}>
@@ -184,12 +177,6 @@ export default function Explore():React.ReactNode {
             ))}
           </div>
 
-            :
-
-          <div>
-            {nftext}
-          </div>
-          } 
         </>
       )}
 
@@ -212,10 +199,7 @@ export default function Explore():React.ReactNode {
               </select>
             </div>
           </div>
-          {(prarr)
-
-            ?
-
+         
           <div className='grid lg:grid-cols-3 gap-4 p-2'>
             {prarr.map((item, index) => (
               <div key={index}>
@@ -229,12 +213,6 @@ export default function Explore():React.ReactNode {
             ))}
           </div>
 
-           :
-
-          <div>
-            {nftext}
-          </div> 
-          }
         </>
       )}
     </div>
