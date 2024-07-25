@@ -60,7 +60,7 @@ export default function Explore():React.ReactNode {
     }
   };
 
-  const getfill = async (params: number) => {
+  const getfillCl = async (params: number) => {
     try {
       const res = await axios.get(`http://localhost:8173/seasor/nearyou/${params}`);
       setPrarr(res.data);
@@ -104,8 +104,12 @@ export default function Explore():React.ReactNode {
 
     }
 
-    if (fil === "near") {
-      getfill(mypin)
+    if (role === "Consumer" && fil === "near") {
+      getfillCl(mypin)
+    }
+
+    else if (role === "Supplier" && fil === "near") {
+
     }
   }, [role, fil, mypin]);
 
