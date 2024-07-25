@@ -30,8 +30,6 @@ export default function Explore():React.ReactNode {
     } catch (error) {
       console.error("Error fetching usercl data:", error);
       setclfind(false);
-      setmypin(0)
-      console.log(user);
     }
   };
 
@@ -50,7 +48,6 @@ export default function Explore():React.ReactNode {
     } catch (error) {
       console.error("Error fetching userpr data:", error);
       setprfind(false);
-      setmypin(0)
     }
   };
 
@@ -142,7 +139,7 @@ export default function Explore():React.ReactNode {
     } else if (role === "Supplier" && fil === "near") {
       getfillSp(mypin)
     }
-  }, [role, fil, mypin]);
+  }, [role, fil]);
 
 
   return (
