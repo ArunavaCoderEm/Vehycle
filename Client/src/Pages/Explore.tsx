@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../Context/Firebase';
 import axios from 'axios';
 import Mechcard from '../Components/Mechcard';
+import Clicard from '../Components/Clicard';
 
 export default function Explore():React.ReactNode {
 
@@ -12,6 +13,7 @@ export default function Explore():React.ReactNode {
   const [prarr, setPrarr] = useState<any[]>([]);
   const [fil, setfil] = useState<string>("none");
   const [role, setRole] = useState<string>("");
+  const [nftext, setNFtext] = useState<string>("");
 
 
   const getMbUserCl = async (uid: string) => {
@@ -39,6 +41,7 @@ export default function Explore():React.ReactNode {
       if (response.data) {
         console.log("USER FOUND in userpr");
         setprfind(true);
+        console.log(response.data[0].pin)
         setmypin(response.data[0].pin)
       } else {
         console.log("USER NOT FOUND in userpr");
@@ -57,13 +60,41 @@ export default function Explore():React.ReactNode {
       setPrarr(res.data);
     } catch (e) {
       console.log("error ", e);
+      setNFtext("Looks Like You Dont Have Any Mechanic")
+    }
+  };
+
+  const getClall = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8173/usercl/getdata`);
+      setPrarr(res.data);
+    } catch (e) {
+      console.log("error ", e);
+      setNFtext("Looks Like You Dont Have Any Client")
     }
   };
 
   const getfillCl = async (params: number) => {
     try {
-      const res = await axios.get(`http://localhost:8173/seasor/nearyou/${params}`);
+      const res = await axios.get(`http://localhost:8173/seasor/nearyousp/${params}`);
       setPrarr(res.data);
+      if (!res.data.length) {
+        setPrarr([]);
+        setNFtext("Looks Like You Dont Have Anyone Near You")
+      }
+    } catch (e) {
+      console.log("error ", e);
+    }
+  };
+
+  const getfillSp = async (params: number) => {
+    try {
+      const res = await axios.get(`http://localhost:8173/seasor/nearyousp/${params}`);
+      setPrarr(res.data);
+      if (!res.data.length) {
+        setPrarr([]);
+        setNFtext("Looks Like You Dont Have Anyone Near You")
+      }
     } catch (e) {
       console.log("error ", e);
     }
@@ -73,9 +104,8 @@ export default function Explore():React.ReactNode {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-        if(! getMbUserCl(currentUser.uid)) {
-          getMbUserPr(currentUser.uid);
-        }
+        getMbUserCl(currentUser.uid)
+        getMbUserPr(currentUser.uid);
       } else {
         setUser(null);
         setRole("");
@@ -100,16 +130,15 @@ export default function Explore():React.ReactNode {
   useEffect(() => {
     if (role === "Consumer" && fil === 'none') {
       getMechall();
-    } else if (role === "Supplier" && fil === 'none') {
-
+    } 
+    else if (role === "Supplier" && fil === 'none') {
+      getClall();
     }
 
     if (role === "Consumer" && fil === "near") {
       getfillCl(mypin)
-    }
-
-    else if (role === "Supplier" && fil === "near") {
-
+    } else if (role === "Supplier" && fil === "near") {
+      getfillSp(mypin)
     }
   }, [role, fil, mypin]);
 
@@ -134,6 +163,10 @@ export default function Explore():React.ReactNode {
               </select>
             </div>
           </div>
+          {(prarr.length)
+          
+          ?
+
           <div className='grid lg:grid-cols-3 gap-4 p-2'>
             {prarr.map((item, index) => (
               <div key={index}>
@@ -150,14 +183,58 @@ export default function Explore():React.ReactNode {
               </div>
             ))}
           </div>
+
+            :
+
+          <div>
+            {nftext}
+          </div>
+          } 
         </>
       )}
 
       {role === "Supplier" && (
         <>
+          <div className='mt-20'>{prfind}</div>
           <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'>
             <span className='text-pink-600'>E</span>xplore <span className='text-pink-600'>Y</span>our <span className='text-pink-600'>C</span>ustomers
           </h1>
+          <div className="md:col-span-2 font-semibold flex flex-col">
+            <label htmlFor="state" className='text-center font-bold'>Filters to choose</label>
+            <div className="h-10 w-36 mx-auto bg-gray-50 flex border border-gray-200 sha rounded items-center m-1">
+              <select 
+                value={fil}
+                onChange={(e: any) => setfil(e.target.value)}
+                className='w-full h-full bg-white p-2'>
+                <option value="" disabled>Select Below</option>
+                <option value="none">None</option>
+                <option value="near">Near You</option>
+              </select>
+            </div>
+          </div>
+          {(prarr)
+
+            ?
+
+          <div className='grid lg:grid-cols-3 gap-4 p-2'>
+            {prarr.map((item, index) => (
+              <div key={index}>
+                <Clicard
+                  img={item.img}
+                  alt={item.name}
+                  name={item.name}  
+                  contact={item.contact}
+                />
+              </div>
+            ))}
+          </div>
+
+           :
+
+          <div>
+            {nftext}
+          </div> 
+          }
         </>
       )}
     </div>
