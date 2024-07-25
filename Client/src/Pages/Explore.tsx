@@ -18,10 +18,9 @@ export default function Explore():React.ReactNode {
     try {
       const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
       if (response.data) {
-        console.log(response.data);
         console.log("USER FOUND in usercl");
         setclfind(true);
-        setmypin(response.data.pin)
+        setmypin(response.data[0].pin)
       } else {
         console.log("USER NOT FOUND in usercl");
         setclfind(false);
@@ -40,7 +39,7 @@ export default function Explore():React.ReactNode {
       if (response.data) {
         console.log("USER FOUND in userpr");
         setprfind(true);
-        setmypin(response.data.pin)
+        setmypin(response.data[0].pin)
       } else {
         console.log("USER NOT FOUND in userpr");
         setprfind(false);
@@ -74,8 +73,9 @@ export default function Explore():React.ReactNode {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-        getMbUserCl(currentUser.uid);
-        getMbUserPr(currentUser.uid);
+        if(! getMbUserCl(currentUser.uid)) {
+          getMbUserPr(currentUser.uid);
+        }
       } else {
         setUser(null);
         setRole("");
@@ -105,7 +105,7 @@ export default function Explore():React.ReactNode {
     }
 
     if (fil === "near") {
-        setPrarr([])
+      getfill(mypin)
     }
   }, [role, fil, mypin]);
 
