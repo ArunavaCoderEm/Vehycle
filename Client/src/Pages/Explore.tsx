@@ -13,7 +13,6 @@ export default function Explore():React.ReactNode {
   const [prarr, setPrarr] = useState<any[]>([]);
   const [fil, setfil] = useState<string>("none");
   const [role, setRole] = useState<string>("");
-  const [nftext, setNFtext] = useState<string>("");
 
 
   const getMbUserCl = async (uid: string) => {
@@ -60,7 +59,6 @@ export default function Explore():React.ReactNode {
       setPrarr(res.data);
     } catch (e) {
       console.log("error ", e);
-      setNFtext("Looks Like You Dont Have Any Mechanic")
     }
   };
 
@@ -70,7 +68,6 @@ export default function Explore():React.ReactNode {
       setPrarr(res.data);
     } catch (e) {
       console.log("error ", e);
-      setNFtext("Looks Like You Dont Have Any Client")
     }
   };
 
@@ -82,6 +79,7 @@ export default function Explore():React.ReactNode {
       }
     } catch (e) {
       console.log("error ", e);
+      setPrarr([])
     }
   };
 
@@ -93,6 +91,7 @@ export default function Explore():React.ReactNode {
       }
     } catch (e) {
       console.log("error ", e);
+      setPrarr([])
     }
   };
 
