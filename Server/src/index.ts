@@ -10,6 +10,7 @@ import { cors } from 'hono/cors';
 import { poweredBy } from 'hono/powered-by';
 import { logger } from 'hono/logger';
 import serverseasor from './Routes/SearchSortCl';
+import serverseasorsp from './Routes/SearSorSup';
 
 dotenv.config();  
 
@@ -42,6 +43,8 @@ app.route("/book/",bookcl);
 app.route("/book/",bookpr);
 
 app.route("/seasor/",serverseasor);
+
+app.route("/seasor/",serverseasorsp);
 
 app.onError((err : any, c : any) => {
     return c.text(`App error happened ${err}`);
