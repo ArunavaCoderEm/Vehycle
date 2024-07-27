@@ -5,6 +5,7 @@ interface MechcardProps {
   alt: string;
   name: string;
   contact: number;
+  defect: string
 }
 
 const applyclient = () => {
@@ -12,7 +13,7 @@ const applyclient = () => {
 }
 
 const Clicard: React.FC<MechcardProps> = (
-        { img, alt, name, contact}
+        { img, alt, name, contact, defect}
     ) => {
 
   return (
@@ -24,6 +25,7 @@ const Clicard: React.FC<MechcardProps> = (
         </div>
       <div className="col-span-3 bg-gray-100 rounded-lg p-2">
         <h3 className="font-bold text-sm">Contact : {contact}</h3>
+        <h3 className="font-bold text-sm">Defect : {defect}</h3>
         <div className='mt-7 flex justify-center'>
           <button 
           onClick={applyclient}

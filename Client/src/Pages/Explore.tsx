@@ -212,6 +212,7 @@ export default function Explore():React.ReactNode {
                   img={item.img}
                   alt={item.name}
                   name={item.name}  
+                  defect ={item.current_defect}
                   contact={item.contact}
                 />
               </div>

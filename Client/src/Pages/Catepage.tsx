@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { auth } from '../Context/Firebase';
 import axios from 'axios';
 import Mechcard from '../Components/Mechcard';
+import Clicard from '../Components/Clicard';
 
 export default function Catepage():React.ReactNode {
 
@@ -13,6 +14,7 @@ export default function Catepage():React.ReactNode {
     const[sea, setsea] = useState<string>("")
 
     const [maparr, setMaparr] = useState<any[]>([])
+    const [saparr, setSaparr] = useState<any[]>([])
 
     useEffect(() => {
         setRole("")
@@ -103,16 +105,34 @@ export default function Catepage():React.ReactNode {
       }
     }
 
+    const getcldefs = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8173/seasor/getclient/${sea}`)
+        console.log(res.data)
+        setSaparr(res.data)
+      } catch (e) {
+        console.log("Error");
+      }
+    }
+
     useEffect(() => {
-      getmechs();
-    }, [par])
+      if (role === 'Consumer') {
+        getmechs();
+      }
+      else if (role === 'Supplier') {
+        getcldefs();
+      } 
+    }, [par, role])
 
     console.log(maparr)
 
   return (
     <div className='mt-24'>
 
-        {(role === "Consumer" && maparr.length) ?
+        {(role === "Consumer") &&
+        <>
+          {(maparr.length )
+            ?
             <>
                  <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>{par}</span> <span className='text-pink-600'>M</span>echanics</h1>
 
@@ -144,12 +164,41 @@ export default function Catepage():React.ReactNode {
 
          
         }
+        </>
+      }
+        {role === 'Supplier' &&
 
-        {role === "Supplier" &&
+        <>
+        {(saparr.length) ?
             <>
                  <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>{par}</span> <span className='text-pink-600'>C</span>ustomers</h1>
+
+                 <div className='grid lg:grid-cols-3 gap-3 p-2'>
+
+                  {(saparr).map((item, index) => (
+                    <div className='' key={index}>
+                    <Clicard
+                      img = {item.img}
+                      alt = {item.name}
+                      name= {item.name}
+                      defect = {item.current_defect}       
+                      contact = {item.contact}
+                      />
+                    </div>
+                  ))}
+
+
+                  </div>   
+
+
             </>
+
+            :
+
+            <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>N</span>o <span className='text-pink-600'>C</span>ustomers <span className='text-pink-600'>Y</span>et </h1> 
         }
+        </>
+      }
         
     </div>
   )
