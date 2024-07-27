@@ -12,6 +12,11 @@ export default function Dashboard():React.ReactNode {
   const[avat, setavat] = useState<string>("")
   const[name, setname] = useState<string>("")
 
+  const [address, setaddress] = useState<string>("")
+  const [def, setdef] = useState<string>("")
+  const [spe, setspe] = useState<string>("")
+  const [con, setcon] = useState<number>(0)
+
 
   useEffect(() => {
       setRole("")
@@ -63,6 +68,9 @@ export default function Dashboard():React.ReactNode {
       const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
       try {
         if (response) {
+          setaddress(response.data[0].nearby)
+          setdef(response.data[0].current_defect)
+          setcon(response.data[0].contact)
           console.log("USER FOUND in usercl");
           setclfind(true)
         } else {
@@ -80,6 +88,9 @@ export default function Dashboard():React.ReactNode {
       const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
       try {
         if (response) {
+          setaddress(response.data[0].nearby)
+          setspe(response.data[0].specialist)
+          setcon(response.data[0].contact)
           console.log("USER FOUND in userpr");
           setprfind(true);
         } else {
@@ -110,7 +121,7 @@ export default function Dashboard():React.ReactNode {
       <div className='mt-20'>
         <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>D</span>ashboard</h1>
           <div className="p-4 mx-10">
-            <div className="mt-12">
+            <div className="mt-1">
               <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
                 <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
                   <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -129,7 +140,7 @@ export default function Dashboard():React.ReactNode {
                   </div>
                   <div className="p-4 text-right">
                     <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Your Address</p>
-                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">2,300</h4>
+                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{address}</h4>
                   </div>
                 </div>
 
@@ -142,7 +153,7 @@ export default function Dashboard():React.ReactNode {
                   </div>
                   <div className="p-4 text-right">
                     <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Current Defect</p>
-                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">3,462</h4>
+                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{def}</h4>
                   </div>
                 </div>
                 }
@@ -156,7 +167,7 @@ export default function Dashboard():React.ReactNode {
                   </div>
                   <div className="p-4 text-right">
                     <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Specialist In</p>
-                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">3,462</h4>
+                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{spe}</h4>
                   </div>
                 </div>
                 }
@@ -168,15 +179,52 @@ export default function Dashboard():React.ReactNode {
                     </svg>
                   </div>
                   <div className="p-4 text-right">
-                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Sales</p>
-                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">$103,430</h4>
-                  </div>
-                  <div className="border-t border-blue-gray-50 p-4">
-                    <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-                      <strong className="text-green-500">+5%</strong>&nbsp;than yesterday
-                    </p>
+                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Contact</p>
+                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{con}</h4>
                   </div>
                 </div>
+
+                {role === "Supplier" &&
+                <>
+                <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
+                  <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
+                      <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"></path>
+                    </svg>
+                  </div>
+                  <div className="p-4 text-right">
+                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Available</p>
+                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">$103,430</h4>
+                  </div>
+                </div>
+
+                <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
+                  <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
+                      <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"></path>
+                    </svg>
+                  </div>
+                  <div className="p-4 text-right">
+                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Contact</p>
+                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">$103,430</h4>
+                  </div>
+                </div>
+
+                <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
+                  <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
+                      <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"></path>
+                    </svg>
+                  </div>
+                  <div className="p-4 text-right">
+                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Contact</p>
+                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">$103,430</h4>
+                  </div>
+                </div>
+                </>
+                }
+
+
               </div>
               <div>
               <h1 className='text-xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>P</span>revious <span className='text-pink-600'>B</span>ookings</h1>
