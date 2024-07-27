@@ -15,6 +15,7 @@ export interface modelSchemauser {
     name : string,
     img : string,
     nearby : string,
+    current_defect : string,
     bookingscl : book[]
 }
 
@@ -43,6 +44,11 @@ const Userdetclient = new Schema <modelSchemauser> ({
     nearby : {
         type : String,
         required : true
+    },
+    current_defect : {
+        type : String,
+        required : true,
+        default : 'body'
     },
     pin : {
         type : Number,

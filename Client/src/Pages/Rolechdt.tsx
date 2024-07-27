@@ -16,6 +16,7 @@ const Rolechdt: React.FC = () => {
   const[spe, setspe] = useState<string>("")
   const[hr, sethr] = useState<number>(0)
   const[des, setdes] = useState<string>("")
+  const[def, setdef] = useState<string>("")
   const[pin, setpin] = useState<number>(0)
   const [fbid, setfbid] = useState<string | null>(null)
 
@@ -120,6 +121,7 @@ const Rolechdt: React.FC = () => {
         contact : con,
         nearby : city,
         pin : pin,
+        current_defect : def,
         bookingscl : []
       }
       const response = await axios.post("http://localhost:8173/usercl/create",data);
@@ -257,6 +259,29 @@ const Rolechdt: React.FC = () => {
                       
                     </div>
                   </div>
+
+                  {role === "consumer" &&
+                  <div className="md:col-span-2 font-semibold">
+                    <label htmlFor="state">Current Defect</label>
+                    <div className="h-10 bg-gray-50 flex border border-gray-200 sha rounded items-center mt-1">
+                     
+                     <select 
+                     value={def}
+                     onChange={(e:any) => setdef(e.target.value)}
+                     className='w-full h-full bg-white p-2'>
+                      <option value="" disabled>Select Below</option>
+                      <option value="engine">Car Engine</option>
+                      <option value="diagonistic">Car Diagonistic</option>
+                      <option value="performance">Car Performance</option>
+                      <option value="body">Car Body</option>
+                      <option value="paint">Car Paint</option>
+                      <option value="detailing">Car Detailing</option>
+                     </select>
+                      
+                    </div>
+                  </div>
+                  } 
+
                 {role === "supplier" &&
                 <>
                     <div className="md:col-span-2 font-semibold">
