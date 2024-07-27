@@ -11,6 +11,7 @@ import Footer from './Components/Footer';
 import Catepage from './Pages/Catepage';
 import Premium from './Pages/Premium';
 import Explore from './Pages/Explore';
+import Chat from './Pages/Chat';
 
 
 export default function Page(): React.ReactNode {
@@ -28,6 +29,7 @@ export default function Page(): React.ReactNode {
             <Route path="/catepage/:id" element={<Catepage />} />
             <Route path="/premium" element={<Premium />} />
             <Route path="/explore" element={<Explore />} />
+            <Route path="/chat" element={<Chat />} />
         </Routes>
         </div>
         <Footer />

@@ -161,6 +161,11 @@ export default function Navbar():React.ReactNode {
                 Premium
               </Link>
             </li>
+            <li>
+              <Link to="/chat" onClick={() => setact("chat")} className={`text-sm font-semibold hover:text-white p-2 rounded-lg transition-all duration-200 ${act === 'chat' ? "bg-gray-900 text-white" : "text-black hov hover:text-white"}`}>
+                Chat
+              </Link>
+            </li>
           </ul>
         </nav>
         {user 
@@ -245,6 +250,11 @@ export default function Navbar():React.ReactNode {
             <li>
               <Link to="/premium" onClick={() => setact("premium")} className={`text-sm font-semibold hover:text-white hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'premium' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
                 Premium
+              </Link>
+            </li>
+            <li>
+              <Link to="/chat" onClick={() => setact("chat")} className={`text-sm hover:text-white font-semibold hover:underline p-2 rounded-lg transition-all duration-200 ${act === 'chat' ? "bg-gray-900 sha text-white" : "text-black hov hover:text-white"}`}>
+                Chat
               </Link>
             </li>
 
