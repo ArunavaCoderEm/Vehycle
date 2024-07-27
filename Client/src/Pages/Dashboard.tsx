@@ -16,6 +16,9 @@ export default function Dashboard():React.ReactNode {
   const [def, setdef] = useState<string>("")
   const [spe, setspe] = useState<string>("")
   const [con, setcon] = useState<number>(0)
+  const [hr, sethr] = useState<number>(0)
+  const [av, setav] = useState<boolean | null>(null)
+  const [desc, setdesc] = useState<string>("")
 
 
   useEffect(() => {
@@ -91,6 +94,9 @@ export default function Dashboard():React.ReactNode {
           setaddress(response.data[0].nearby)
           setspe(response.data[0].specialist)
           setcon(response.data[0].contact)
+          sethr(response.data[0].hourlyrate)
+          setav(response.data[0].available)
+          setdesc(response.data[0].desc)
           console.log("USER FOUND in userpr");
           setprfind(true);
         } else {
@@ -194,7 +200,7 @@ export default function Dashboard():React.ReactNode {
                   </div>
                   <div className="p-4 text-right">
                     <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Available</p>
-                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">$103,430</h4>
+                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{av ? "Yes" : "No"}</h4>
                   </div>
                 </div>
 
@@ -205,8 +211,8 @@ export default function Dashboard():React.ReactNode {
                     </svg>
                   </div>
                   <div className="p-4 text-right">
-                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Contact</p>
-                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">$103,430</h4>
+                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Hourly Rate</p>
+                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">Rs. {hr}/hr</h4>
                   </div>
                 </div>
 
@@ -216,9 +222,9 @@ export default function Dashboard():React.ReactNode {
                       <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"></path>
                     </svg>
                   </div>
-                  <div className="p-4 text-right">
-                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Contact</p>
-                    <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">$103,430</h4>
+                  <div className="p-4 flex flex-col items-end text-right">
+                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Description</p>
+                    <h4 className="antialiased w-2/3 tracking-normal flex items-end justify-end font-sans text-sm font-semibold text-right leading-snug text-blue-gray-900">{desc}</h4>
                   </div>
                 </div>
                 </>
