@@ -4,6 +4,8 @@ import axios from 'axios';
 import { auth, db } from '../Context/Firebase';
 import Updatedetcl from '../Sections/UpdatedetCl';
 import Updatedetpr from '../Sections/Updatedetpr';
+import Clordcard from '../Components/Clordcard';
+import Suppordcard from '../Components/Suppordcard';
 
 
 export default function Dashboard():React.ReactNode {
@@ -24,6 +26,8 @@ export default function Dashboard():React.ReactNode {
   const [desc, setdesc] = useState<string>("")
 
   const [modal, setmodal] = useState<boolean>(false);
+
+  const [booking, setbooking] = useState<any[]>([]);
 
 
   useEffect(() => {
@@ -80,6 +84,7 @@ export default function Dashboard():React.ReactNode {
           setdef(response.data[0].current_defect)
           setcon(response.data[0].contact)
           setpin(response.data[0].pin)
+          setbooking(response.data[0].bookingscl)
           console.log("USER FOUND in usercl");
           setclfind(true)
         } else {
@@ -92,6 +97,10 @@ export default function Dashboard():React.ReactNode {
         console.log(response)
       }
     };
+
+    function formatToDateString(isoDate: string): string {
+      return new Date(isoDate).toISOString().split('T')[0];
+    }
   
     const getMbUserPr = async (uid: string) => {
       const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
@@ -104,6 +113,7 @@ export default function Dashboard():React.ReactNode {
           setav(response.data[0].available)
           setdesc(response.data[0].desc)
           setpin(response.data[0].pin)
+          setbooking(response.data[0].bookings)
           console.log("USER FOUND in userpr");
           setprfind(true);
         } else {
@@ -304,6 +314,52 @@ export default function Dashboard():React.ReactNode {
               </div>
               <div>
               <h1 className='text-xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>P</span>revious <span className='text-pink-600'>B</span>ookings</h1>
+
+                <div className='w-[90%] p-2 h-48 bg-gray-200 mx-auto rounded-md overflow-auto'>
+
+                {role === "Consumer" &&
+                <>
+                {booking.length ? 
+                <>
+                {booking.map((item, index) => (
+                  <div key={index}>
+                  <Clordcard 
+                    img = {item.imgpr}
+                    name = {item.provname}
+                    date = {formatToDateString(item.date)}
+                    place = {item.place}
+                  />
+                  </div>
+                ))}
+                </>
+                : 
+                <h1 className='font-bold text-lg text-center text-pink-600'>No bookings yet.</h1>
+                }
+                </>
+              }
+
+                {role === "Supplier" &&
+                <>
+                {booking.length ? 
+                <>
+                {booking.map((item, index) => (
+                  <div key={index}>
+                  <Suppordcard 
+                    img = {item.imgcl}
+                    name = {item.clientname}
+                    date = {formatToDateString(item.date)}
+                    place = {item.place}
+                  />
+                  </div>
+                ))}
+                </>
+                : 
+                <h1 className='font-bold text-lg text-center text-pink-600'>No bookings yet.</h1>
+                }
+                </>
+              }
+
+                </div>
               </div>
             </div>
           </div>

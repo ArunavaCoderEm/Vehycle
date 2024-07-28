@@ -23,8 +23,10 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
   
     
       const provname = providerExists.name;
+      const provpic = providerExists.img;
      
       const cliname = consumerExists.name;
+      const clipic = consumerExists.img;
      
       const place = consumerExists.nearby;
   
@@ -34,6 +36,7 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
         date: date,
         provname: provname,
         provFbid: pid,
+        imgpr: provpic,
       };
   
       
@@ -42,6 +45,7 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
         date: date,
         clientname: cliname,
         clientFbid: cid,
+        imgcl: clipic,
       };
   
     

@@ -4,7 +4,8 @@ export interface book {
     place : string,
     date : Date,
     provname : string,
-    provFbid : string
+    provFbid : string,
+    imgpr : string
 }
 
 export interface modelSchemauser {
@@ -59,7 +60,8 @@ const Userdetclient = new Schema <modelSchemauser> ({
             place: String,
             date: Date,
             provname: String,
-            provFbid: String    
+            provFbid: String,
+            imgpr: String   
         },],
         default: []
     }

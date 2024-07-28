@@ -4,7 +4,8 @@ export interface bookpr {
     place : string,
     date : Date,
     clientname : string,
-    clientFbid : string
+    clientFbid : string,
+    imgcl : string,
 }
 
 export interface modelSchemaprov {
@@ -79,7 +80,8 @@ const Userdetprov = new Schema <modelSchemaprov> ({
             place: String,
             date: Date,
             clientname: String,
-            clientFbid: String    
+            clientFbid: String,
+            imgcl : String,    
         },],
         default: []
     }
