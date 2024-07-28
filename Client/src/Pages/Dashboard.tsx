@@ -76,6 +76,14 @@ export default function Dashboard():React.ReactNode {
     }, [role ,modal, user, clfind, prfind]);
 
 
+    useEffect(() => {
+      if (user) {
+        getMbUserCl(user.uid);
+        getMbUserPr(user.uid);
+      }
+    }, [user, booking]);
+
+
     const getMbUserCl = async (uid: string) => {
       const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
       try {

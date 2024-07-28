@@ -3,8 +3,11 @@ import { auth } from '../Context/Firebase';
 import axios from 'axios';
 import Mechcard from '../Components/Mechcard';
 import Clicard from '../Components/Clicard';
+import { useNavigate } from 'react-router-dom';
 
 export default function Explore():React.ReactNode {
+
+  const nav = useNavigate()
 
   const [user, setUser] = useState<any>(null);
   const [clfind, setclfind] = useState<boolean>(false);
@@ -154,6 +157,25 @@ export default function Explore():React.ReactNode {
     try {
       const res = await axios.put(`http://localhost:8173/book/bookingcl/${user.uid}/${prfbid}`, data);
       console.log(res);
+      setTimeout(() => {
+        nav('/dashboard')
+      }, 1700);
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
+
+  const bookprclient = async (clfbid :string) => {
+    const data = {
+        date : selectedDate
+    }
+    try {
+      const res = await axios.put(`http://localhost:8173/book/bookingpr/${clfbid}/${user.uid}`, data);
+      console.log(res);
+      setTimeout(() => {
+        nav('/dashboard')
+      }, 1700);
     }
     catch (e) {
       console.log(e)
