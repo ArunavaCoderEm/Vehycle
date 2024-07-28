@@ -168,6 +168,8 @@ export default function Dashboard():React.ReactNode {
         try {
           const res = await axios.post("http://localhost:8173/book/bookpr/confirm", data);
           console.log(res)
+          getMbUserCl(user.uid)
+          getMbUserPr(user.uid)
         } catch (e) {
           console.log(e);
         }
@@ -181,6 +183,8 @@ export default function Dashboard():React.ReactNode {
       try {
         const res = await axios.post("http://localhost:8173/book/bookpr/confirm", data);
         console.log(res)
+        getMbUserCl(user.uid)
+          getMbUserPr(user.uid)
       } catch (e) {
         console.log(e);
       }
@@ -194,6 +198,8 @@ export default function Dashboard():React.ReactNode {
         try {
           const res = await axios.post("http://localhost:8173/book/bookcl/confirm", data);
           console.log(res)
+          getMbUserCl(user.uid)
+          getMbUserPr(user.uid)
         } catch (e) {
           console.log(e);
         }
@@ -207,6 +213,8 @@ export default function Dashboard():React.ReactNode {
       try {
         const res = await axios.post("http://localhost:8173/book/bookcl/confirm", data);
         console.log(res)
+        getMbUserCl(user.uid)
+          getMbUserPr(user.uid)
       } catch (e) {
         console.log(e);
       }
