@@ -73,7 +73,7 @@ export default function Dashboard():React.ReactNode {
       });
     
       return () => unsubscribe();
-    }, [modal, booking, user, clfind, prfind, role, address, pin, def, spe, hr, con, desc]);
+    }, [role ,modal, user, clfind, prfind]);
 
 
     const getMbUserCl = async (uid: string) => {
@@ -313,7 +313,7 @@ export default function Dashboard():React.ReactNode {
 
               </div>
               <div>
-              <h1 className='text-xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>P</span>revious <span className='text-pink-600'>B</span>ookings</h1>
+              <h1 className='text-xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>R</span>ecent <span className='text-pink-600'>B</span>ookings</h1>
 
                 <div className='w-[90%] p-2 h-48 bg-gray-200 mx-auto rounded-md overflow-auto'>
 
