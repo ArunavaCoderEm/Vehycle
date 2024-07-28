@@ -424,6 +424,7 @@ export default function Dashboard():React.ReactNode {
                     date = {formatToDateString(item.date)}
                     place = {item.place}
                     sta = {item.status}
+                    con = {item.contact}
                   />
                   </div>
                 ))}

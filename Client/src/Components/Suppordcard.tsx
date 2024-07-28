@@ -7,6 +7,7 @@ export default function Suppordcard(props:any):React.ReactNode {
         <h1 className='font-bold'><span className='text-pink-600'>Customer : </span> {props.name}</h1>
         <h1 className='font-bold'><span className='text-pink-600'>Place : </span> {props.place}</h1>
         <h1 className='font-bold'><span className='text-pink-600'>On : </span> {props.date}</h1>
+        <h1 className='font-bold'><span className='text-pink-600'>Cont : </span> {props.con}</h1>
         <h1 className='font-bold'><span className='text-pink-600'>Status : </span> {props.sta}</h1>
     </div>
   )
