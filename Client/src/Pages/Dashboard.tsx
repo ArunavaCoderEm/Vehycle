@@ -162,7 +162,7 @@ export default function Dashboard():React.ReactNode {
             <div className='bg-white rounded-lg absolute z-[50] w-[90%] left-0 top-32 right-0 mx-auto px-4 py-3'>
               <button 
               onClick={closemodal}
-              className='absolute right-10 mt-8 text-xl bg-pink-800 text-white hover:bg-pink-700 transition-all duration-200 font-bold p-2 rounded-full'>
+              className='absolute right-10 mt-8 text-xl bg-pink-800 text-white hover:bg-pink-700 transition-all duration-200 w-8 h-8 font-semibold rounded-full'>
                 X
               </button>
               {role === "Consumer" ? 
