@@ -5,7 +5,10 @@ export interface book {
     date : Date,
     provname : string,
     provFbid : string,
-    imgpr : string
+    imgpr : string,
+    status : string,
+    _id : string,
+    providerBookingId: string
 }
 
 export interface modelSchemauser {
@@ -61,7 +64,10 @@ const Userdetclient = new Schema <modelSchemauser> ({
             date: Date,
             provname: String,
             provFbid: String,
-            imgpr: String   
+            imgpr: String,
+            status : String,
+            _id : String,
+            providerBookingId: String   
         },],
         default: []
     }
