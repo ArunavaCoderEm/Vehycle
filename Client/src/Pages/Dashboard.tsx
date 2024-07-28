@@ -73,7 +73,7 @@ export default function Dashboard():React.ReactNode {
       });
     
       return () => unsubscribe();
-    }, [modal, user, clfind, prfind, role, address, pin, def, spe, hr, con, desc]);
+    }, [modal, booking, user, clfind, prfind, role, address, pin, def, spe, hr, con, desc]);
 
 
     const getMbUserCl = async (uid: string) => {
@@ -333,7 +333,7 @@ export default function Dashboard():React.ReactNode {
                 ))}
                 </>
                 : 
-                <h1 className='font-bold text-lg text-center text-pink-600'>No bookings yet.</h1>
+                <h1 className='font-bold text-lg my-3 text-center text-pink-600'>No bookings yet.</h1>
                 }
                 </>
               }
@@ -354,7 +354,7 @@ export default function Dashboard():React.ReactNode {
                 ))}
                 </>
                 : 
-                <h1 className='font-bold text-lg text-center text-pink-600'>No bookings yet.</h1>
+                <h1 className='font-bold text-lg my-3 text-center text-pink-600'>No bookings yet.</h1>
                 }
                 </>
               }
