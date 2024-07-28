@@ -193,11 +193,11 @@ export default function Dashboard():React.ReactNode {
                 {role === "Supplier" &&
                 <>
                 <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-                  <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
-                      <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"></path>
-                    </svg>
-                  </div>
+                <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
+                    <path fill-rule="evenodd" d="M12 2.25a.75.75 0 01.75.75v8.173l4.084 2.278a.75.75 0 11-.668 1.348l-4.5-2.5a.75.75 0 01-.416-.671V3a.75.75 0 01.75-.75zM12 21a9 9 0 100-18 9 9 0 000 18zm0-1.5a7.5 7.5 0 110-15 7.5 7.5 0 010 15z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
                   <div className="p-4 text-right">
                     <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Available</p>
                     <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{av ? "Yes" : "No"}</h4>
@@ -205,11 +205,11 @@ export default function Dashboard():React.ReactNode {
                 </div>
 
                 <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-                  <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
-                      <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"></path>
-                    </svg>
-                  </div>
+                <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
+                    <path fill-rule="evenodd" d="M12 2a10 10 0 100 20 10 10 0 000-20zM9.293 13.707a1 1 0 010-1.414L11 10.586V7a1 1 0 112 0v4a1 1 0 01-.293.707l-3 3a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
                   <div className="p-4 text-right">
                     <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Hourly Rate</p>
                     <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">Rs. {hr}/hr</h4>
@@ -217,11 +217,11 @@ export default function Dashboard():React.ReactNode {
                 </div>
 
                 <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-                  <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
-                      <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"></path>
-                    </svg>
-                  </div>
+                <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-purple-600 to-purple-400 text-white shadow-purple-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
+                    <path fill-rule="evenodd" d="M6 2.25a.75.75 0 00-1.5 0v19.5a.75.75 0 001.5 0V2.25zm12 0a.75.75 0 00-1.5 0v19.5a.75.75 0 001.5 0V2.25zm-7.5 3A.75.75 0 0111.25 6h1.5a.75.75 0 010 1.5h-1.5a.75.75 0 01-.75-.75zm0 3A.75.75 0 0111.25 9h1.5a.75.75 0 010 1.5h-1.5a.75.75 0 01-.75-.75zm0 3A.75.75 0 0111.25 12h1.5a.75.75 0 010 1.5h-1.5a.75.75 0 01-.75-.75zm0 3A.75.75 0 0111.25 15h1.5a.75.75 0 010 1.5h-1.5a.75.75 0 01-.75-.75zm0 3A.75.75 0 0111.25 18h1.5a.75.75 0 010 1.5h-1.5a.75.75 0 01-.75-.75z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
                   <div className="p-4 flex flex-col items-end text-right">
                     <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Description</p>
                     <h4 className="antialiased w-2/3 tracking-normal flex items-end justify-end font-sans text-sm font-semibold text-right leading-snug text-blue-gray-900">{desc}</h4>
