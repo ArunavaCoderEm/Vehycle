@@ -6,6 +6,8 @@ import Updatedetcl from '../Sections/UpdatedetCl';
 import Updatedetpr from '../Sections/Updatedetpr';
 import Clordcard from '../Components/Clordcard';
 import Suppordcard from '../Components/Suppordcard';
+import Clnoti from '../Components/Clnoti';
+import Prnoti from '../Components/Prnoti';
 
 
 export default function Dashboard():React.ReactNode {
@@ -28,6 +30,7 @@ export default function Dashboard():React.ReactNode {
   const [modal, setmodal] = useState<boolean>(false);
 
   const [booking, setbooking] = useState<any[]>([]);
+  const [noti, setnoti] = useState<any[]>([]);
 
 
   useEffect(() => {
@@ -93,6 +96,7 @@ export default function Dashboard():React.ReactNode {
           setcon(response.data[0].contact)
           setpin(response.data[0].pin)
           setbooking(response.data[0].bookingscl)
+          setnoti(response.data[0].notification)
           console.log("USER FOUND in usercl");
           setclfind(true)
         } else {
@@ -122,6 +126,7 @@ export default function Dashboard():React.ReactNode {
           setdesc(response.data[0].desc)
           setpin(response.data[0].pin)
           setbooking(response.data[0].bookings)
+          setnoti(response.data[0].notification)
           console.log("USER FOUND in userpr");
           setprfind(true);
         } else {
@@ -153,6 +158,58 @@ export default function Dashboard():React.ReactNode {
 
     const closemodal = ():void => {
         setmodal(false);
+    }
+
+    const handleconfirmp = async (provid: string) => {
+        const data = {
+          bookingId : provid,
+          confirm : "yes"
+        }
+        try {
+          const res = await axios.post("http://localhost:8173/book/bookpr/confirm", data);
+          console.log(res)
+        } catch (e) {
+          console.log(e);
+        }
+    }
+
+    const handlerejectp = async (provid:string) => {
+      const data = {
+        bookingId : provid,
+        confirm : "no"
+      }
+      try {
+        const res = await axios.post("http://localhost:8173/book/bookpr/confirm", data);
+        console.log(res)
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    const handleconfirmc = async (cliid: string) => {
+        const data = {
+          bookingId : cliid,
+          confirm : "yes"
+        }
+        try {
+          const res = await axios.post("http://localhost:8173/book/bookcl/confirm", data);
+          console.log(res)
+        } catch (e) {
+          console.log(e);
+        }
+    }
+
+    const handlerejectc = async (cliid:string) => {
+      const data = {
+        bookingId : cliid,
+        confirm : "no"
+      }
+      try {
+        const res = await axios.post("http://localhost:8173/book/bookcl/confirm", data);
+        console.log(res)
+      } catch (e) {
+        console.log(e);
+      }
     }
 
   return (
@@ -336,6 +393,7 @@ export default function Dashboard():React.ReactNode {
                     name = {item.provname}
                     date = {formatToDateString(item.date)}
                     place = {item.place}
+                    sta = {item.status}
                   />
                   </div>
                 ))}
@@ -357,6 +415,7 @@ export default function Dashboard():React.ReactNode {
                     name = {item.clientname}
                     date = {formatToDateString(item.date)}
                     place = {item.place}
+                    sta = {item.status}
                   />
                   </div>
                 ))}
@@ -366,7 +425,56 @@ export default function Dashboard():React.ReactNode {
                 }
                 </>
               }
+                </div>
 
+
+                <h1 className='text-xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>N</span>otifications</h1>
+
+                <div className='w-[90%] mt-5 p-2 h-48 bg-gray-300 mx-auto rounded-md overflow-auto'>
+
+                {role === "Consumer" &&
+                <>
+                {noti.length ? 
+                <>
+                {noti.map((item, index) => (
+                  <div key={index}>
+                    <Clnoti 
+                    date = {formatToDateString(item.date)}
+                    place = {item.place}
+                    name = {item.providername}
+                    handleconfirmc = {() => handleconfirmc(item.consumerBookingId)}
+                    handlerejectc = {() => handlerejectc(item.consumerBookingId)}
+                    />
+                  </div>
+                ))}
+                </>
+                : 
+                <h1 className='font-bold text-lg my-3 text-center text-pink-600'>No bookings yet.</h1>
+                }
+                </>
+              }
+
+                {role === "Supplier" &&
+                <>
+                {noti.length ? 
+                <>
+                {noti.map((item, index) => (
+                  <div key={index}>
+                    <Prnoti 
+                      date = {formatToDateString(item.date)}
+                      place = {item.place}
+                      name = {item.clientname}
+                      handleconfirmp = {() => handleconfirmp(item.providerBookingId)}
+                      handlerejectp = {() => handlerejectp(item.providerBookingId)}
+                    />
+                  </div>
+                ))}
+                </>
+                : 
+                <h1 className='font-bold text-lg my-3 text-center text-pink-600'>No bookings yet.</h1>
+                }
+                </>
+              }
                 </div>
               </div>
             </div>
