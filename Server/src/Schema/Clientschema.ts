@@ -12,6 +12,15 @@ export interface book {
     providerBookingId: string
 }
 
+
+export interface notif {
+    place : string,
+    date : Date,
+    clientname : string,
+    providerBookingId : string,
+    consumerBookingId : string
+}
+
 export interface modelSchemauser {
     fbid : string,
     role : string,
@@ -20,6 +29,7 @@ export interface modelSchemauser {
     name : string,
     img : string,
     nearby : string,
+    notification : notif[],
     current_defect : string,
     bookingscl : book[]
 }
@@ -58,6 +68,16 @@ const Userdetclient = new Schema <modelSchemauser> ({
     pin : {
         type : Number,
         required : true
+    },
+    notification : {
+        type: [{
+            place: String,
+            date: Date,
+            clientname: String,
+            consumerBookingId : String, 
+            providerBookingId : String, 
+        },],
+        default: []
     },
     bookingscl: {
         type: [{

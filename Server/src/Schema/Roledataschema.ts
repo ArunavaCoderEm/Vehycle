@@ -12,6 +12,14 @@ export interface bookpr {
     consumerBookingId : string
 }
 
+export interface notif {
+    place : string,
+    date : Date,
+    clientname : string,
+    providerBookingId : string,
+    consumerBookingId : string
+}
+
 export interface modelSchemaprov {
     fbid : string,
     role : string,
@@ -24,6 +32,7 @@ export interface modelSchemaprov {
     nearby : string,
     pin : number,
     available ? : boolean,
+    notification : notif[]
     rating ? : number[],
     bookings: bookpr[]
 }
@@ -78,6 +87,16 @@ const Userdetprov = new Schema <modelSchemaprov> ({
     rating : {
         type: [Number],
         default : [0]
+    },
+    notification : {
+        type: [{
+            place: String,
+            date: Date,
+            clientname: String,
+            consumerBookingId : String, 
+            providerBookingId : String, 
+        },],
+        default: []
     },
     bookings: {
         type: [{
