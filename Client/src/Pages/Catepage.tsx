@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { auth } from '../Context/Firebase';
 import axios from 'axios';
 import Mechcard from '../Components/Mechcard';
@@ -125,9 +125,65 @@ export default function Catepage():React.ReactNode {
     }, [par, role])
 
     console.log(maparr)
+    const nav = useNavigate()
+
+    const [selectedDate, setSelectedDate] = useState(new Date());
+
+    const handleDateChange = (event:any) => {
+      setSelectedDate(new Date(event.target.value));
+    };
+
+    const bookclmech = async (prfbid :string) => {
+      const data = {
+          date : selectedDate
+      }
+      try {
+        const res = await axios.put(`http://localhost:8173/book/bookingcl/${user.uid}/${prfbid}`, data);
+        console.log(res);
+        setTimeout(() => {
+          nav('/dashboard')
+        }, 1700);
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+  
+    const bookprclient = async (clfbid :string) => {
+      const data = {
+          date : selectedDate
+      }
+      try {
+        const res = await axios.put(`http://localhost:8173/book/bookingpr/${clfbid}/${user.uid}`, data);
+        console.log(res);
+        setTimeout(() => {
+          nav('/dashboard')
+        }, 1700);
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+  
 
   return (
     <div className='mt-24'>
+
+        
+
+          <>
+          <div className="md:col-span-2 font-semibold flex flex-col">
+            <label htmlFor="state" className='text-center font-bold'>Your date</label>
+            <div className="h-10 w-36 mx-auto bg-gray-50 flex border border-gray-200 sha rounded items-center m-1">
+            <input
+                  type="date"
+                  value={selectedDate.toISOString().substring(0, 10)}
+                  onChange={handleDateChange}
+                  className='ring-0 focus:ring-0 outline-none text-center mx-auto'
+                  required
+                />
+            </div>
+          </div>
 
         {(role === "Consumer") &&
         <>
@@ -140,16 +196,17 @@ export default function Catepage():React.ReactNode {
 
                  {(maparr).map((item, index) => (
                    <div className='' key={index}>
-                    <Mechcard
-                      img = {item.img}
-                      alt = {item.name}
-                      name= {item.name}
-                      desc = {item.desc}
-                      specialist = {item.specialist}
-                      hourlyrate = {item.hourlyrate}
-                      contact = {item.contact}
-                      rating = {item.rating}
-                      />
+                  <Mechcard
+                  img={item.img}
+                  alt={item.name}
+                  name={item.name}
+                  desc={item.desc}
+                  specialist={item.specialist}
+                  hourlyrate={item.hourlyrate}
+                  contact={item.contact}
+                  rating={item.rating}
+                  bookclmech={() => bookclmech(item.fbid)}
+                  />
                    </div>
                 ))}
 
@@ -177,13 +234,14 @@ export default function Catepage():React.ReactNode {
 
                   {(saparr).map((item, index) => (
                     <div className='' key={index}>
-                    <Clicard
-                      img = {item.img}
-                      alt = {item.name}
-                      name= {item.name}
-                      defect = {item.current_defect}       
-                      contact = {item.contact}
-                      />
+                   <Clicard
+                      img={item.img}
+                      alt={item.name}
+                      name={item.name}  
+                      defect ={item.current_defect}
+                      contact={item.contact}
+                      bookprclient={() => bookprclient(item.fbid)}
+                  />
                     </div>
                   ))}
 
@@ -199,6 +257,7 @@ export default function Catepage():React.ReactNode {
         }
         </>
       }
+      </>
         
     </div>
   )
