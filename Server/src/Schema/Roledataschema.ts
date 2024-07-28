@@ -20,7 +20,7 @@ export interface modelSchemaprov {
     pin : number,
     available ? : boolean,
     rating ? : number[],
-    bookings : bookpr[] | null
+    bookings: bookpr[]
 }
 
 const Userdetprov = new Schema <modelSchemaprov> ({
@@ -78,8 +78,9 @@ const Userdetprov = new Schema <modelSchemaprov> ({
         type: [{
             place: String,
             date: Date,
-            provname: String,
-        },],    
+            clientname: String,
+            clientFbid: String    
+        },],
         default: []
     }
 })
