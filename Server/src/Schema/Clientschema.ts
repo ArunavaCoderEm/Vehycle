@@ -16,7 +16,7 @@ export interface book {
 export interface notif {
     place : string,
     date : Date,
-    clientname : string,
+    providername : string,
     providerBookingId : string,
     consumerBookingId : string
 }
@@ -73,7 +73,7 @@ const Userdetclient = new Schema <modelSchemauser> ({
         type: [{
             place: String,
             date: Date,
-            clientname: String,
+            providername: String,
             consumerBookingId : String, 
             providerBookingId : String, 
         },],

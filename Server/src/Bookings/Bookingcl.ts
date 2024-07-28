@@ -5,7 +5,7 @@ import { ObjectId } from 'mongodb';
 
 const Bookingcl = new Hono();
 
-Bookingcl.put('/bookingpr/:cid/:pid', async (c) => {
+Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
   const cid = c.req.param('cid');
   const pid = c.req.param('pid');
   const { date } = await c.req.json<{ date: string }>();
@@ -48,6 +48,14 @@ Bookingcl.put('/bookingpr/:cid/:pid', async (c) => {
         status: 'pending',
         consumerBookingId : consumerBookingId
       };
+ 
+      const providerNotf = {
+        place : place,
+        date : date,
+        clientname : cliname,
+        providerBookingId : providerBookingId,
+        consumerBookingId : consumerBookingId
+      }
 
       await modelSchemaexpuser.updateOne(
         { fbid: cid },
@@ -57,6 +65,11 @@ Bookingcl.put('/bookingpr/:cid/:pid', async (c) => {
       await modelSchemaexpprov.updateOne(
         { fbid: pid },
         { $push: { bookings: providerBooking } }
+      );
+
+      await modelSchemaexpprov.updateOne(
+        { fbid: pid },
+        { $push: { notification: providerNotf } }
       );
 
       return c.json({ message: 'Success', providerBookingId: providerBookingId.toString(), consumerBookingId: consumerBookingId.toString() });

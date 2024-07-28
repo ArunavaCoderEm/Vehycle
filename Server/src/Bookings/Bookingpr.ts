@@ -41,6 +41,14 @@ Bookingspr.put('/bookingpr/:cid/:pid', async (c) => {
         providerBookingId: providerBookingId
       };
 
+      const consumerNotf = {
+        place : place,
+        date : date,
+        providername : provname,
+        providerBookingId : providerBookingId,
+        consumerBookingId : consumerBookingId
+      }
+
       const providerBooking = {
         _id: providerBookingId,
         place: place,
@@ -56,6 +64,11 @@ Bookingspr.put('/bookingpr/:cid/:pid', async (c) => {
       await modelSchemaexpuser.updateOne(
         { fbid: cid },
         { $push: { bookingscl: consumerBooking } }
+      );
+
+      await modelSchemaexpuser.updateOne(
+        { fbid: cid },
+        { $push: { notification: consumerNotf } }
       );
 
       await modelSchemaexpprov.updateOne(
