@@ -19,8 +19,10 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
       return c.json({ message: 'User not found' }, 404);
     } else {
       const provname = providerExists.name;
+      const provcon = providerExists.contact;
       const provimg = providerExists.img;
       const cliname = consumerExists.name;
+      const clicon = consumerExists.contact;
       const cliimg = consumerExists.img;
       const place = consumerExists.nearby;
 
@@ -34,6 +36,7 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
         provname: provname,
         provFbid: pid,
         imgpr: provimg,
+        contact: provcon,
         status: 'pending',
         providerBookingId: providerBookingId
       };
@@ -45,6 +48,7 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
         clientname: cliname,
         clientFbid: cid,
         imgcl: cliimg,
+        contact: clicon,
         status: 'pending',
         consumerBookingId : consumerBookingId
       };
