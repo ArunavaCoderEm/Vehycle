@@ -8,16 +8,19 @@ interface MechcardProps {
   specialist: string;
   contact: number;
   hourlyrate: number;
+  bookclmech: any,
   rating: number[];
 }
 
-const bookuser = () => {
-    
-}
 
 const Mechcard: React.FC<MechcardProps> = (
-        { img, alt, name, desc, specialist, contact, hourlyrate, rating}
+        { img, alt, name, desc, specialist, contact, hourlyrate, rating, bookclmech }
     ) => {
+
+      
+  const bookuser = () => {
+    bookclmech();
+  }
 
   return (
     <>

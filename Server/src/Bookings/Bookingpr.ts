@@ -21,7 +21,8 @@ Bookingspr.put('/bookingpr/:cid/:pid', async (c) => {
         return c.json({ message: false }, 404);
       }
   
-    
+    else{
+
       const provname = providerExists.name;
      
       const cliname = consumerExists.name;
@@ -57,6 +58,8 @@ Bookingspr.put('/bookingpr/:cid/:pid', async (c) => {
       );
   
       return c.json({ message: 'Success' });
+      
+    }
 
     } catch (e) {
       console.error('Error updating documents:', e);

@@ -141,6 +141,25 @@ export default function Explore():React.ReactNode {
     }
   }, [role, fil]);
 
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (event:any) => {
+    setSelectedDate(new Date(event.target.value));
+  };
+
+  const bookclmech = async (prfbid :string) => {
+    const data = {
+        date : selectedDate
+    }
+    try {
+      const res = await axios.put(`http://localhost:8173/book/bookingcl/${user.uid}/${prfbid}`, data);
+      console.log(res);
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
+
 
   return (
     <div className='mt-24'>
@@ -149,6 +168,9 @@ export default function Explore():React.ReactNode {
           <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'>
             <span className='text-pink-600'>E</span>xplore <span className='text-pink-600'>Y</span>our <span className='text-pink-600'>M</span>echanics
           </h1>
+
+          <div className='flex flex-row gap-x-3 items-center justify-center'>
+            
           <div className="md:col-span-2 font-semibold flex flex-col">
             <label htmlFor="state" className='text-center font-bold'>Filters to choose</label>
             <div className="h-10 w-36 mx-auto bg-gray-50 flex border border-gray-200 sha rounded items-center m-1">
@@ -162,6 +184,21 @@ export default function Explore():React.ReactNode {
               </select>
             </div>
           </div>
+            
+          <div className="md:col-span-2 font-semibold flex flex-col">
+            <label htmlFor="state" className='text-center font-bold'>Your date</label>
+            <div className="h-10 w-36 mx-auto bg-gray-50 flex border border-gray-200 sha rounded items-center m-1">
+            <input
+                  type="date"
+                  value={selectedDate.toISOString().substring(0, 10)}
+                  onChange={handleDateChange}
+                  className='ring-0 focus:ring-0 outline-none text-center mx-auto'
+                  required
+                />
+            </div>
+          </div>
+          </div>
+
           {prarr.length &&
           <div className='grid lg:grid-cols-3 gap-4 p-2'>
             {prarr.map((item, index) => (
@@ -175,6 +212,7 @@ export default function Explore():React.ReactNode {
                   hourlyrate={item.hourlyrate}
                   contact={item.contact}
                   rating={item.rating}
+                  bookclmech={() => bookclmech(item.fbid)}
                   />
               </div>
             ))}

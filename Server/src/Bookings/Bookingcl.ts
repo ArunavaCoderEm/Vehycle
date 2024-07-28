@@ -21,7 +21,8 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
         return c.json({ message: false }, 404);
       }
   
-    
+    else {
+
       const provname = providerExists.name;
       const provpic = providerExists.img;
      
@@ -61,6 +62,8 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
       );
   
       return c.json({ message: 'Success' });
+            
+    }
 
     } catch (e) {
       console.error('Error updating documents:', e);
