@@ -401,6 +401,7 @@ export default function Dashboard():React.ReactNode {
                     name = {item.provname}
                     date = {formatToDateString(item.date)}
                     place = {item.place}
+                    con = {item.contact}
                     sta = {item.status}
                   />
                   </div>
