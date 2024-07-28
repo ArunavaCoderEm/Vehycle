@@ -142,19 +142,27 @@ export default function Dashboard():React.ReactNode {
       <div className='mt-20'>
         <div className='flex justify-center items-center'>
         <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>D</span>ashboard</h1>
-        <svg 
-        onClick={openmodal}
-        xmlns="http://www.w3.org/2000/svg" className='w-10 p-2 h-10 bg-pink-400 ml-5 cursor-pointer hover:bg-pink-500 transition-all duration-200 rounded-full' viewBox="0 0 512 512"><path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1 0 32c0 8.8 7.2 16 16 16l32 0zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"/></svg>
         </div>
-          <div className="p-4 mx-10 mt-8">
+        <div className='flex justify-end mr-5'>
+        <button
+          onClick={openmodal}
+          className='bg-gradient-to-b from-pink-600 to-pink-800 flex justify-center items-center p-2 rounded-lg gap-x-2 font-semibold text-white hover:scale-95 transition-all duration-200'
+          >
+          Edit
+        <svg 
+        xmlns="http://www.w3.org/2000/svg" className='w-4' viewBox="0 0 512 512"><path fill='white' d="M368.4 18.3L312.7 74.1 437.9 199.3l55.7-55.7c21.9-21.9 21.9-57.3 0-79.2L447.6 18.3c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8L134.7 140.6c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4L164.7 324.7c-3-6.3-4.7-13.3-4.7-20.7c0-26.5 21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.7-9.2L288 94.6z"/></svg>
+        </button>
+        </div>
+
+          <div className="p-4 mx-10 mt-1">
 
             {modal && 
             <>
             <div className="fixed inset-0 bg-black opacity-70 z-40"></div>
-            <div className='bg-white rounded-lg absolute z-[50] w-[90%] left-0 right-0 mx-auto px-4 py-3'>
+            <div className='bg-white rounded-lg absolute z-[50] w-[90%] left-0 top-32 right-0 mx-auto px-4 py-3'>
               <button 
               onClick={closemodal}
-              className='absolute right-10 mt-8 text-xl bg-pink-400 hover:bg-pink-500 transition-all duration-200 font-bold p-2 hover:text-white rounded-full'>
+              className='absolute right-10 mt-8 text-xl bg-pink-800 text-white hover:bg-pink-700 transition-all duration-200 font-bold p-2 rounded-full'>
                 X
               </button>
               {role === "Consumer" ? 
