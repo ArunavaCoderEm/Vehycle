@@ -20,7 +20,9 @@ Bookingspr.put('/bookingpr/:cid/:pid', async (c) => {
     } else {
       const provname = providerExists.name;
       const provimg = providerExists.img;
+      const provcon = providerExists.contact;
       const cliname = consumerExists.name;
+      const clicon = consumerExists.contact;
       const cliimg = consumerExists.img;
       const place = consumerExists.nearby;
 
@@ -31,6 +33,7 @@ Bookingspr.put('/bookingpr/:cid/:pid', async (c) => {
         _id: consumerBookingId,
         place: place,
         date: date,
+        contact : provcon,
         provname: provname,
         provFbid: pid,
         imgpr: provimg,
@@ -42,6 +45,7 @@ Bookingspr.put('/bookingpr/:cid/:pid', async (c) => {
         _id: providerBookingId,
         place: place,
         date: date,
+        contact: clicon,
         clientname: cliname,
         clientFbid: cid,
         imgcl: cliimg,
@@ -67,7 +71,7 @@ Bookingspr.put('/bookingpr/:cid/:pid', async (c) => {
   }
 });
 
-Bookingspr.post('/confirm', async (c) => {
+Bookingspr.post('bookpr/confirm', async (c) => {
   const { bookingId, confirm } = await c.req.json<{ bookingId: string; confirm: string }>();
 
   try {
@@ -92,8 +96,8 @@ Bookingspr.post('/confirm', async (c) => {
       providerBooking.bookings[bookingIndex].status = 'confirmed';
       consumerBooking.bookingscl[consumerBookingIndex].status = 'confirmed';
     } else {
-      providerBooking.bookings.splice(bookingIndex, 1);
-      consumerBooking.bookingscl.splice(consumerBookingIndex, 1);
+      providerBooking.bookings[bookingIndex].status = 'rejected';
+      consumerBooking.bookingscl[consumerBookingIndex].status = 'rejected';
     }
 
     await providerBooking.save();

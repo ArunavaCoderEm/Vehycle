@@ -7,6 +7,7 @@ export interface bookpr {
     clientFbid : string,
     imgcl : string,
     status : string,
+    contact:number
     _id : string,
     consumerBookingId : string
 }
@@ -87,7 +88,8 @@ const Userdetprov = new Schema <modelSchemaprov> ({
             imgcl : String,  
             status : String,
             _id : String,
-            consumerBookingId : String  
+            consumerBookingId : String,
+            contact: Number  
         },],
         default: []
     }

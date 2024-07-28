@@ -8,6 +8,7 @@ export interface book {
     imgpr : string,
     status : string,
     _id : string,
+    contact:number
     providerBookingId: string
 }
 
@@ -67,7 +68,8 @@ const Userdetclient = new Schema <modelSchemauser> ({
             imgpr: String,
             status : String,
             _id : String,
-            providerBookingId: String   
+            providerBookingId: String,
+            contact: Number   
         },],
         default: []
     }
