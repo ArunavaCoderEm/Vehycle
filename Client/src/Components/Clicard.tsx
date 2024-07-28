@@ -4,17 +4,20 @@ interface MechcardProps {
   img: string;
   alt: string;
   name: string;
+  bookprclient: any;
   contact: number;
   defect: string
 }
 
-const applyclient = () => {
-    
-}
 
 const Clicard: React.FC<MechcardProps> = (
-        { img, alt, name, contact, defect}
+        { img, alt, name, contact, defect, bookprclient }
     ) => {
+
+          
+    const applyclient = () => {
+      bookprclient()
+    }
 
   return (
     <>

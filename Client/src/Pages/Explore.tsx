@@ -274,6 +274,7 @@ export default function Explore():React.ReactNode {
                   name={item.name}  
                   defect ={item.current_defect}
                   contact={item.contact}
+                  bookprclient={() => bookprclient(item.fbid)}
                 />
               </div>
             ))}

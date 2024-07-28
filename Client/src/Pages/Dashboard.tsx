@@ -81,7 +81,7 @@ export default function Dashboard():React.ReactNode {
         getMbUserCl(user.uid);
         getMbUserPr(user.uid);
       }
-    }, [user, booking]);
+    }, [user]);
 
 
     const getMbUserCl = async (uid: string) => {
