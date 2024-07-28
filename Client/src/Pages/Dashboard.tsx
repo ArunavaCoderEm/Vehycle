@@ -315,7 +315,7 @@ export default function Dashboard():React.ReactNode {
               <div>
               <h1 className='text-xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'><span className='text-pink-600'>Y</span>our <span className='text-pink-600'>R</span>ecent <span className='text-pink-600'>B</span>ookings</h1>
 
-                <div className='w-[90%] p-2 h-48 bg-gray-200 mx-auto rounded-md overflow-auto'>
+                <div className='w-[90%] p-2 h-48 bg-gray-300 mx-auto rounded-md overflow-auto'>
 
                 {role === "Consumer" &&
                 <>
