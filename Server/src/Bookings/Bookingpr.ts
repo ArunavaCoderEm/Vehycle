@@ -1,49 +1,67 @@
 import { Hono } from "hono";
-import modelSchemaexpprov from "../Schema/Roledataschema";
+import modelSchemaexpuser from '../Schema/Clientschema'
+import modelSchemaexpprov from '../Schema/Roledataschema'
 
-const serverpr = new Hono();
+const Bookingspr = new Hono();
+  
+Bookingspr.put('/bookingpr/:cid/:pid', async (c) => {
 
-
-const addBookingToProvider = async (providerFbid: string, bookingDetails: any) => {
-    try {
-      const booking = {
-        place: bookingDetails.place,
-        date: bookingDetails.date,
-        clientname: bookingDetails.provname,
-      };
-  
-      await modelSchemaexpprov.updateOne(
-        { fbid: providerFbid },
-        { $push: { bookings: booking } }
-      );
-  
-      console.log('Booking added to provider successfully');
-    } catch (error) {
-      console.error('Error adding booking to provider:', error);
-      throw error;
-    }
-  };
-  
-  serverpr.put('/bookingpr/:id', async (c) => {
-    const providerFbid = c.req.param('id');
-    const { bookingDetails } = await c.req.json();
-  
-    if (!bookingDetails) {
-      return c.json({ error: 'Booking details are required.' }, 400);
-    }
+    const cid = c.req.param('cid');
+    const pid = c.req.param('pid');
+    const { date } = await c.req.json(); 
   
     try {
-      const provider = await modelSchemaexpprov.findOne({ fbid: providerFbid });
+    
+      const consumerExists = await modelSchemaexpuser.findOne({ fbid: cid });
+     
+      const providerExists = await modelSchemaexpprov.findOne({ fbid: pid });
   
-      if (!provider) {
-        return c.json({ error: 'Provider not found.' }, 404);
+      if (!consumerExists || !providerExists) {
+        console.log(`Document doesn't exist`);
+        return c.json({ message: false }, 404);
       }
   
-      await addBookingToProvider(providerFbid, bookingDetails);
-      return c.json({ message: 'Booking added to provider successfully' });
-    } catch (error) {
-      return c.json({ error: 'An error occurred while adding the booking.' }, 500);
+    
+      const provname = providerExists.name;
+     
+      const cliname = consumerExists.name;
+     
+      const place = consumerExists.nearby;
+  
+     
+      const consumerBooking = {
+        place: place,
+        date: date,
+        provname: provname,
+        provFbid: pid,
+      };
+  
+      
+      const providerBooking = {
+        place: place,
+        date: date,
+        clientname: cliname,
+        clientFbid: cid,
+      };
+  
+    
+      await modelSchemaexpuser.updateOne(
+        { fbid: cid },
+        { $push: { bookingscl: consumerBooking } }
+      );
+  
+      
+      await modelSchemaexpprov.updateOne(
+        { fbid: pid },
+        { $push: { bookings: providerBooking } }
+      );
+  
+      return c.json({ message: 'Success' });
+
+    } catch (e) {
+      console.error('Error updating documents:', e);
+      return c.json({ message: false }, 500);
     }
   });
 
-  export default serverpr;
+  export default Bookingspr;

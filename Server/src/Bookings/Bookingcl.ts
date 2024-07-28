@@ -5,6 +5,7 @@ import modelSchemaexpprov from '../Schema/Roledataschema'
 const Bookingcl = new Hono();
   
 Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
+    
     const cid = c.req.param('cid');
     const pid = c.req.param('pid');
     const { date } = await c.req.json(); 
