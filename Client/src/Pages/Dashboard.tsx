@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { auth, db } from '../Context/Firebase';
 import Updatedetcl from '../Sections/UpdatedetCl';
+import Updatedetpr from '../Sections/Updatedetpr';
 
 
 export default function Dashboard():React.ReactNode {
@@ -167,8 +168,22 @@ export default function Dashboard():React.ReactNode {
                 
                 />
                 :
-                <div>Hi</div>
+                
+                <Updatedetpr
+                
+                con = {con}
+                pin = {pin}
+                spe = {spe}
+                city = {address}
+                hr = {hr}
+                avl = {av}
+                desc = {desc}
+                close = {closemodal}
+                
+                />
+
               }
+
             </div>
             </>
             }
