@@ -9,6 +9,7 @@ export interface bookpr {
     status : string,
     contact:number
     _id : string,
+    def : string,
     consumerBookingId : string
 }
 
@@ -16,6 +17,7 @@ export interface notif {
     place : string,
     date : Date,
     clientname : string,
+    def : string,
     providerBookingId : string,
     consumerBookingId : string
 }
@@ -92,6 +94,7 @@ const Userdetprov = new Schema <modelSchemaprov> ({
         type: [{
             place: String,
             date: Date,
+            def : String,
             clientname: String,
             consumerBookingId : String, 
             providerBookingId : String, 
@@ -108,7 +111,8 @@ const Userdetprov = new Schema <modelSchemaprov> ({
             status : String,
             _id : String,
             consumerBookingId : String,
-            contact: Number  
+            contact: Number,
+            def : String  
         },],
         default: []
     }

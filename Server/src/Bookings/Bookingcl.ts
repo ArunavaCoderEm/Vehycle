@@ -25,6 +25,8 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
       const clicon = consumerExists.contact;
       const cliimg = consumerExists.img;
       const place = consumerExists.nearby;
+      const clidef = consumerExists.current_defect;
+      const provspe = providerExists.specialist;
 
       const consumerBookingId = new ObjectId();
       const providerBookingId = new ObjectId();
@@ -35,6 +37,7 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
         date: date,
         provname: provname,
         provFbid: pid,
+        spe : provspe,
         imgpr: provimg,
         contact: provcon,
         status: 'pending',
@@ -45,6 +48,7 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
         _id: providerBookingId,
         place: place,
         date: date,
+        def : clidef,
         clientname: cliname,
         clientFbid: cid,
         imgcl: cliimg,
@@ -56,6 +60,7 @@ Bookingcl.put('/bookingcl/:cid/:pid', async (c) => {
       const providerNotf = {
         place : place,
         date : date,
+        def : clidef,
         clientname : cliname,
         providerBookingId : providerBookingId,
         consumerBookingId : consumerBookingId

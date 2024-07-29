@@ -7,6 +7,7 @@ export interface book {
     provFbid : string,
     imgpr : string,
     status : string,
+    spe : string,
     _id : string,
     contact:number
     providerBookingId: string
@@ -18,6 +19,7 @@ export interface notif {
     date : Date,
     providername : string,
     providerBookingId : string,
+    spe : string,
     consumerBookingId : string
 }
 
@@ -74,6 +76,7 @@ const Userdetclient = new Schema <modelSchemauser> ({
             place: String,
             date: Date,
             providername: String,
+            spe : String,
             consumerBookingId : String, 
             providerBookingId : String, 
         },],
@@ -89,7 +92,8 @@ const Userdetclient = new Schema <modelSchemauser> ({
             status : String,
             _id : String,
             providerBookingId: String,
-            contact: Number   
+            contact: Number,
+            spe : String   
         },],
         default: []
     }
