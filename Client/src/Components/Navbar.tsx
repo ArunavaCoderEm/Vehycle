@@ -125,7 +125,7 @@ export default function Navbar():React.ReactNode {
     else {
       setRole("")
     }
-  },[clfind, prfind, user, role, name])
+  },[clfind, prfind, user, role, name, avat])
 
   const toggleMenu = ():void => {
     setIsMenuOpen(!isMenuOpen);
