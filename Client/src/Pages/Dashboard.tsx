@@ -8,6 +8,7 @@ import Clordcard from '../Components/Clordcard';
 import Suppordcard from '../Components/Suppordcard';
 import Clnoti from '../Components/Clnoti';
 import Prnoti from '../Components/Prnoti';
+import Alert from '../Components/Alert';
 
 
 export default function Dashboard():React.ReactNode {
@@ -28,9 +29,14 @@ export default function Dashboard():React.ReactNode {
   const [desc, setdesc] = useState<string>("")
 
   const [modal, setmodal] = useState<boolean>(false);
+  const [alert, setalert] = useState<boolean>(false);
 
   const [booking, setbooking] = useState<any[]>([]);
   const [noti, setnoti] = useState<any[]>([]);
+
+
+  const [alde, setalde] = useState<string>("")
+  const [altit, setaltit] = useState<string>("")
 
 
   useEffect(() => {
@@ -170,6 +176,12 @@ export default function Dashboard():React.ReactNode {
           console.log(res)
           getMbUserCl(user.uid)
           getMbUserPr(user.uid)
+          setaltit("Confirmed")
+          setalde("Customer confirmed")
+           setalert(true)
+          setTimeout(() => {
+            setalert(false)
+          }, 1200);
         } catch (e) {
           console.log(e);
         }
@@ -184,7 +196,13 @@ export default function Dashboard():React.ReactNode {
         const res = await axios.post("http://localhost:8173/book/bookpr/confirm", data);
         console.log(res)
         getMbUserCl(user.uid)
-          getMbUserPr(user.uid)
+        getMbUserPr(user.uid)
+        setaltit("Rejected")
+          setalde("Customer rejected")
+           setalert(true)
+          setTimeout(() => {
+            setalert(false)
+          }, 1200);
       } catch (e) {
         console.log(e);
       }
@@ -200,6 +218,12 @@ export default function Dashboard():React.ReactNode {
           console.log(res)
           getMbUserCl(user.uid)
           getMbUserPr(user.uid)
+          setaltit("Confirmed")
+          setalde("Mechanic confirmed")
+           setalert(true)
+          setTimeout(() => {
+            setalert(false)
+          }, 1200);
         } catch (e) {
           console.log(e);
         }
@@ -214,7 +238,13 @@ export default function Dashboard():React.ReactNode {
         const res = await axios.post("http://localhost:8173/book/bookcl/confirm", data);
         console.log(res)
         getMbUserCl(user.uid)
-          getMbUserPr(user.uid)
+        getMbUserPr(user.uid)
+        setaltit("Rejected")
+        setalde("Mechanic rejected")
+         setalert(true)
+        setTimeout(() => {
+          setalert(false)
+        }, 1200);
       } catch (e) {
         console.log(e);
       }
@@ -236,6 +266,18 @@ export default function Dashboard():React.ReactNode {
         xmlns="http://www.w3.org/2000/svg" className='w-4' viewBox="0 0 512 512"><path fill='white' d="M368.4 18.3L312.7 74.1 437.9 199.3l55.7-55.7c21.9-21.9 21.9-57.3 0-79.2L447.6 18.3c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8L134.7 140.6c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4L164.7 324.7c-3-6.3-4.7-13.3-4.7-20.7c0-26.5 21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.7-9.2L288 94.6z"/></svg>
         </button>
         </div>
+
+        {alert &&
+
+        <div className='transition-all duration-200 fixed  z-[50] left-0 right-0'>
+        <div className="fixed inset-0 bg-black opacity-70 z-40"></div>
+        <Alert 
+          title = {altit}
+          descr = {alde}
+          />
+        </div>
+
+        }
 
           <div className="p-4 mx-10 mt-1">
 
