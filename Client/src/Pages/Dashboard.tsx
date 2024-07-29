@@ -166,6 +166,16 @@ export default function Dashboard():React.ReactNode {
         setmodal(false);
     }
 
+    const closemodalsave = ():void => {
+        setmodal(false);
+        setaltit("Update")
+        setalde("Data updated")
+         setalert(true)
+        setTimeout(() => {
+          setalert(false)
+        }, 2000);
+    }
+
     const handleconfirmp = async (provid: string) => {
         const data = {
           bookingId : provid,
@@ -181,7 +191,7 @@ export default function Dashboard():React.ReactNode {
            setalert(true)
           setTimeout(() => {
             setalert(false)
-          }, 1200);
+          }, 2000);
         } catch (e) {
           console.log(e);
         }
@@ -202,7 +212,7 @@ export default function Dashboard():React.ReactNode {
            setalert(true)
           setTimeout(() => {
             setalert(false)
-          }, 1200);
+          }, 2000);
       } catch (e) {
         console.log(e);
       }
@@ -223,7 +233,7 @@ export default function Dashboard():React.ReactNode {
            setalert(true)
           setTimeout(() => {
             setalert(false)
-          }, 1200);
+          }, 2000);
         } catch (e) {
           console.log(e);
         }
@@ -244,7 +254,7 @@ export default function Dashboard():React.ReactNode {
          setalert(true)
         setTimeout(() => {
           setalert(false)
-        }, 1200);
+        }, 2000);
       } catch (e) {
         console.log(e);
       }
@@ -267,7 +277,7 @@ export default function Dashboard():React.ReactNode {
         </button>
         </div>
 
-        {!alert &&
+        {alert &&
 
         <div className='transition-all duration-200 fixed  z-[50] left-0 right-0'>
         <div className="fixed inset-0 bg-black opacity-70 z-40"></div>
@@ -297,7 +307,7 @@ export default function Dashboard():React.ReactNode {
                 pin = {pin}
                 def = {def}
                 city = {address}
-                close = {closemodal}
+                close = {closemodalsave}
                 
                 />
                 :
@@ -311,7 +321,7 @@ export default function Dashboard():React.ReactNode {
                 hr = {hr}
                 avl = {av}
                 desc = {desc}
-                close = {closemodal}
+                close = {closemodalsave}
                 
                 />
 
