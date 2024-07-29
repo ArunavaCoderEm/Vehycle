@@ -1,16 +1,9 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "/src/index.ts",
-      "use": "@vercel/node"
+  "functions": {
+    "src/**/*.ts": {
+      "runtime": "nodejs18.x",
+      "memory": 128,
+      "maxDuration": 10
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/index.js"
-    }
-  ]
+  }
 }
-
