@@ -71,7 +71,7 @@ const Testimonals = () => {
     },[test, testimonials])
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5 py-12">
+    <div className="flex flex-col items-center justify-center gap-5 py-12 p-2">
       <h1 className="mb-1 max-w-2xl text-center text-2xl  underline underline-offset-4tracking-tighter text-gray-900 md:text-4xl font-extrabold">
         <span className='font-extrabold text-pink-600'>W</span>hy <span className='font-extrabold text-pink-600'>V</span>ehycle
       </h1>
