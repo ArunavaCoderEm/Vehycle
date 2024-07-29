@@ -10,7 +10,7 @@ export default function Hero():React.ReactNode {
           <ImageFade />
         </div>
         <div className='p-2 flex flex-col justify-center items-center'>
-          <h2 className='text-black text-3xl font-extrabold'><span className='text-pink-600'>Vehycle</span> = <span className='text-pink-600'>Veh</span>icle + Rec<span className='text-pink-600'>ycle</span></h2>
+          <h2 className='text-black text-3xl text-center font-extrabold'><span className='text-pink-600'>Vehycle</span> = <span className='text-pink-600'>Veh</span>icle + Rec<span className='text-pink-600'>ycle</span></h2>
           <h3 className='mt-4 bg-gradient-to-b from-black/30 font-semibold shap py-2 px-3 rounded-full'>💁🏻‍♂️ Helper at you door 💁🏻‍♂️</h3>
           <ul className='w-3/4 my-2 p-3 rounded-lg'>
             <li className='list-disc my-1 text-[18px]'>
