@@ -1,9 +1,16 @@
 {
+  "builds": [
+    {
+      "src": "src/index.ts",
+      "use": "@vercel/node",
+      "config": {
+        "maxDuration": 10
+      }
+    }
+  ],
   "functions": {
     "src/**/*.ts": {
       
     }
   }
 }
-
-
