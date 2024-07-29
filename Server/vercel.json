@@ -7,10 +7,5 @@
         "maxDuration": 10
       }
     }
-  ],
-  "functions": {
-    "src/**/*.ts": {
-      "runtime": "@vercel/node"
-    }
-  }
+  ]
 }
