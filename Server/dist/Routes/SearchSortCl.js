@@ -35,3 +35,4 @@ serverseasor.get("/nearyou/:id", async (c) => {
     }
 });
 exports.default = serverseasor;
+//# sourceMappingURL=SearchSortCl.js.map

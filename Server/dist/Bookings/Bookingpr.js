@@ -106,3 +106,4 @@ Bookingspr.post('bookpr/confirm', async (c) => {
     }
 });
 exports.default = Bookingspr;
+//# sourceMappingURL=Bookingpr.js.map

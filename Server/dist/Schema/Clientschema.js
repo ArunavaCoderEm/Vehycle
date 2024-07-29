@@ -65,3 +65,4 @@ const Userdetclient = new mongoose_1.Schema({
 });
 const modelSchemaexpuser = (0, mongoose_1.model)('VehycleUser', Userdetclient);
 exports.default = modelSchemaexpuser;
+//# sourceMappingURL=Clientschema.js.map

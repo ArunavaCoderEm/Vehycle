@@ -79,3 +79,4 @@ servercl.put("/update/:id", async (c) => {
     }
 });
 exports.default = servercl;
+//# sourceMappingURL=Routemoncl.js.map

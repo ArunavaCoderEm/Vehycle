@@ -35,3 +35,4 @@ serverseasorsp.get("/nearyousp/:id", async (c) => {
     }
 });
 exports.default = serverseasorsp;
+//# sourceMappingURL=SearSorSup.js.map

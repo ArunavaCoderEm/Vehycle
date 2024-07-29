@@ -79,3 +79,4 @@ serverpr.put("/update/:id", async (c) => {
     }
 });
 exports.default = serverpr;
+//# sourceMappingURL=Routemonpr.js.map

@@ -81,3 +81,4 @@ const Userdetprov = new mongoose_1.Schema({
 });
 const modelSchemaexpprov = (0, mongoose_1.model)('Vehycleprov', Userdetprov);
 exports.default = modelSchemaexpprov;
+//# sourceMappingURL=Roledataschema.js.map

@@ -106,3 +106,4 @@ Bookingcl.post('bookcl/confirm', async (c) => {
     }
 });
 exports.default = Bookingcl;
+//# sourceMappingURL=Bookingcl.js.map
