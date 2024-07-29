@@ -267,7 +267,7 @@ export default function Dashboard():React.ReactNode {
         </button>
         </div>
 
-        {alert &&
+        {!alert &&
 
         <div className='transition-all duration-200 fixed  z-[50] left-0 right-0'>
         <div className="fixed inset-0 bg-black opacity-70 z-40"></div>
