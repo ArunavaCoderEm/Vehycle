@@ -45,7 +45,7 @@ const TestimonialCard: FC<TestimonalCardProps> = ({
 
   return (
     <div
-      className={`card-shadow dark:border-neutral-90 relative flex h-auto max-w-[22rem] bg-gradient-to-b from-black/70 to-black/80 select-none flex-col items-start justify-center overflow-hidden rounded-2xl border border-neutral-100 p-5 shadow-sm transition-all duration-300 ease-in-out hover:scale-[.98] hover:shadow-sm hover:shadow-white/10`}
+      className={`card-shadow dark:border-neutral-90 relative flex h-auto max-w-[22rem] bg-gradient-to-b from-black/70 to-black/80 select-none flex-col items-start justify-center overflow-hidden rounded-2xl border border-neutral-100 p-5 shadow-sm transition-all duration-300 ease-in-out hover:scale-[.98] hover:shadow-sm hover:shadow-white/10 sha`}
     >
       <div className="absolute right-0 top-0 h-24 w-24 rounded-2xl bg-gradient-to-r from-pink-400  to-pink-300 opacity-20 blur-3xl"></div>
       <div className="mb-0 flex h-fit flex-row items-center gap-3">
