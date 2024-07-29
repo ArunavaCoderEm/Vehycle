@@ -4,6 +4,7 @@ import { auth } from '../Context/Firebase';
 import axios from 'axios';
 import Mechcard from '../Components/Mechcard';
 import Clicard from '../Components/Clicard';
+import Alert from '../Components/Alert';
 
 export default function Catepage():React.ReactNode {
 
@@ -15,6 +16,10 @@ export default function Catepage():React.ReactNode {
 
     const [maparr, setMaparr] = useState<any[]>([])
     const [saparr, setSaparr] = useState<any[]>([])
+
+    const [alert, setalert] = useState<boolean>(false);
+    const [alde, setalde] = useState<string>("")
+    const [altit, setaltit] = useState<string>("")
 
     useEffect(() => {
         setRole("")
@@ -140,6 +145,12 @@ export default function Catepage():React.ReactNode {
       try {
         const res = await axios.put(`http://localhost:8173/book/bookingcl/${user.uid}/${prfbid}`, data);
         console.log(res);
+        setaltit("Booked")
+        setalde("Mechanic booked")
+         setalert(true)
+        setTimeout(() => {
+          setalert(false)
+        }, 2000);
         setTimeout(() => {
           nav('/dashboard')
         }, 1700);
@@ -156,6 +167,12 @@ export default function Catepage():React.ReactNode {
       try {
         const res = await axios.put(`http://localhost:8173/book/bookingpr/${clfbid}/${user.uid}`, data);
         console.log(res);
+        setaltit("Applied")
+        setalde("Customer applied")
+         setalert(true)
+        setTimeout(() => {
+          setalert(false)
+        }, 2000);
         setTimeout(() => {
           nav('/dashboard')
         }, 1700);
@@ -170,6 +187,17 @@ export default function Catepage():React.ReactNode {
     <div className='mt-24'>
 
         
+        {alert &&
+
+        <div className='transition-all duration-200 fixed  z-[50] left-0 right-0'>
+        <div className="fixed inset-0 bg-black opacity-70 z-40"></div>
+        <Alert 
+          title = {altit}
+          descr = {alde}
+          />
+        </div>
+
+}
 
           <>
           <div className="md:col-span-2 font-semibold flex flex-col">
