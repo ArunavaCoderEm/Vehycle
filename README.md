@@ -44,9 +44,10 @@ List of the key features of the project here.
 - Mechanics can book customers but applying only confirms when that customer confirms.
 - Sends one notifications based on bookings.
 - One can confirm or reject any booking.
-- Has personalized dashboard.
+- Has personalised dashboard.
 - One can update details from dashboard.
 - If booked, it is reflected on both party's dashboard.
+- Has personalised AI chat feature.
 
 ## Getting Started
 
