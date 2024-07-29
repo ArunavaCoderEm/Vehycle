@@ -11,7 +11,7 @@ export default function About():React.ReactNode {
                 <ul className='py-2 px-4 text-white font-bold flex flex-col gap-y-5'>
                     <li className='list-disc bg-pink-600 p-2 rounded-lg mt-5'>Once you sign up, you'll be directed to a page to fill in your customer details.</li>
                     <li className='list-disc bg-pink-600 p-2 rounded-lg'>After completing the form, you'll be taken to the homepage where you can find providers to meet your needs.</li>
-                    <li className='list-disc bg-pink-600 p-2 rounded-lg mb-5'>Each provider will have a "Book Now" option based on their availability and proximity. You can book them by paying 50% of their fee in advance.</li>
+                    <li className='list-disc bg-pink-600 p-2 rounded-lg mb-5'>Each provider will have a "Book Now" option based on their availability and proximity. You can book them based on categories in advance.</li>
                 </ul>
             </div>
             <div className='bg-gradient-to-b sha from-black/70 rounded-lg to-black/80 p-2'>
@@ -19,7 +19,7 @@ export default function About():React.ReactNode {
                 <ul className='py-2 px-4 text-white font-bold flex flex-col gap-y-5'>
                     <li className='list-disc bg-pink-600 p-2 rounded-lg mt-5'>Once you sign up, you'll be directed to a page to fill in your provider details.</li>
                     <li className='list-disc bg-pink-600 p-2 rounded-lg'>After completing the form, you'll be taken to the homepage where you can find customers who might need you.</li>
-                    <li className='list-disc bg-pink-600 p-2 rounded-lg mb-5'>Each customer will have an "Apply Now" option based on their requirements. You can apply to address their issues, and if they are interested, they will pay you 50% of your fee in advance.</li>
+                    <li className='list-disc bg-pink-600 p-2 rounded-lg mb-5'>Each customer will have an "Apply Now" option based on their requirements. You can apply to address their issues, and if they are interested, they will book you in advance.</li>
                 </ul>
             </div>
             <div className='bg-gradient-to-b sha from-black/70 rounded-lg to-black/80 p-2'>

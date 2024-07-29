@@ -36,6 +36,9 @@ export default function Footer():React.ReactNode {
                     <li>
                         <Link to="/premium" className="hover:underline me-4 md:me-6">Premium</Link>
                     </li>
+                    <li>
+                        <Link to="/privacytnc" className="hover:underline me-4 md:me-6">T&C</Link>
+                    </li>
                     {user 
 
                     && 

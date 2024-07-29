@@ -9,12 +9,13 @@ interface MechcardProps {
   contact: number;
   hourlyrate: number;
   bookclmech: any,
+  near: string,
   rating: number[];
 }
 
 
 const Mechcard: React.FC<MechcardProps> = (
-        { img, alt, name, desc, specialist, contact, hourlyrate, rating, bookclmech }
+        { img, alt, name, desc, specialist, contact, hourlyrate, rating, bookclmech, near }
     ) => {
 
       
@@ -32,6 +33,7 @@ const Mechcard: React.FC<MechcardProps> = (
         </div>
       <div className="col-span-3 bg-gray-100 rounded-lg p-2">
         <h3 className="font-bold text-sm">Specialist : {specialist}</h3>
+        <h3 className="font-bold text-sm">In : {near}</h3>
         <h3 className="font-bold text-sm">Contact : {contact}</h3>
         <h3 className="font-bold text-sm">Rate : Rs. {hourlyrate}/-</h3>
         <h3 className="font-bold text-sm">Rating : {rating}⭐</h3>

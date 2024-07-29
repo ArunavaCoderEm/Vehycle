@@ -5,13 +5,14 @@ interface MechcardProps {
   alt: string;
   name: string;
   bookprclient: any;
+  near: string,
   contact: number;
   defect: string
 }
 
 
 const Clicard: React.FC<MechcardProps> = (
-        { img, alt, name, contact, defect, bookprclient }
+        { img, alt, name, contact, defect, bookprclient, near }
     ) => {
 
           
@@ -28,6 +29,7 @@ const Clicard: React.FC<MechcardProps> = (
         </div>
       <div className="col-span-3 bg-gray-100 rounded-lg p-2">
         <h3 className="font-bold text-sm">Contact : {contact}</h3>
+        <h3 className="font-bold text-sm">In : {near}</h3>
         <h3 className="font-bold text-sm">Defect : {defect}</h3>
         <div className='mt-7 flex justify-center'>
           <button 

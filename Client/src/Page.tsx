@@ -12,6 +12,7 @@ import Catepage from './Pages/Catepage';
 import Premium from './Pages/Premium';
 import Explore from './Pages/Explore';
 import Chat from './Pages/Chat';
+import PrivacyPolicy from './Pages/Privacy';
 
 
 export default function Page(): React.ReactNode {
@@ -30,6 +31,7 @@ export default function Page(): React.ReactNode {
             <Route path="/premium" element={<Premium />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/chat" element={<Chat />} />
+            <Route path="/privacytnc" element={<PrivacyPolicy />} />
         </Routes>
         </div>
         <Footer />

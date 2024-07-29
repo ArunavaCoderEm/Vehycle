@@ -230,6 +230,7 @@ export default function Explore():React.ReactNode {
                   alt={item.name}
                   name={item.name}
                   desc={item.desc}
+                  near = {item.nearby}
                   specialist={item.specialist}
                   hourlyrate={item.hourlyrate}
                   contact={item.contact}
@@ -272,6 +273,7 @@ export default function Explore():React.ReactNode {
                   img={item.img}
                   alt={item.name}
                   name={item.name}  
+                  near = {item.nearby}
                   defect ={item.current_defect}
                   contact={item.contact}
                   bookprclient={() => bookprclient(item.fbid)}

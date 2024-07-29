@@ -199,6 +199,7 @@ export default function Catepage():React.ReactNode {
                   <Mechcard
                   img={item.img}
                   alt={item.name}
+                  near = {item.nearby}
                   name={item.name}
                   desc={item.desc}
                   specialist={item.specialist}
@@ -238,6 +239,7 @@ export default function Catepage():React.ReactNode {
                       img={item.img}
                       alt={item.name}
                       name={item.name}  
+                      near = {item.nearby}
                       defect ={item.current_defect}
                       contact={item.contact}
                       bookprclient={() => bookprclient(item.fbid)}
