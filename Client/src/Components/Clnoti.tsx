@@ -13,7 +13,7 @@ export default function Clnoti(props:any):React.ReactNode {
   return (
     <>
     <div className='flex my-3 bg-white rounded-md p-2 justify-between items-center'>
-        <p className='font-bold text-sm'>{props.name}</p>
+        <p className='font-bold text-sm'>{props.name} <span className='text-xs'>{props.spe}</span></p>
         <p className='font-bold text-sm'>{props.place}</p>
         <p className='font-bold text-sm'>{props.date}</p>
         <div className='flex gap-x-4'>

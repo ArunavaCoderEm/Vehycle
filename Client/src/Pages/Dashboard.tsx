@@ -84,7 +84,7 @@ export default function Dashboard():React.ReactNode {
         getMbUserCl(user.uid);
         getMbUserPr(user.uid);
       }
-    }, [user]);
+    }, [user, noti]);
 
 
     const getMbUserCl = async (uid: string) => {
@@ -403,6 +403,7 @@ export default function Dashboard():React.ReactNode {
                     place = {item.place}
                     con = {item.contact}
                     sta = {item.status}
+                    spe = {item.spe}
                   />
                   </div>
                 ))}
@@ -426,6 +427,7 @@ export default function Dashboard():React.ReactNode {
                     place = {item.place}
                     sta = {item.status}
                     con = {item.contact}
+                    def = {item.def}
                   />
                   </div>
                 ))}
@@ -454,6 +456,7 @@ export default function Dashboard():React.ReactNode {
                     name = {item.providername}
                     handleconfirmc = {() => handleconfirmc(item.consumerBookingId)}
                     handlerejectc = {() => handlerejectc(item.consumerBookingId)}
+                    spe = {item.spe}
                     />
                   </div>
                 ))}
@@ -474,6 +477,7 @@ export default function Dashboard():React.ReactNode {
                       date = {formatToDateString(item.date)}
                       place = {item.place}
                       name = {item.clientname}
+                      def = {item.def}
                       handleconfirmp = {() => handleconfirmp(item.providerBookingId)}
                       handlerejectp = {() => handlerejectp(item.providerBookingId)}
                     />
