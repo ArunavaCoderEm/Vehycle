@@ -33,7 +33,7 @@ export default function Categories():React.ReactNode {
 
 
       const getMbUserCl = async (uid: string) => {
-        const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
+        const response = await axios.get(`https://vehycle-server.vercel.app/usercl/getpart/${uid}`);
         try {
           if (response) {
             console.log("USER FOUND in usercl");
@@ -50,7 +50,7 @@ export default function Categories():React.ReactNode {
       };
     
       const getMbUserPr = async (uid: string) => {
-        const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
+        const response = await axios.get(`https://vehycle-server.vercel.app/userpr/getpart/${uid}`);
         try {
           if (response) {
             console.log("USER FOUND in userpr");

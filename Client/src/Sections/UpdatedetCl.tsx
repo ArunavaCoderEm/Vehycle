@@ -35,7 +35,7 @@ export default function Updatedetcl(props:any):React.ReactNode {
         current_defect : def,
       }
       try {
-        const response = await axios.put(`http://localhost:8173/usercl/update/${uid}`,data);
+        const response = await axios.put(`https://vehycle-server.vercel.app/usercl/update/${uid}`,data);
         console.log(response)
         close();
       } catch (e) {

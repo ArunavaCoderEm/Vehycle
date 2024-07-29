@@ -26,7 +26,7 @@ export default function Explore():React.ReactNode {
 
   const getMbUserCl = async (uid: string) => {
     try {
-      const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
+      const response = await axios.get(`https://vehycle-server.vercel.app/usercl/getpart/${uid}`);
       if (response.data) {
         console.log("USER FOUND in usercl");
         setclfind(true);
@@ -43,7 +43,7 @@ export default function Explore():React.ReactNode {
 
   const getMbUserPr = async (uid: string) => {
     try {
-      const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
+      const response = await axios.get(`https://vehycle-server.vercel.app/userpr/getpart/${uid}`);
       if (response.data) {
         console.log("USER FOUND in userpr");
         setprfind(true);
@@ -61,7 +61,7 @@ export default function Explore():React.ReactNode {
 
   const getMechall = async () => {
     try {
-      const res = await axios.get(`http://localhost:8173/userpr/getdata`);
+      const res = await axios.get(`https://vehycle-server.vercel.app/userpr/getdata`);
       setPrarr(res.data);
     } catch (e) {
       console.log("error ", e);
@@ -70,7 +70,7 @@ export default function Explore():React.ReactNode {
 
   const getClall = async () => {
     try {
-      const res = await axios.get(`http://localhost:8173/usercl/getdata`);
+      const res = await axios.get(`https://vehycle-server.vercel.app/usercl/getdata`);
       setPrarr(res.data);
     } catch (e) {
       console.log("error ", e);
@@ -79,7 +79,7 @@ export default function Explore():React.ReactNode {
 
   const getfillCl = async (params: number) => {
     try {
-      const res = await axios.get(`http://localhost:8173/seasor/nearyou/${params}`);
+      const res = await axios.get(`https://vehycle-server.vercel.app/seasor/nearyou/${params}`);
       if (res.data.message) setmsg(res.data.message);
       if (! msg) {
         setPrarr([])
@@ -94,7 +94,7 @@ export default function Explore():React.ReactNode {
 
   const getfillSp = async (params: number) => {
     try {
-      const res = await axios.get(`http://localhost:8173/seasor/nearyousp/${params}`);
+      const res = await axios.get(`https://vehycle-server.vercel.app/seasor/nearyousp/${params}`);
       if (res.data.message) setmsg(res.data.message);
       if (! msg) {
         setPrarr([])
@@ -160,7 +160,7 @@ export default function Explore():React.ReactNode {
         date : selectedDate
     }
     try {
-      const res = await axios.put(`http://localhost:8173/book/bookingcl/${user.uid}/${prfbid}`, data);
+      const res = await axios.put(`https://vehycle-server.vercel.app/book/bookingcl/${user.uid}/${prfbid}`, data);
       console.log(res);
       setaltit("Booked")
         setalde("Mechanic booked")
@@ -182,7 +182,7 @@ export default function Explore():React.ReactNode {
         date : selectedDate
     }
     try {
-      const res = await axios.put(`http://localhost:8173/book/bookingpr/${clfbid}/${user.uid}`, data);
+      const res = await axios.put(`https://vehycle-server.vercel.app/book/bookingpr/${clfbid}/${user.uid}`, data);
       console.log(res);
       setaltit("Applied")
         setalde("Customer applied")

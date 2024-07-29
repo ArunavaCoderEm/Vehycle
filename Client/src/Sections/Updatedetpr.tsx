@@ -42,7 +42,7 @@ export default function Updatedetpr(props:any):React.ReactNode {
         desc : des
       }
       try {
-        const response = await axios.put(`http://localhost:8173/userpr/update/${uid}`,data);
+        const response = await axios.put(`https://vehycle-server.vercel.app/userpr/update/${uid}`,data);
         console.log(response)
         close();
       } catch (e) {

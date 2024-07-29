@@ -44,7 +44,7 @@ export default function Catepage():React.ReactNode {
 
 
       const getMbUserCl = async (uid: string) => {
-        const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
+        const response = await axios.get(`https://vehycle-server.vercel.app/usercl/getpart/${uid}`);
         try {
           if (response) {
             console.log("USER FOUND in usercl");
@@ -61,7 +61,7 @@ export default function Catepage():React.ReactNode {
       };
     
       const getMbUserPr = async (uid: string) => {
-        const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
+        const response = await axios.get(`https://vehycle-server.vercel.app/userpr/getpart/${uid}`);
         try {
           if (response) {
             console.log("USER FOUND in userpr");
@@ -103,7 +103,7 @@ export default function Catepage():React.ReactNode {
 
     const getmechs = async () => {
       try {
-        const res = await axios.get(`http://localhost:8173/seasor/getmech/${sea}`)
+        const res = await axios.get(`https://vehycle-server.vercel.app/seasor/getmech/${sea}`)
         setMaparr(res.data)
       } catch (e) {
         console.log("Error");
@@ -112,7 +112,7 @@ export default function Catepage():React.ReactNode {
 
     const getcldefs = async () => {
       try {
-        const res = await axios.get(`http://localhost:8173/seasor/getclient/${sea}`)
+        const res = await axios.get(`https://vehycle-server.vercel.app/seasor/getclient/${sea}`)
         console.log(res.data)
         setSaparr(res.data)
       } catch (e) {
@@ -143,7 +143,7 @@ export default function Catepage():React.ReactNode {
           date : selectedDate
       }
       try {
-        const res = await axios.put(`http://localhost:8173/book/bookingcl/${user.uid}/${prfbid}`, data);
+        const res = await axios.put(`https://vehycle-server.vercel.app/book/bookingcl/${user.uid}/${prfbid}`, data);
         console.log(res);
         setaltit("Booked")
         setalde("Mechanic booked")
@@ -165,7 +165,7 @@ export default function Catepage():React.ReactNode {
           date : selectedDate
       }
       try {
-        const res = await axios.put(`http://localhost:8173/book/bookingpr/${clfbid}/${user.uid}`, data);
+        const res = await axios.put(`https://vehycle-server.vercel.app/book/bookingpr/${clfbid}/${user.uid}`, data);
         console.log(res);
         setaltit("Applied")
         setalde("Customer applied")

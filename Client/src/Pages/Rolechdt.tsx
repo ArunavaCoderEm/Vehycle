@@ -64,7 +64,7 @@ const Rolechdt: React.FC = () => {
   }, [user, avat, clfind, prfind, role, fbid]);
 
   const getMbUserCl = async (uid: string) => {
-    const response = await axios.get(`http://localhost:8173/usercl/getpart/${uid}`);
+    const response = await axios.get(`https://vehycle-server.vercel.app/usercl/getpart/${uid}`);
     try {
       if (response) {
         console.log("USER FOUND in usercl");
@@ -81,7 +81,7 @@ const Rolechdt: React.FC = () => {
   };
 
   const getMbUserPr = async (uid: string) => {
-    const response = await axios.get(`http://localhost:8173/userpr/getpart/${uid}`);
+    const response = await axios.get(`https://vehycle-server.vercel.app/userpr/getpart/${uid}`);
     try {
       if (response) {
         console.log("USER FOUND in userpr");
@@ -124,7 +124,7 @@ const Rolechdt: React.FC = () => {
         current_defect : def,
         bookingscl : []
       }
-      const response = await axios.post("http://localhost:8173/usercl/create",data);
+      const response = await axios.post("https://vehycle-server.vercel.app/usercl/create",data);
       console.log(response)
       setTimeout(() => {
         nav("/")
@@ -146,7 +146,7 @@ const Rolechdt: React.FC = () => {
         rating : [],
         bookings : []
       }
-      const response = await axios.post("http://localhost:8173/userpr/create",data);
+      const response = await axios.post("https://vehycle-server.vercel.app/userpr/create",data);
       console.log(response)
       setTimeout(() => {
         nav("/")
