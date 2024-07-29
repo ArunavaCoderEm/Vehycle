@@ -40,8 +40,8 @@ List of the key features of the project here.
 - Asks you about your role and respective details.
 - Mechanics can sort customers based on nearby location.
 - Customers can sort mechanics based on nearby location.
-- Customers can book mechanics but booking only confirms when that mechanic confirms.
-- Mechanics can book customers but applying only confirms when that customer confirms.
+- Customers can book mechanics on preferred date but booking only confirms when that mechanic confirms.
+- Mechanics can book customers on preferred date but applying only confirms when that customer confirms.
 - Sends one notifications based on bookings.
 - One can confirm or reject any booking.
 - Has personalised dashboard.
