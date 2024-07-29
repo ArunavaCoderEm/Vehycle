@@ -4,6 +4,7 @@ import axios from 'axios';
 import Mechcard from '../Components/Mechcard';
 import Clicard from '../Components/Clicard';
 import { useNavigate } from 'react-router-dom';
+import Alert from '../Components/Alert';
 
 export default function Explore():React.ReactNode {
 
@@ -17,6 +18,10 @@ export default function Explore():React.ReactNode {
   const [fil, setfil] = useState<string>("none");
   const [role, setRole] = useState<string>("");
   const [msg, setmsg] = useState<boolean>(true);
+
+  const [alert, setalert] = useState<boolean>(false);
+  const [alde, setalde] = useState<string>("")
+  const [altit, setaltit] = useState<string>("")
 
 
   const getMbUserCl = async (uid: string) => {
@@ -157,6 +162,12 @@ export default function Explore():React.ReactNode {
     try {
       const res = await axios.put(`http://localhost:8173/book/bookingcl/${user.uid}/${prfbid}`, data);
       console.log(res);
+      setaltit("Booked")
+        setalde("Mechanic booked")
+         setalert(true)
+        setTimeout(() => {
+          setalert(false)
+        }, 2000);
       setTimeout(() => {
         nav('/dashboard')
       }, 1700);
@@ -173,6 +184,12 @@ export default function Explore():React.ReactNode {
     try {
       const res = await axios.put(`http://localhost:8173/book/bookingpr/${clfbid}/${user.uid}`, data);
       console.log(res);
+      setaltit("Applied")
+        setalde("Customer applied")
+         setalert(true)
+        setTimeout(() => {
+          setalert(false)
+        }, 2000);
       setTimeout(() => {
         nav('/dashboard')
       }, 1700);
@@ -185,6 +202,21 @@ export default function Explore():React.ReactNode {
 
   return (
     <div className='mt-24'>
+
+      
+      {alert &&
+
+      <div className='transition-all duration-200 fixed  z-[50] left-0 right-0'>
+      <div className="fixed inset-0 bg-black opacity-70 z-40"></div>
+      <Alert 
+        title = {altit}
+        descr = {alde}
+        />
+      </div>
+
+      }
+
+
       {role === "Consumer" && (
         <>
           <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'>
@@ -251,6 +283,10 @@ export default function Explore():React.ReactNode {
           <h1 className='text-4xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'>
             <span className='text-pink-600'>E</span>xplore <span className='text-pink-600'>Y</span>our <span className='text-pink-600'>C</span>ustomers
           </h1>
+        
+        
+          <div className='flex flex-row gap-x-3 items-center justify-center'>
+            
           <div className="md:col-span-2 font-semibold flex flex-col">
             <label htmlFor="state" className='text-center font-bold'>Filters to choose</label>
             <div className="h-10 w-36 mx-auto bg-gray-50 flex border border-gray-200 sha rounded items-center m-1">
@@ -263,6 +299,20 @@ export default function Explore():React.ReactNode {
                 <option value="near">Near You</option>
               </select>
             </div>
+          </div>
+            
+          <div className="md:col-span-2 font-semibold flex flex-col">
+            <label htmlFor="state" className='text-center font-bold'>Your date</label>
+            <div className="h-10 w-36 mx-auto bg-gray-50 flex border border-gray-200 sha rounded items-center m-1">
+            <input
+                  type="date"
+                  value={selectedDate.toISOString().substring(0, 10)}
+                  onChange={handleDateChange}
+                  className='ring-0 focus:ring-0 outline-none text-center mx-auto'
+                  required
+                />
+            </div>
+          </div>
           </div>
          
           {prarr.length &&
