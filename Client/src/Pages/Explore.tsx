@@ -339,7 +339,7 @@ export default function Explore():React.ReactNode {
       {role === "" &&
         <>
            <h1 className='text-2xl text-center underline underline-offset-4 my-5 p-2 font-extrabold'>
-            <span className='text-pink-600'>S</span>ign <span className='text-pink-600'>I</span>n <span className='text-pink-600'>F</span>or <span className='text-pink-600'>U</span>sers
+            <span className='text-pink-600'>S</span>ign <span className='text-pink-600'>I</span>n <span className='text-pink-600'>F</span>or <span className='text-pink-600'>U</span>sers 
           </h1>
         </>
       }
