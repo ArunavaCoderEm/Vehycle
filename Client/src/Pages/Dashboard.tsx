@@ -514,7 +514,7 @@ export default function Dashboard():React.ReactNode {
                 ))}
                 </>
                 : 
-                <h1 className='font-bold text-lg my-3 text-center text-pink-600'>No bookings yet.</h1>
+                <h1 className='font-bold text-lg my-3 text-center text-pink-600'>No notifications.</h1>
                 }
                 </>
               }
@@ -537,7 +537,7 @@ export default function Dashboard():React.ReactNode {
                 ))}
                 </>
                 : 
-                <h1 className='font-bold text-lg my-3 text-center text-pink-600'>No bookings yet.</h1>
+                <h1 className='font-bold text-lg my-3 text-center text-pink-600'>No notifications.</h1>
                 }
                 </>
               }
