@@ -108,11 +108,11 @@ export default function Navbar():React.ReactNode {
     });
   }
 
-  useEffect(() => {
-    if (user) {
-      nav('/'); 
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     nav('/'); 
+  //   }
+  // }, [user]);
 
 
   useEffect(() => {

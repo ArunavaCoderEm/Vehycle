@@ -13,6 +13,7 @@ import Premium from './Pages/Premium';
 import Explore from './Pages/Explore';
 import Chat from './Pages/Chat';
 import PrivacyPolicy from './Pages/Privacy';
+import Error404 from './Pages/Error404';
 
 
 export default function Page(): React.ReactNode {
@@ -32,6 +33,7 @@ export default function Page(): React.ReactNode {
             <Route path="/explore" element={<Explore />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/privacytnc" element={<PrivacyPolicy />} />
+            <Route path="/*" element={<Error404 />} />
         </Routes>
         </div>
         <Footer />
